@@ -4,34 +4,74 @@ const Signup = () => {
   return (
     <div
       style={{
-        minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#f8f9fa",
+        padding: "28px 0",
       }}
     >
       <div className="container">
-        <div className="row shadow" style={{ borderRadius: "15px", overflow: "hidden" }}>
-         
-
-          <div className="col-md-6 p-5" style={{ backgroundColor: "white" }}>
+        <div className="row shadow-lg" style={{ borderRadius: "20px", overflow: "hidden" }}>
+          <div
+            className="col-md-7 p-3"
+            style={{
+              backgroundColor: "white",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center", 
+              justifyContent: "center", 
+            }}
+          >
             <h2
-              className="text-center mb-4"
+              className="text-center mb-1"
               style={{
                 color: "#ff5a1d",
                 fontFamily: "'Poppins', sans-serif",
-                fontWeight: "600",
+                fontWeight: "700",
+                fontSize: "2rem",
               }}
             >
-            𝐒𝐢𝐠𝐧 𝐔𝐩
+              𝐂𝐫𝐞𝐚𝐭𝐞 𝐀𝐧 𝐀𝐜𝐜𝐨𝐮𝐧𝐭
             </h2>
-            <p className="text-center mb-4" style={{ color: "#6c757d" }}>
-              Welcome ! SignUp to experience our service.
+            <p className="text-center mb-4" style={{ color: "#6c757d", fontSize: "0.80rem" }}>
+              Welcome! Sign up to experience our service.
             </p>
-            <form>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
+            <form style={{ width: "70%", maxWidth: "400px" }}> 
+              <div className="mb-2">
+                <label htmlFor="role" className="form-label" style={{ fontWeight: "500" }}>
+                  Role
+                </label>
+                <select
+                  className="form-control"
+                  id="role"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                >
+                  <option value="" hidden>
+                    Choose Your role
+                  </option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
+              </div>
+
+              {/* Name Field */}
+              <div className="mb-2">
+                <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  placeholder="Enter your full name"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                />
+              </div>
+
+              {/* Email Field */}
+              <div className="mb-2">
+                <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>
                   Email address
                 </label>
                 <input
@@ -39,11 +79,26 @@ const Signup = () => {
                   className="form-control"
                   id="email"
                   placeholder="Enter your email"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">
+              {/* Date of Birth Field */}
+              <div className="mb-2">
+                <label htmlFor="dob" className="form-label" style={{ fontWeight: "500" }}>
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  className="form-control"
+                  id="dob"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                />
+              </div>
+
+              {/* Password Field */}
+              <div className="mb-2">
+                <label htmlFor="password" className="form-label" style={{ fontWeight: "500" }}>
                   Password
                 </label>
                 <input
@@ -51,45 +106,65 @@ const Signup = () => {
                   className="form-control"
                   id="password"
                   placeholder="Enter your password"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
               </div>
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">
-                  Password
+
+              {/* Confirm Password Field */}
+              <div className="mb-2">
+                <label htmlFor="confirmPassword" className="form-label" style={{ fontWeight: "500" }}>
+                  Confirm Password
                 </label>
                 <input
                   type="password"
                   className="form-control"
-                  id="password"
-                  placeholder=" Confirm  password"
+                  id="confirmPassword"
+                  placeholder="Confirm your password"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
               </div>
 
+              {/* Submit Button */}
               <div className="d-grid">
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn mt-3"
                   style={{
                     backgroundColor: "#ff5a1d",
+                    color: "white",
                     border: "none",
-                    padding: "8px 16px",
-                    fontSize: "0.9rem",
+                    borderRadius: "10px",
+                    padding: "6px",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                    transition: "background-color 0.3s ease",
+                    width: "50%",
+                 margin: "0 auto"
+
+                  
                   }}
+                
                 >
-                  Sign In
+                  Sign Up
                 </button>
               </div>
 
-            
-
-             
+              {/* Login Link */}
+              <div className="text-center mt-4">
+                <span style={{ color: "#6c757d" }}>Already have an account? </span>
+                <a href="#login" style={{ color: "#ff5a1d", fontWeight: "500" }}>
+                  Login here
+                </a>
+              </div>
             </form>
           </div>
-          <div className="col-md-6 p-0">
+
+          {/* Image Section */}
+          <div className="col-md-5 p-0">
             <img
               src="https://cdn.pixabay.com/photo/2025/02/12/17/47/stewardess-9401950_1280.png"
               alt="Airplane"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              style={{ width: "100%", height: "70%", objectFit: "cover",marginTop:"90px" }}
             />
           </div>
         </div>

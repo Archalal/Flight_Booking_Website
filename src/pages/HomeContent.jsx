@@ -1,15 +1,22 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Footer from '../component/Footer';
+
 
 
 
 const HomeContent = () => {
+  const booknow=()=>{
+    alert("please login")
+  }
   return (
     <div >
+    <div className='container mt-5'>
+<h2 style={{fontWeight:"bolder"}}>𝐓𝐡𝐞 𝐛𝐞𝐬𝐭 𝐟𝐥𝐢𝐠𝐡𝐭 𝐨𝐟𝐟𝐞𝐫𝐬 𝐟𝐫𝐨𝐦 𝐚𝐧𝐲𝐰𝐡𝐞𝐫𝐞, 𝐭𝐨 𝐞𝐯𝐞𝐫𝐲𝐰𝐡𝐞𝐫𝐞</h2>
 
-<div className='container mt-5'>
+    </div>
+
+<div className='container mt-3'>
     <div className="row" style={{textAlign:"justify", fontSize:"12px",fontWeight:"bolder",marginLeft:"1px"}}>
         <div className="col-4" style={{boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '15px', borderRadius: '5px'}}>
             <div className="row">
@@ -94,7 +101,7 @@ const HomeContent = () => {
       <div className='container' >
       
        <div>
-       <h2 style={{display:"block"}}>Flight deals from India</h2> <br />
+       <h2 style={{display:"block",fontWeight:"bold"}}>𝐅𝐥𝐢𝐠𝐡𝐭 𝐝𝐞𝐚𝐥𝐬 𝐟𝐫𝐨𝐦 𝐈𝐧𝐝𝐢𝐚</h2> <br />
      
      <p>Here are the flight deals with the lowest prices. Act fast – they all depart within the next three months.</p>
 
@@ -159,6 +166,7 @@ const HomeContent = () => {
           cursor: 'pointer',
           transition: 'background-color 0.3s ease',
         }}
+        onClick={booknow}
       
       >
         Book Now
@@ -167,9 +175,11 @@ const HomeContent = () => {
   </Card.Body>
 </Card>
     </div>
+
+   
       
       </div>
-      <Footer />
+    
     </div>
   );
 };

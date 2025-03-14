@@ -37,8 +37,24 @@ const Login = () => {
               Welcome back! Login to experience our service.
             </p>
             <form>
+            <div className="mb-2">
+                <label htmlFor="role" className="form-label" style={{ fontWeight: "500" }}>
+                  Role
+                </label>
+                <select
+                  className="form-control"
+                  id="role"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                >
+                  <option value="" hidden>
+                    Choose Your role
+                  </option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
+              </div>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">
+                <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>
                   Email address
                 </label>
                 <input
@@ -50,7 +66,7 @@ const Login = () => {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">
+                <label htmlFor="password" className="form-label" style={{ fontWeight: "500" }}>
                   Password
                 </label>
                 <input
@@ -68,8 +84,10 @@ const Login = () => {
                   style={{
                     backgroundColor: "#ff5a1d",
                     border: "none",
-                    padding: "8px 16px",
+                    padding: "7px",
                     fontSize: "0.9rem",
+                    width:"200px",
+                    margin:"0 auto"
                   }}
                 >
                   Sign In
