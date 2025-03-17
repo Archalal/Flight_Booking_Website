@@ -1,38 +1,10 @@
 import React from "react";
 import SideBar from "./SideBar";
-import ReactApexChart from "react-apexcharts";
+
 import { Button } from "react-bootstrap";
 
 const UserAdminManage = () => {
-  const [state, setState] = React.useState({
-    series: [44, 55, 67, 83],
-    options: {
-      chart: {
-        height: 350,
-        type: "radialBar",
-      },
-      plotOptions: {
-        radialBar: {
-          dataLabels: {
-            name: {
-              fontSize: "22px",
-            },
-            value: {
-              fontSize: "16px",
-            },
-            total: {
-              show: true,
-              label: "Total",
-              formatter: function (w) {
-                return 249;
-              },
-            },
-          },
-        },
-      },
-      labels: ["Apples", "Oranges", "Bananas", "Berries"],
-    },
-  });
+ 
   return (
     <div>
       <div>
@@ -122,60 +94,40 @@ const UserAdminManage = () => {
                 <div className="col-md-3"></div>
               </div>
               <div className="row mt-5">
-          <div className="col-9">
+          <div className="col-9 rounded shadow">
             
-            <table className="table table-bordered table-striped table-hover">
-              <thead className="thead-dark">
-                <tr>
-                  <th>Name</th>
-                  <th>E-Mail</th>
-                  <th>Date-of-birth</th>
-                  <th colSpan={2}>Status</th>
+            <table className="table table-bordered  mt-5 ">
+              <thead className="thead-dark ">
+                <tr >
+                  <th className="p-3 text-center">Name</th>
+                  <th className="p-3 text-center">E-Mail</th>
+                  <th className="p-3 text-center">Date-of-birth</th>
+                  <th colSpan={2} className="text-center p-3">Status</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
                 <tr>
                   <td>archa</td>
                   <td>archa0002@gmail.com</td>
                   <td>31/07/2000</td>
-                  <td><Button variant="success">Accept</Button></td>
-                  <td><Button variant="danger">Reject</Button></td>
+                  <td><Button variant="outline-info " size="sm"   > Accept</Button></td>
+                  <td><Button variant="outline-danger" size="sm">Reject</Button></td>
                 </tr>
                 <tr>
-                  <td>John</td>
-                  <td>john@example.com</td>
-                  <td>15/03/1995</td>
-                  <td><Button variant="success">Accept</Button></td>
-                  <td><Button variant="danger">Reject</Button></td>
+                  <td>archa</td>
+                  <td>archa0002@gmail.com</td>
+                  <td>31/07/2000</td>
+                  <td><Button variant="outline-info " size="sm" > Accept</Button></td>
+                  <td><Button variant="outline-danger" size="sm">Reject</Button></td>
                 </tr>
-                <tr>
-                  <td>Jane</td>
-                  <td>jane@example.com</td>
-                  <td>22/11/1988</td>
-                  <td><Button variant="success">Accept</Button></td>
-                  <td><Button variant="danger">Reject</Button></td>
-                </tr>
+              
               </tbody>
             </table>
 
           </div>
           <div className="col-3 ">
-                  <div
-                    className="bg-white  rounded shadow p-3"
-                   
-                  >
-                    <div>
-                      <div id="chart">
-                        <ReactApexChart
-                          options={state.options}
-                          series={state.series}
-                          type="radialBar"
-                          height={350}
-                        />
-                      </div>
-                      <div id="html-dist"></div>
-                    </div>
-                  </div>
+            
+                 
                 </div>
          </div>
             </div>

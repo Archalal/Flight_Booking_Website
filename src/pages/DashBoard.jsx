@@ -1,68 +1,50 @@
 import React from 'react'
 import ReactApexChart from "react-apexcharts";
 
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, LinearScale, LineElement, Tooltip, Legend, CategoryScale, PointElement } from 'chart.js';
+
+// Register the required components
+ChartJS.register(LinearScale, LineElement, Tooltip, Legend, CategoryScale, PointElement);
 
 const DashBoard = () => {
-  const [chartState, setChartState] = React.useState({
-    series: [
+
+  const data = {
+    labels: ["Jan", "Feb","mar"], // X-axis labels
+    datasets: [
       {
-        name: "Net Profit",
-        data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+        label: "Transaction", // Singular, not an array
+        data: [10, 202,3], // Must be numbers, not a string
+        borderColor: [
+          "red",
+          "blue",
+          "green"
+        ],
+        backgroundColor:[
+          "red",
+          "blue",
+          "green"
+        ],
+        fill: true,
       },
       {
-        name: "Revenue",
-        data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-      },
-      {
-        name: "Free Cash Flow",
-        data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+        label: "Transaction", // Singular, not an array
+        data: [1, 12,3], // Must be numbers, not a string
+        borderColor: [
+          "red",
+          "blue",
+          "green"
+        ],
+        backgroundColor:[
+          "red",
+          "blue",
+          "green"
+        ],
+        fill: true,
       },
     ],
-    options: {
-      chart: {
-        type: "bar",
-        height: 350,
-        toolbar: {
-          show: false,
-        },
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "55%",
-          borderRadius: 5,
-          borderRadiusApplication: "end",
-          color:"red"
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"],
-      },
-      xaxis: {
-        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
-      },
-      yaxis: {
-        title: {
-          text: "$ (thousands)",
-        },
-      },
-      fill: {
-        opacity: 1,
-      },
-      tooltip: {
-        y: {
-          formatter: function (val) {
-            return "$ " + val + " thousands";
-          },
-        },
-      },
-    },
-  });
+  };
+ 
   return (
     <div>
       <div
@@ -145,13 +127,7 @@ const DashBoard = () => {
                   <h3 style={{ color: "purple", marginBottom: "13px",fontWeight:"bold" ,fontSize:"1.40rem"}}>
                     Booking Trends
                   </h3>
-                  <ReactApexChart
-                    options={chartState.options}
-                    series={chartState.series}
-                    type="bar"
-                    height={350}
-                    
-                  />
+                <Line data={data}/>
                 </div>
               </div>
             </div>

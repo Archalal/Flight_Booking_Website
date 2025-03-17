@@ -11,16 +11,13 @@ const HomeContent = () => {
   }
   return (
     <div >
-    <div className='container mt-5'>
-<h2 style={{fontWeight:"bolder"}}>𝐓𝐡𝐞 𝐛𝐞𝐬𝐭 𝐟𝐥𝐢𝐠𝐡𝐭 𝐨𝐟𝐟𝐞𝐫𝐬 𝐟𝐫𝐨𝐦 𝐚𝐧𝐲𝐰𝐡𝐞𝐫𝐞, 𝐭𝐨 𝐞𝐯𝐞𝐫𝐲𝐰𝐡𝐞𝐫𝐞</h2>
+   
 
-    </div>
-
-<div className='container mt-3'>
+{/* <div className='container mt-3'>
     <div className="row" style={{textAlign:"justify", fontSize:"12px",fontWeight:"bolder",marginLeft:"1px"}}>
         <div className="col-4" style={{boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '15px', borderRadius: '5px'}}>
             <div className="row">
-                <div className="col-1"> <i className="fa-solid fa-plane-departure"></i></div>
+                <div className="col-1"> <i className="fa-solid fa-plane-departure" style={{color:"red"}}></i></div>
                 <div className="col-11">
                     <p>Explore the best flight deals from anywhere, to everywhere, then book with no fees</p>
                 </div>
@@ -29,7 +26,7 @@ const HomeContent = () => {
         <div className="col-4" style={{boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '15px', borderRadius: '5px'}}>
             <div className="row">
                 <div className="col-1">
-                    <i className="fa-solid fa-calendar-days"></i>
+                    <i className="fa-solid fa-calendar-days" style={{color:"red"}} ></i>
                 </div>
                 <div className="col-11">
                     <p>Compare Flights deals from over 100 providers and choose the cheapest or fastest or lowest-emission tickets</p>
@@ -38,16 +35,51 @@ const HomeContent = () => {
         </div>
         <div className="col-4" style={{boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '15px', borderRadius: '5px'}}>
             <div className="row">
-                <div className="col-1"><i className="fa-solid fa-tag"></i></div>
+                <div className="col-1"><i className="fa-solid fa-tag" style={{color:"red"}}></i></div>
                 <div className="col-11">
                     <p>Find the cheapest month -or even day -to fly, and set up price alert to book when the price is right</p>
                 </div>
             </div>
         </div>
     </div>
+</div> */}
+<div style={{textAlign:"center",marginTop:"40px"}} >
+  <h2 style={{fontWeight:"bolder",color:"#090979"}}>Plan your Trip with us!</h2>
+  <p>Find help with you bookings and travel plans,and see what to expect along your journey</p>
 </div>
-      <div className="container mt-5" style={{marginBottom:"90px"}}>
-        <div className="item">
+ 
+ <div className=" container shadow rounded p-5 mt-5">
+    <div className="col-6">
+      <span className='border p-1 rounded '  style={{backgroundColor:"#fc466b",color:"white"}}>01</span>
+      <h4 style={{fontWeight:"bolder"}} className='mt-3'>Travel requirements for portugala</h4>
+      <p >Mamando is by far one of the best travel websites for sourcing travel deals</p>
+      <span className='border p-1 rounded'  style={{backgroundColor:"purple",color:"white"}}>02</span>
+      <h4 style={{fontWeight:"bolder"}} className='mt-3'>Our Mission</h4>
+      <p >Anything from startegy to troubleshotting,improvement ,analysis process engineering contracts or optimization</p>
+      <span className='border p-1 rounded'  style={{backgroundColor:"#090979",color:"white"}}>03</span>
+      <h4 style={{fontWeight:"bolder"}} className='mt-3'>Travel requirement by destination</h4>
+      <p > Best travel websites for sourcing travel deals & enjouy your trip withoout worrying happy journey</p>
+    </div>
+    <div className="col-6"> 
+      <div className="row  mt-5"  >
+        <div className="col-4"><img className='image-fluid ' style={{borderRadius:"5%"}} src="https://i.pinimg.com/736x/7c/58/fd/7c58fdc433c9dce8cd47b43952d2c6fd.jpg" alt="" width={"100%"} /></div>
+        <div className="col-4">
+          <img src="https://i.pinimg.com/736x/54/16/7e/54167e6e30f5da6bc810bd457b4c081b.jpg " style={{borderRadius:"5%"}} alt="" width={"100%"} />
+        </div>
+        <div className="col-4">
+          <img src="https://i.pinimg.com/736x/35/ce/51/35ce5159a316b6232066a28b2919e0d2.jpg" style={{borderRadius:"5%"}} alt="" width={"100%"} />
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div className='container mt-5'>
+<h2 style={{fontWeight:"bolder",color:"#090979",margin:"0 auto"}}>𝐓𝐡𝐞 𝐛𝐞𝐬𝐭 𝐟𝐥𝐢𝐠𝐡𝐭 𝐨𝐟𝐟𝐞𝐫𝐬 𝐟𝐫𝐨𝐦 𝐚𝐧𝐲𝐰𝐡𝐞𝐫𝐞, 𝐭𝐨 𝐞𝐯𝐞𝐫𝐲𝐰𝐡𝐞𝐫𝐞</h2>
+
+    </div>
+      <div className="container mt-2 p-5" style={{marginBottom:"90px",height:"300px"}}>
+        <div className="item"
+        >
           <div className="image-container">
             <img
               src="https://airindia.scene7.com/is/image/airindia/Mumbai_to_NYC_Mob_Clr"
@@ -98,7 +130,7 @@ const HomeContent = () => {
           </div>
         </div>
       </div>
-      <div className='container' >
+      <div className='container mt-5' >
       
        <div>
        <h2 style={{display:"block",fontWeight:"bold"}}>𝐅𝐥𝐢𝐠𝐡𝐭 𝐝𝐞𝐚𝐥𝐬 𝐟𝐫𝐨𝐦 𝐈𝐧𝐝𝐢𝐚</h2> <br />
