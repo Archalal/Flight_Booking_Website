@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <Navbar className="bg-transparent" style={{ padding: '8px 0' }}>
+    <div>
+      <Navbar className="bg-transparent" style={{ padding: '8px 0' }}>
       <Container>
         <div style={{ display: 'flex', alignItems: 'center', width: '100%', marginLeft: "20px" }}>
           <Navbar.Brand style={{ display: 'flex', gap: '2px', alignItems: 'center', marginRight: 'auto' }}>
@@ -41,6 +42,7 @@ const Header = () => {
         </div>
       </Container>
     </Navbar>
+    </div>
   );
 };
 

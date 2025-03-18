@@ -35,38 +35,38 @@ const SideBar = () => {
             <ul style={{ listStyle: "none", padding: "0",marginTop:"30px",marginLeft:"1px" }}>
               <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
              
-                <Link  to={'/admindashboard'} style={{ color: "#525f7f", textDecoration: "none" ,fontWeight:"bolder",fontSize:"20px", letterSpacing: "2px", color:"black"}}>
-               DashBoard
+                <Link  to={'/admindashboard'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+                <i class="fa-solid fa-house"></i><span className='ms-2'>OverView</span>
                 </Link>
               </li>
               <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link to={ "/useradminmanage"} style={{ color: "#525f7f", textDecoration: "none" ,fontWeight:"bolder",fontSize:"20px", letterSpacing: "2px",color:"black"}}>
-           User
+             <Link to={ "/useradminmanage"} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <i class="fa-solid fa-user"></i><span className='ms-2'>Users Manage</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
              
-             <Link  to={'/admindashboard'} style={{ color: "#525f7f", textDecoration: "none" ,fontWeight:"bolder",fontSize:"20px", letterSpacing: "2px",color:"black"}}>
-            Flights
+             <Link  to={'/adminflightmanage'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <i class="fa-solid fa-plane-departure"></i><span className='ms-2'>Flight details</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link  to={'/admindashboard'} style={{ color: "#525f7f", textDecoration: "none" ,fontWeight:"bolder",fontSize:"20px", letterSpacing: "2px",color:"black"}}>
-             Booking
+             <Link  to={''} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <i class="fa-solid fa-cart-shopping"></i> <span className='ms-2'>Booking Flights</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link  to={'/admindashboard'} style={{ color: "#525f7f", textDecoration: "none" ,fontWeight:"bolder",fontSize:"20px", letterSpacing: "2px",color:"black"}}>
-             Revenue
+             <Link  to={'/admindashboard'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <i class="fa-solid fa-sack-dollar"></i>  <span className='ms-2'>Revenue Details</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link  to={'/admindashboard'} style={{ color: "#525f7f", textDecoration: "none" ,fontWeight:"bolder",fontSize:"20px", letterSpacing: "2px",color:"black"}}>
-             Logout
+             <Link  to={'/admindashboard'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <i class="fa-solid fa-right-from-bracket"></i> <span className='ms-2'>Logout</span>
              </Link>
            </li>
             </ul>

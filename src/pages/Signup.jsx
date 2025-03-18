@@ -38,8 +38,10 @@ const Signup = () => {
               Welcome! Sign up to experience our service.
             </p>
             <form style={{ width: "70%", maxWidth: "400px" }}> 
+      
               <div className="mb-2">
                 <label htmlFor="role" className="form-label" style={{ fontWeight: "500" }}>
+                 
                   Role
                 </label>
                 <select
@@ -55,7 +57,6 @@ const Signup = () => {
                 </select>
               </div>
 
-              {/* Name Field */}
               <div className="mb-2">
                 <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
                   Full Name
@@ -69,7 +70,7 @@ const Signup = () => {
                 />
               </div>
 
-              {/* Email Field */}
+           
               <div className="mb-2">
                 <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>
                   Email address
@@ -83,7 +84,7 @@ const Signup = () => {
                 />
               </div>
 
-              {/* Date of Birth Field */}
+          
               <div className="mb-2">
                 <label htmlFor="dob" className="form-label" style={{ fontWeight: "500" }}>
                   Date of Birth
@@ -96,7 +97,7 @@ const Signup = () => {
                 />
               </div>
 
-              {/* Password Field */}
+            
               <div className="mb-2">
                 <label htmlFor="password" className="form-label" style={{ fontWeight: "500" }}>
                   Password
@@ -110,7 +111,7 @@ const Signup = () => {
                 />
               </div>
 
-              {/* Confirm Password Field */}
+            
               <div className="mb-2">
                 <label htmlFor="confirmPassword" className="form-label" style={{ fontWeight: "500" }}>
                   Confirm Password
@@ -124,7 +125,7 @@ const Signup = () => {
                 />
               </div>
 
-              {/* Submit Button */}
+             
               <div className="d-grid">
                 <button
                   type="submit"
@@ -149,7 +150,7 @@ const Signup = () => {
                 </button>
               </div>
 
-              {/* Login Link */}
+             
               <div className="text-center mt-4">
                 <span style={{ color: "#6c757d" }}>Already have an account? </span>
                 <a href="#login" style={{ color: "#ff5a1d", fontWeight: "500" }}>
@@ -159,7 +160,7 @@ const Signup = () => {
             </form>
           </div>
 
-          {/* Image Section */}
+         
           <div className="col-md-5 p-0">
             <img
               src="https://cdn.pixabay.com/photo/2025/02/12/17/47/stewardess-9401950_1280.png"

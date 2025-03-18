@@ -130,10 +130,28 @@ const HomeContent = () => {
           </div>
         </div>
       </div>
-      <div className='container mt-5' >
+      <h2 style={{fontWeight:"bolder",color:"#090979",textAlign:"center"}} > Make Memories With Us</h2>
+      <div className="container">
+       
+      <div className="row mt-3">
+        <div className="col-3  " >
+          <img src="https://i.pinimg.com/736x/e1/e1/fc/e1e1fca861c375a3afa892d1052d43d3.jpg" className=' shadow'style={{borderRadius:"100px"}} alt=""  width={"100%"}/>
+        </div>
+        <div className="col-3">
+          <img src="https://i.pinimg.com/736x/98/6d/14/986d14d98dad278c41116c94f73fe434.jpg" alt="" className=' shadow'style={{borderRadius:"100px"}} width={"100%"} />
+        </div>
+        <div className="col-3">
+          <img src="https://i.pinimg.com/736x/79/3f/ec/793fecb0551786b132650c93d34c3188.jpg" alt=""  className=' shadow'style={{borderRadius:"100px"}}width={"100%"} />
+        </div>
+        <div className="col-3">
+          <img src="https://i.pinimg.com/736x/b6/a6/69/b6a669910b46d34f660cd5a0d28bb130.jpg" alt="" className=' shadow'style={{borderRadius:"100px"}}  width={"100%"}/>
+        </div>
+      </div>
+    </div>
+      <div className='container' >
       
        <div>
-       <h2 style={{display:"block",fontWeight:"bold"}}>𝐅𝐥𝐢𝐠𝐡𝐭 𝐝𝐞𝐚𝐥𝐬 𝐟𝐫𝐨𝐦 𝐈𝐧𝐝𝐢𝐚</h2> <br />
+       <h2 style={{display:"block",fontWeight:"bold",color:"#090979",marginTop:"30px"}}>𝐅𝐥𝐢𝐠𝐡𝐭 𝐝𝐞𝐚𝐥𝐬 𝐟𝐫𝐨𝐦 𝐈𝐧𝐝𝐢𝐚</h2> <br />
      
      <p>Here are the flight deals with the lowest prices. Act fast – they all depart within the next three months.</p>
 
@@ -207,10 +225,12 @@ const HomeContent = () => {
   </Card.Body>
 </Card>
     </div>
+   
 
    
       
       </div>
+     
     
     </div>
   );

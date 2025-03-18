@@ -1,12 +1,12 @@
-import React from "react";
-import SideBar from "./SideBar";
+import React from 'react'
+import SideBar from './SideBar'
+import { Button } from 'react-bootstrap'
 
-import { Button } from "react-bootstrap";
 
-const UserAdminManage = () => {
- 
+const AdminFlightManage = () => {
   return (
     <div>
+        <div>
       <div>
         <div className="w-100">
           <div className="row" style={{ background: "#f8f9fa" }}>
@@ -73,17 +73,17 @@ const UserAdminManage = () => {
               </div>
               <h2 className="ms-2 mt-3" style={{ fontWeight: "bolder" }}>User Manage</h2> 
               <div className="row mt-4 p-3">
-        <div className="col-md-4">
+        <div className="col-md-6">
           <div
             className=" p-3 rounded "
             style={{ height: "130px", backgroundColor: "#000080",color:"white" }}
           >
             <div  > <i className="fa-solid fa-eye  " style={{ color: "white" }}></i></div>
             <h2 className="text-md font-bold">1,234</h2>
-            <h6 className="text-2xl ">Total Users</h6>
+            <h6 className="text-2xl ">Total Flights</h6>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-6">
           <div
             className=" p-3 rounded "
             style={{ height: "130px", backgroundColor: "#0e2f44",color:"white" }}
@@ -93,17 +93,7 @@ const UserAdminManage = () => {
             <h6 className="text-2xl">Total Bookings</h6>
           </div>
         </div>
-        <div className="col-md-4">
-          <div
-            className=" p-3 rounded "
-            style={{ height: "130px", backgroundColor: "#660066",color:"white" }}
-          >
-            <i className="fa-solid fa-dollar-sign" style={{ color: "white" }}></i>
-            <h2 className="text-2xl font-bold">12,345</h2>
-            <h6 className="text-2xl">Total Revenue</h6>
-          </div>
-        </div>
-      
+       
       </div>
 
 
@@ -113,42 +103,52 @@ const UserAdminManage = () => {
       <table className="table table-hover mt-4">
         <thead>
           <tr>
-            <th className="p-3 text-center text-muted">Name</th>
-            <th className="p-3 text-center text-muted">E-Mail</th>
-            <th className="p-3 text-center text-muted">Date of Birth</th>
-            <th colSpan={2} className="p-3 text-center text-muted">Status</th>
+            <th className="p-3 text-center text-muted">Flight Number</th>
+            <th className="p-3 text-center text-muted">AirlineLogo</th>
+            <th className="p-3 text-center text-muted">Depature airport</th>
+            <th  className="p-3 text-center text-muted">Destination airport</th>
+            <th  className="p-3 text-center text-muted">Depature Date</th>
+            <th  className="p-3 text-center text-muted">Depature Time</th>
+            <th  className="p-3 text-center text-muted">Arrival Date</th>
+            <th  className="p-3 text-center text-muted">Arrival Time</th>
+            <th  className="p-3 text-center text-muted">Seats</th>
+            <th  className="p-3 text-center text-muted">Fight Type</th>
           </tr>
         </thead>
         <tbody>
           <tr className="align-middle">
-            <td className="p-3 text-center">Archa</td>
-            <td className="p-3 text-center">archa0002@gmail.com</td>
-            <td className="p-3 text-center">31/07/2000</td>
-            <td className="p-3 text-center">
-              <Button variant="outline-info" size="sm" className="rounded-pill px-3">
-                Accept
-              </Button>
-            </td>
-            <td className="p-3 text-center">
-              <Button variant="outline-danger" size="sm" className="rounded-pill px-3">
-                Reject
-              </Button>
-            </td>
+            <td className="p-3 text-center">567897</td>
+            <td className="p-3 text-center">   <img
+            src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png"
+            alt="AirAsia Logo"
+            style={{ width: '50%', borderRadius: '8px' }}
+          /></td>
+            <td className="p-3 text-center">TVM</td>
+            <td className="p-3 text-center">Qatar</td>
+            <td className="p-3 text-center">01/04/25</td>
+            <td className="p-3 text-center">9.00 am</td>
+            <td className="p-3 text-center">01/04/25</td>
+            <td className="p-3 text-center">1.00 pm</td>
+            <td className="p-3 text-center">40</td>
+            <td className="p-3 text-center">return</td>
+            
           </tr>
           <tr className="align-middle">
-            <td className="p-3 text-center">John</td>
-            <td className="p-3 text-center">john.doe@gmail.com</td>
-            <td className="p-3 text-center">15/05/1995</td>
-            <td className="p-3 text-center">
-              <Button variant="outline-info" size="sm" className="rounded-pill px-3">
-                Accept
-              </Button>
-            </td>
-            <td className="p-3 text-center">
-              <Button variant="outline-danger" size="sm" className="rounded-pill px-3">
-                Reject
-              </Button>
-            </td>
+            <td className="p-3 text-center">345567</td>
+            <td className="p-3 text-center">   <img
+            src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png"
+            alt="AirAsia Logo"
+            style={{ width: '50%', borderRadius: '8px' }}
+          /></td>
+            <td className="p-3 text-center">TVM</td>
+            <td className="p-3 text-center">Dubai</td>
+            <td className="p-3 text-center">01/04/25</td>
+            <td className="p-3 text-center">9.00 am</td>
+            <td className="p-3 text-center">01/04/25</td>
+            <td className="p-3 text-center">1.00 pm</td>
+            <td className="p-3 text-center">40</td>
+            <td className="p-3 text-center">oneWay</td>
+            
           </tr>
         </tbody>
       </table>
@@ -164,7 +164,9 @@ const UserAdminManage = () => {
         </div>
       </div>
     </div>
-  );
-};
+      
+    </div>
+  )
+}
 
-export default UserAdminManage;
+export default AdminFlightManage
