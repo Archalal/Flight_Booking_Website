@@ -9,6 +9,7 @@ const Signup = () => {
         justifyContent: "center",
         backgroundColor: "#f8f9fa",
         padding: "28px 0",
+        
       }}
     >
       <div className="container">
@@ -96,6 +97,32 @@ const Signup = () => {
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
               </div>
+              
+              <div className="mb-2">
+                <label htmlFor="number" className="form-label" style={{ fontWeight: "500" }}>
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="number"
+                   placeholder="Enter your Phone Number"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                />
+              </div>
+              <div className="mb-2">
+                <label htmlFor="address" className="form-label" style={{ fontWeight: "500" }}>
+                  Enter Your Address
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="address"
+                   placeholder="Enter your Address"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                />
+              </div>
+              
 
             
               <div className="mb-2">
