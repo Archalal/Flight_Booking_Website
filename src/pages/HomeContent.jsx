@@ -15,32 +15,40 @@ const HomeContent = () => {
         <p>Find help with your bookings and travel plans, and see what to expect along your journey</p>
       </div>
 
-      <div className="container shadow rounded p-5 mt-5">
-        <div className="col-6">
-          <span className='border p-1 rounded' style={{ backgroundColor: "#fc466b", color: "white" }}>01</span>
-          <h4 style={{ fontWeight: "bolder" }} className='mt-3'>Travel requirements for Portugal</h4>
-          <p>Mamando is by far one of the best travel websites for sourcing travel deals</p>
-          <span className='border p-1 rounded' style={{ backgroundColor: "purple", color: "white" }}>02</span>
-          <h4 style={{ fontWeight: "bolder" }} className='mt-3'>Our Mission</h4>
-          <p>Anything from strategy to troubleshooting, improvement, analysis, process engineering, contracts, or optimization</p>
-          <span className='border p-1 rounded' style={{ backgroundColor: "#090979", color: "white" }}>03</span>
-          <h4 style={{ fontWeight: "bolder" }} className='mt-3'>Travel requirement by destination</h4>
-          <p>Best travel websites for sourcing travel deals & enjoy your trip without worrying. Happy journey!</p>
+      <div className="container shadow rounded p-5 mt-5" style={{ background: "linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%)", border: "1px solid #e0e0e0" }}>
+  <div className="row">
+    <div className="col-6">
+      <div style={{ marginBottom: "30px" }}>
+        <span className='border p-1 rounded' style={{ backgroundColor: "#fc466b", color: "white", fontSize: "14px", fontWeight: "500" }}>01</span>
+        <h4 style={{ fontWeight: "bolder", marginTop: "15px", color: "#090979" }}>Travel requirements for Portugal</h4>
+        <p style={{ color: "#6c757d", fontSize: "14px" }}>Mamando is by far one of the best travel websites for sourcing travel deals</p>
+      </div>
+      <div style={{ marginBottom: "30px" }}>
+        <span className='border p-1 rounded' style={{ backgroundColor: "purple", color: "white", fontSize: "14px", fontWeight: "500" }}>02</span>
+        <h4 style={{ fontWeight: "bolder", marginTop: "15px", color: "#090979" }}>Our Mission</h4>
+        <p style={{ color: "#6c757d", fontSize: "14px" }}>Anything from strategy to troubleshooting, improvement, analysis, process engineering, contracts, or optimization</p>
+      </div>
+      <div>
+        <span className='border p-1 rounded' style={{ backgroundColor: "#090979", color: "white", fontSize: "14px", fontWeight: "500" }}>03</span>
+        <h4 style={{ fontWeight: "bolder", marginTop: "15px", color: "#090979" }}>Travel requirement by destination</h4>
+        <p style={{ color: "#6c757d", fontSize: "14px" }}>Best travel websites for sourcing travel deals & enjoy your trip without worrying. Happy journey!</p>
+      </div>
+    </div>
+    <div className="col-6">
+      <div className="row mt-5">
+        <div className="col-4">
+          <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/e7/1d/6c/e71d6c9e1b928acb9d059e492b065a86.jpg" alt="" width={"100%"} />
         </div>
-        <div className="col-6">
-          <div className="row mt-5">
-            <div className="col-4">
-              <img className='image-fluid' style={{ borderRadius: "5%" }} src="https://i.pinimg.com/736x/7c/58/fd/7c58fdc433c9dce8cd47b43952d2c6fd.jpg" alt="" width={"100%"} />
-            </div>
-            <div className="col-4">
-              <img src="https://i.pinimg.com/736x/54/16/7e/54167e6e30f5da6bc810bd457b4c081b.jpg" style={{ borderRadius: "5%" }} alt="" width={"100%"} />
-            </div>
-            <div className="col-4">
-              <img src="https://i.pinimg.com/736x/35/ce/51/35ce5159a316b6232066a28b2919e0d2.jpg" style={{ borderRadius: "5%" }} alt="" width={"100%"} />
-            </div>
-          </div>
+        <div className="col-4">
+          <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/8c/2b/15/8c2b1566def32647aeb1a3c7871a933b.jpg" alt="" width={"100%"} />
+        </div>
+        <div className="col-4">
+          <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/06/4e/3e/064e3ed00fbbaff666dc6c11df1f85ff.jpg" alt="" width={"100%"} />
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
       <div className='container mt-5'>
         <h2 style={{ fontWeight: "bolder", color: "#090979", margin: "0 auto" }}>𝐓𝐡𝐞 𝐛𝐞𝐬𝐭 𝐟𝐥𝐢𝐠𝐡𝐭 𝐨𝐟𝐟𝐞𝐫𝐬 𝐟𝐫𝐨𝐦 𝐚𝐧𝐲𝐰𝐡𝐞𝐫𝐞, 𝐭𝐨 𝐞𝐯𝐞𝐫𝐲𝐰𝐡𝐞𝐫𝐞</h2>
