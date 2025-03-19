@@ -148,8 +148,9 @@ const AdminFlightManage = () => {
       </div>
     </div>
     <div className="col-2" style={{ textAlign: "center" }}>
-      <h6 className='fw-bolder text-danger'>40,532</h6>
-      <p style={{ fontSize: "12px", color: "#6c757d" }}>Seats: 50</p>
+      <h4 className='fw-bolder text-danger'>40,532</h4>
+      <h6 className='fw-bolder text-danger'>Business Class</h6>
+      <p style={{ fontSize: "12px", color: "#6c757d",fontWeight:"bold" }}>Seats: 50</p>
     </div>
   </div>
   <div style={{ 
@@ -204,8 +205,9 @@ const AdminFlightManage = () => {
       
     </div>
     <div className="col-2" style={{ textAlign: "center" }}>
-      <h6 className='fw-bolder text-danger'>40,532</h6>
-      <p style={{ fontSize: "12px", color: "#6c757d" }}>Seats: 50</p>
+      <h4 className='fw-bolder text-danger'>40,532</h4>
+      <h6 className='fw-bolder text-danger'>Premium Economy</h6>
+      <p style={{ fontSize: "12px", color: "#6c757d",fontWeight:"bold"  }}>Seats: 50</p>
     </div>
   </div>
   <div style={{ 

@@ -65,7 +65,7 @@ const SideBar = () => {
            </li>
            <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link  to={'/admindashboard'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <Link  to={'/'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
              <i class="fa-solid fa-right-from-bracket"></i> <span className='ms-2'>Logout</span>
              </Link>
            </li>
