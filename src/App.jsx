@@ -8,6 +8,7 @@ import UserAdminManage from './pages/UserAdminManage'
 import AdminFlightManage from './pages/AdminFlightManage'
 import BookingFlights from './pages/BookingFlights'
 import SingleFlightView from './pages/SingleFlightView'
+import DashBoardForUsers from './pages/DashBoardForUsers'
 
 
 
@@ -27,6 +28,8 @@ function App() {
       <Route element={<AdminFlightManage />} path='/adminflightmanage'></Route>
       <Route element={<BookingFlights /> } path='/bookingflights'></Route>
       <Route element={<SingleFlightView />} path='/singleflightview'></Route>
+      <Route element={<DashBoardForUsers />} path='/userdashboard'></Route>
+      
     
       
     </Routes>

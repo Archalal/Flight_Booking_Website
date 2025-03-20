@@ -17,7 +17,7 @@ const HomeContent = () => {
 
       <div className="container shadow rounded p-5 mt-5" style={{ background: "linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%)", border: "1px solid #e0e0e0" }}>
   <div className="row">
-    <div className="col-6">
+    <div className="col-6" >
       <div style={{ marginBottom: "30px" }}>
         <span className='border p-1 rounded' style={{ backgroundColor: "#fc466b", color: "white", fontSize: "14px", fontWeight: "500" }}>01</span>
         <h4 style={{ fontWeight: "bolder", marginTop: "15px", color: "#090979" }}>Travel requirements for Portugal</h4>
@@ -35,8 +35,8 @@ const HomeContent = () => {
       </div>
     </div>
     <div className="col-6">
-      <div className="row mt-5">
-        <div className="col-4">
+      <div className="row mt-5"  >
+        <div className="col-4" >
           <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/e7/1d/6c/e71d6c9e1b928acb9d059e492b065a86.jpg" alt="" width={"100%"} />
         </div>
         <div className="col-4">
