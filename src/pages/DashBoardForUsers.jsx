@@ -5,14 +5,21 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import './DashBoardForUsers.css'; 
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 
 const DashBoardForUsers = () => {
+  const navigate=useNavigate()
 
     const[tripType,setTripType]=useState("oneWay")
 
     const tripChange=(event)=>{
         setTripType(event.target.value)
     }
+    const onbtnClick=()=>{
+      navigate('/searchticketbyuser')
+
+    }
+    onbtnClick()
   return (
     <div>
       <div>
@@ -109,6 +116,7 @@ const DashBoardForUsers = () => {
               </FloatingLabel>
             </div>
             <Button
+            onClick={onbtnClick}
               variant="primary"
               style={{
                 margin: '20px auto',
@@ -123,6 +131,11 @@ const DashBoardForUsers = () => {
               Search
             </Button>
           </div>
+
+
+
+
+          
         </div>
         <div className="col-4">
           <div className="row">

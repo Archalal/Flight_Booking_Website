@@ -12,10 +12,12 @@ const Home = () => {
         position: 'relative',
         height: '100vh',
         overflow: 'hidden',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1521727857535-28d2047314ac?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+        backgroundImage: 'url(" https://images7.alphacoders.com/742/742688.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment:"fixed"
+       
+        //https://static.vecteezy.com/system/resources/previews/037/236/480/non_2x/ai-generated-airplane-advertisment-background-with-copy-space-free-photo.jpg
       }}
     >
     
@@ -25,7 +27,7 @@ const Home = () => {
       <div
         style={{
           position: 'absolute',
-          top: '45%',
+          top: '30%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           textAlign: 'center',

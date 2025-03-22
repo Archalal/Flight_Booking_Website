@@ -40,23 +40,7 @@ const Signup = () => {
             </p>
             <form style={{ width: "70%", maxWidth: "400px" }}> 
       
-              <div className="mb-2">
-                <label htmlFor="role" className="form-label" style={{ fontWeight: "500" }}>
-                 
-                  Role
-                </label>
-                <select
-                  className="form-control"
-                  id="role"
-                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
-                >
-                  <option value="" hidden>
-                    Choose Your role
-                  </option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
-              </div>
+             
 
               <div className="mb-2">
                 <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>

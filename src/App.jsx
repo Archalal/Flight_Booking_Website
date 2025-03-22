@@ -9,6 +9,11 @@ import AdminFlightManage from './pages/AdminFlightManage'
 import BookingFlights from './pages/BookingFlights'
 import SingleFlightView from './pages/SingleFlightView'
 import DashBoardForUsers from './pages/DashBoardForUsers'
+import UserTicketBooking from './pages/UserTicketBooking'
+import SearchTicketByUser from './pages/SearchTicketByUser'
+import FlightTicket from './component/FlightTicket'
+import BookedFlight from './pages/BookedFlight'
+
 
 
 
@@ -29,6 +34,11 @@ function App() {
       <Route element={<BookingFlights /> } path='/bookingflights'></Route>
       <Route element={<SingleFlightView />} path='/singleflightview'></Route>
       <Route element={<DashBoardForUsers />} path='/userdashboard'></Route>
+      <Route element={<UserTicketBooking />} path='/userticketbooking'></Route>
+      <Route element={<SearchTicketByUser />} path='/searchticketbyuser'></Route>
+      <Route element={<FlightTicket />} path='/flightticket'></Route>
+      <Route element={<BookedFlight />} path='/bookedflight'></Route>
+   
       
     
       

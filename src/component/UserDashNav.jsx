@@ -33,12 +33,10 @@ const UserDashNav = () => {
           </Navbar.Brand>
 
           <Nav style={{ display: 'flex', gap: '20px', marginRight: "50px" }}>
-            <Nav.Link href="#home" style={{ textDecoration: "none", color: "white" }}>Home</Nav.Link>
-            <Nav.Link href="#features" style={{ textDecoration: "none", color: "white" }}>Features</Nav.Link>
-            <Nav.Link as={Link}   to={'/logout'}
-            style={{ textDecoration: "none", color: "white", paddingLeft: "2px" }}>
-              <i className="fa-regular fa-user"></i> Login
-            </Nav.Link>
+            <Nav.Link  style={{ textDecoration: "none" }}>Home</Nav.Link>
+            <Nav.Link  style={{ textDecoration: "none"}}>Flight Views</Nav.Link>
+            <Nav.Link  style={{ textDecoration: "none"}}>History</Nav.Link>
+           
           </Nav>
         </div>
       </Container>
