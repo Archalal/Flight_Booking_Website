@@ -27,7 +27,7 @@ const Home = () => {
       <div
         style={{
           position: 'absolute',
-          top: '30%',
+          top: '75%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           textAlign: 'center',
@@ -35,10 +35,10 @@ const Home = () => {
           zIndex: 1,
         }}
       >
-        <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '20px' }}>
+        <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '20px',color:"black" }}>
         𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐭𝐨 <span style={{fontWeight:"bolder",color:"#ff5a1d"}}>𝐀𝐞𝐫𝐨 𝐕𝐢𝐬𝐭𝐚</span>
         </h1>
-        <p style={{ fontSize: '1.5rem' }}>
+        <p style={{ fontSize: '1.5rem',color:"black" }}>
         𝐘𝐨𝐮𝐫 𝐠𝐚𝐭𝐞𝐰𝐚𝐲 𝐭𝐨 𝐭𝐡𝐞 𝐬𝐤𝐢𝐞𝐬. 𝐁𝐨𝐨𝐤 𝐲𝐨𝐮𝐫 𝐧𝐞𝐱𝐭 𝐚𝐝𝐯𝐞𝐧𝐭𝐮𝐫𝐞 𝐰𝐢𝐭𝐡 𝐮𝐬!
         </p>
       </div>
