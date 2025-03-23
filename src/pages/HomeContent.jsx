@@ -40,7 +40,7 @@ const HomeContent = () => {
           <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/e7/1d/6c/e71d6c9e1b928acb9d059e492b065a86.jpg" alt="" width={"100%"} />
         </div>
         <div className="col-4">
-          <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/8c/2b/15/8c2b1566def32647aeb1a3c7871a933b.jpg" alt="" width={"100%"} />
+          <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/a2/49/ca/a249ca2b91ccf4f854102386044b2cc5.jpg" alt="" width={"100%"} />
         </div>
         <div className="col-4">
           <img className='image-fluid shadow' style={{ borderRadius: "15px" }} src="https://i.pinimg.com/736x/06/4e/3e/064e3ed00fbbaff666dc6c11df1f85ff.jpg" alt="" width={"100%"} />
