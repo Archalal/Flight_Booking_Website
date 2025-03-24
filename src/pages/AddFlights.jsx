@@ -110,7 +110,7 @@ const AddFlights = () => {
         label="Departure place"
         className="mb-3"
       >
-        <Form.Control type="text" placeholder="DepaturePlace" />
+        <Form.Control type="text" placeholder="DeparturePlace" />
       </FloatingLabel>
 
       <FloatingLabel
@@ -119,6 +119,31 @@ const AddFlights = () => {
         className="mb-3"
       >
         <Form.Control type="text" placeholder="ArrivalPlace" />
+      </FloatingLabel>
+
+      <FloatingLabel
+                    controlId="floatingSelect"
+                    label="Cabin Class"
+                    className="mb-3"
+                  >
+                    <Form.Select 
+                      aria-label="Cabin class select"
+                    value={""}
+                    >
+                      <option value="Business-class">Business class</option>
+                      <option value="Premium-class">Premium Class</option>
+                      <option value="Economy-class">Economy class</option>
+                    </Form.Select>
+                  </FloatingLabel>
+
+
+
+      <FloatingLabel
+        controlId="floatingInput"
+        label="No of Seats"
+        className="mb-3"
+      >
+        <Form.Control type="number" placeholder="Seats" />
       </FloatingLabel>
 
 
