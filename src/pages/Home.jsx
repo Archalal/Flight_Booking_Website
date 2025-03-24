@@ -12,12 +12,12 @@ const Home = () => {
         position: 'relative',
         height: '100vh',
         overflow: 'hidden',
-        backgroundImage: 'url(" https://images7.alphacoders.com/742/742688.jpg")',
+        backgroundImage: 'url(" https://static.vecteezy.com/system/resources/previews/037/236/480/non_2x/ai-generated-airplane-advertisment-background-with-copy-space-free-photo.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment:"fixed"
-       
-        //https://static.vecteezy.com/system/resources/previews/037/236/480/non_2x/ai-generated-airplane-advertisment-background-with-copy-space-free-photo.jpg
+       //https://images7.alphacoders.com/742/742688.jpg
+        //
       }}
     >
     
@@ -27,7 +27,7 @@ const Home = () => {
       <div
         style={{
           position: 'absolute',
-          top: '75%',
+          top: '40%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           textAlign: 'center',

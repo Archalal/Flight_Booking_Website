@@ -13,6 +13,8 @@ import UserTicketBooking from './pages/UserTicketBooking'
 import SearchTicketByUser from './pages/SearchTicketByUser'
 import FlightTicket from './component/FlightTicket'
 import BookedFlight from './pages/BookedFlight'
+import FlightDashboard from './pages/FlightDashboard'
+import AddFlights from './pages/AddFlights'
 
 
 
@@ -38,6 +40,8 @@ function App() {
       <Route element={<SearchTicketByUser />} path='/searchticketbyuser'></Route>
       <Route element={<FlightTicket />} path='/flightticket'></Route>
       <Route element={<BookedFlight />} path='/bookedflight'></Route>
+      <Route element={<FlightDashboard />} path='/flightdashboard'></Route>
+      <Route element={<AddFlights />} path='/addflights'></Route>
    
       
     
