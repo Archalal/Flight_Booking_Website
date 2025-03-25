@@ -55,6 +55,20 @@ const Signup = () => {
                 />
               </div>
 
+
+              <div className="mb-2">
+                <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
+                  Picture
+                </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  id="name"
+                  placeholder="Enter your full name"
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                />
+              </div>
+
            
               <div className="mb-2">
                 <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>

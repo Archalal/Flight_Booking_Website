@@ -15,6 +15,7 @@ import FlightTicket from './component/FlightTicket'
 import BookedFlight from './pages/BookedFlight'
 import FlightDashboard from './pages/FlightDashboard'
 import AddFlights from './pages/AddFlights'
+import AdminSingleUser from './pages/AdminSingleUser'
 
 
 
@@ -42,6 +43,7 @@ function App() {
       <Route element={<BookedFlight />} path='/bookedflight'></Route>
       <Route element={<FlightDashboard />} path='/flightdashboard'></Route>
       <Route element={<AddFlights />} path='/addflights'></Route>
+      <Route element={<AdminSingleUser />} path='/adminsingleuser'></Route>
    
       
     

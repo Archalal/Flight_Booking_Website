@@ -1,11 +1,6 @@
 import React from 'react'
 import SideBar from './SideBar'
 import TotalFlight from '../component/TotalFlight'
-// import { Button } from 'react-bootstrap'
-// import Card from 'react-bootstrap/Card';
-// import './AdminFlightManage.css';
-
-
 
 const AdminFlightManage = () => {
   return (
@@ -175,10 +170,6 @@ const AdminFlightManage = () => {
   }}></div>
 </div>
 
-     
-
-
- 
 
 
 </div>

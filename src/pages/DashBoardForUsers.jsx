@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 // import './DashBoardForUsers.css'; 
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../component/Footer';
 
 const DashBoardForUsers = () => {
   const navigate=useNavigate()
@@ -261,6 +262,7 @@ const DashBoardForUsers = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
