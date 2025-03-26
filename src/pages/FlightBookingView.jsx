@@ -1,14 +1,15 @@
 import React from 'react'
 import FlightSidebar from './FlightSidebar'
-import FlightOverview from './FlightOverview'
-import TotalRevenueFlight from '../component/TotalRevenueFlight'
+import TotalFlight from '../component/TotalFlight'
+import FlightBookedByUser from '../component/FlightBookedByUser'
 
 
-const FlightDashboard = () => {
+
+
+const FlightBookingView = () => {
   return (
     <div>
-        
-        <div className="row">
+          <div className="row">
             <div className="col-2"
               style={{
                 backgroundColor: "#ffffff",
@@ -24,14 +25,13 @@ const FlightDashboard = () => {
                 <FlightSidebar />
             </div>
             <div className="col-10" style={{ marginLeft: "16.65%", overflowX: "hidden" }}>
-             <FlightOverview />
-           
+                <FlightBookedByUser />
+            
             </div>
         </div>
-     
       
     </div>
   )
 }
 
-export default FlightDashboard
+export default FlightBookingView

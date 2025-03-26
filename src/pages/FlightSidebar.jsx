@@ -43,18 +43,24 @@ const FlightSidebar = () => {
             <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
               
               <Link  to={'/addflights'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
-              <i class="fa-solid fa-plane-departure"></i><span className='ms-2'>Flight Add &view</span>
+              <i class="fa-solid fa-plane-departure"></i><span className='ms-2'>Flight Add </span>
+              </Link>
+            </li>
+            <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
+              
+              <Link  to={'/flightviewbyFlightDash'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+              <i class="fa-solid fa-plane-departure"></i><span className='ms-2'>Flight View</span>
               </Link>
             </li>
             <li style={{ margin: "15px 0",marginTop:"40px" }}>
               
-              <Link  to={'/bookingflights'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+              <Link  to={'/flightbookingview'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
               <i class="fa-solid fa-cart-shopping"></i> <span className='ms-2'>Booking Flights</span>
               </Link>
             </li>
             <li style={{ margin: "15px 0",marginTop:"40px" }}>
               
-              <Link  to={'/admindashboard'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+              <Link  to={'/revenue'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
               <i class="fa-solid fa-sack-dollar"></i>  <span className='ms-2'>Revenue Details</span>
               </Link>
             </li>

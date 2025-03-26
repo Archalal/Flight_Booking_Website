@@ -1,11 +1,9 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
-
-const FlightTicket = () => {
+const AdminFlightTicketView = () => {
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div>
+        <div className="d-flex flex-column align-items-center">
       <div className='bg-white rounded-3 shadow p-4 mb-4' style={{ 
         width: '90%',
         maxWidth: '900px',
@@ -51,20 +49,7 @@ const FlightTicket = () => {
             <h4 className='fw-bold text-danger'>₹40,532</h4>
             <h6 className='fw-bold text-danger'>Business Class</h6>
             <p className="text-muted fw-bold small">Seats: 50</p>
-           <Link to={'/bookedflight'}>
-           <Button
-              variant="primary"
-              className="fw-bold"
-              style={{
-                height: '40px',
-                width: '100px',
-                borderRadius: '10px',
-                backgroundColor: '#ff3a0d',
-                border: 'none',
-              }}
-            >
-              Select
-            </Button></Link>
+          
           </div>
         </div>
       </div>
@@ -99,24 +84,14 @@ const FlightTicket = () => {
             <h4 className='fw-bold text-danger'>₹40,532</h4>
             <h6 className='fw-bold text-danger'>Premium Economy</h6>
             <p className="text-muted fw-bold small">Seats: 12</p>
-            <Button
-              variant="primary"
-              className="fw-bold"
-              style={{
-                height: '40px',
-                width: '100px',
-                borderRadius: '10px',
-                backgroundColor: '#ff3a0d',
-                border: 'none',
-              }}
-            >
-              Select
-            </Button>
+           
           </div>
         </div>
       </div>
     </div>
+      
+    </div>
   )
 }
 
-export default FlightTicket
+export default AdminFlightTicketView

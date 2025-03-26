@@ -10,6 +10,45 @@ const HomeContent = () => {
 
   return (
     <div>
+            <div className='container mt-5'>
+        <h2 style={{ fontWeight: "bolder", color: "#090979", margin: "0 auto" }}>𝐓𝐡𝐞 𝐛𝐞𝐬𝐭 𝐟𝐥𝐢𝐠𝐡𝐭 𝐨𝐟𝐟𝐞𝐫𝐬 𝐟𝐫𝐨𝐦 𝐚𝐧𝐲𝐰𝐡𝐞𝐫𝐞, 𝐭𝐨 𝐞𝐯𝐞𝐫𝐲𝐰𝐡𝐞𝐫𝐞</h2>
+      </div>
+
+      <div className="container mt-2 p-5" style={{ marginBottom: "90px", height: "300px" }}>
+        <div className="item">
+          <div className="image-container">
+            <img src="https://airindia.scene7.com/is/image/airindia/Mumbai_to_NYC_Mob_Clr" alt="Mumbai to NYC" className="image" />
+            <div className="hidden-text">Best Time to Travel!</div>
+          </div>
+        </div>
+        <div className="item">
+          <div className="image-container">
+            <img src="https://airindia.scene7.com/is/image/airindia/landing-loyalty-nudge" alt="Mumbai to NYC" className="image" />
+            <div className="hidden-text">Explore the World!</div>
+          </div>
+        </div>
+        <div className="item">
+          <div className="image-container">
+            <img src="https://airindia.scene7.com/is/image/airindia/star-alliance-2" alt="Mumbai to NYC" className="image" />
+            <div className="hidden-text">Trips: Keep all your plans in one place!</div>
+          </div>
+        </div>
+        <div className="item">
+          <div className="image-container">
+            <img src="https://airindia.scene7.com/is/image/airindia/AIEstore-1" alt="Mumbai to NYC" className="image" />
+            <div className="hidden-text">Price Alert: Know when prices change</div>
+          </div>
+        </div>
+        <div className="item">
+          <div className="image-container">
+            <img src="https://airindia.scene7.com/is/image/airindia/Ask_Agent-1" alt="Mumbai to NYC" className="image" />
+            <div className="hidden-text">Explore the World!</div>
+          </div>
+        </div>
+      </div>
+
+
+      
       <div style={{ textAlign: "center", marginTop: "40px" }}>
         <h2 style={{ fontWeight: "bolder", color: "#090979" }}>Plan your Trip with us!</h2>
         <p>Find help with your bookings and travel plans, and see what to expect along your journey</p>
@@ -50,44 +89,9 @@ const HomeContent = () => {
   </div>
 </div>
 
-      <div className='container mt-5'>
-        <h2 style={{ fontWeight: "bolder", color: "#090979", margin: "0 auto" }}>𝐓𝐡𝐞 𝐛𝐞𝐬𝐭 𝐟𝐥𝐢𝐠𝐡𝐭 𝐨𝐟𝐟𝐞𝐫𝐬 𝐟𝐫𝐨𝐦 𝐚𝐧𝐲𝐰𝐡𝐞𝐫𝐞, 𝐭𝐨 𝐞𝐯𝐞𝐫𝐲𝐰𝐡𝐞𝐫𝐞</h2>
-      </div>
 
-      <div className="container mt-2 p-5" style={{ marginBottom: "90px", height: "300px" }}>
-        <div className="item">
-          <div className="image-container">
-            <img src="https://airindia.scene7.com/is/image/airindia/Mumbai_to_NYC_Mob_Clr" alt="Mumbai to NYC" className="image" />
-            <div className="hidden-text">Best Time to Travel!</div>
-          </div>
-        </div>
-        <div className="item">
-          <div className="image-container">
-            <img src="https://airindia.scene7.com/is/image/airindia/landing-loyalty-nudge" alt="Mumbai to NYC" className="image" />
-            <div className="hidden-text">Explore the World!</div>
-          </div>
-        </div>
-        <div className="item">
-          <div className="image-container">
-            <img src="https://airindia.scene7.com/is/image/airindia/star-alliance-2" alt="Mumbai to NYC" className="image" />
-            <div className="hidden-text">Trips: Keep all your plans in one place!</div>
-          </div>
-        </div>
-        <div className="item">
-          <div className="image-container">
-            <img src="https://airindia.scene7.com/is/image/airindia/AIEstore-1" alt="Mumbai to NYC" className="image" />
-            <div className="hidden-text">Price Alert: Know when prices change</div>
-          </div>
-        </div>
-        <div className="item">
-          <div className="image-container">
-            <img src="https://airindia.scene7.com/is/image/airindia/Ask_Agent-1" alt="Mumbai to NYC" className="image" />
-            <div className="hidden-text">Explore the World!</div>
-          </div>
-        </div>
-      </div>
 
-      <h2 style={{ fontWeight: "bolder", color: "#090979", textAlign: "center" }}>Make Memories With Us</h2>
+      <h2 style={{ fontWeight: "bolder", color: "#090979", textAlign: "center",marginTop:"30px" }}>Make Memories With Us</h2>
       <div className="container">
         <div className="row mt-3">
           <div className="col-3">
@@ -124,6 +128,10 @@ const HomeContent = () => {
           </div>
         </div>
       </div>
+
+
+
+      
 
       <div className='container'>
         <div>

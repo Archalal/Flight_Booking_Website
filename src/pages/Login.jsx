@@ -95,9 +95,9 @@ const Login = () => {
               </div>
 
               <div className="text-center mt-3">
-                <a href="#forgot-password" style={{ color: "#ff5a1d" }}>
-                  Forgot password?
-                </a>
+               
+                <Link to={'/forgetpassword'} style={{ color: "#ff5a1d" }}> forget password?</Link>
+             
               </div>
 
               <div className="text-center mt-3">

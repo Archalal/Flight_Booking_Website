@@ -1,167 +1,109 @@
-import React from 'react'
-import SideBar from './SideBar'
+import React from 'react';
+import SideBar from './SideBar';
+import './SingleFlightView.css'
 
 const SingleFlightView = () => {
   return (
-    <div>
-        <div>
-        <div className="w-100">
-          <div className="row" style={{ background: "#f8f9fa" }}>
-            <div
-              className="col-2"
-              style={{
-                backgroundColor: "#ffffff",
-                height: "100vh",
-                position: "fixed",
-                top: "0",
-                left: "0",
-                padding: "10px",
-                color: "#525f7f",
-                boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
-                zIndex: "1",
-              }}
-            >
-              <SideBar />
+    <div className="main-container">
+     
+      <div className="sidebar">
+        <SideBar />
+      </div>
+
+     
+      <div className="main-content">
+      
+        <div className="top-nav">
+          <h4>Flight Details</h4>
+          <div className="notification-icon">
+            <i className="fa-solid fa-bell"></i>
+          </div>
+        </div>
+
+       
+        <div className="ticket-container">
+          <h2 className="ticket-title"> Flight Ticket</h2>
+
+       
+          <div className="ticket">
+        
+            <div className="ticket-header">
+              <div className="airline-info">
+                <img 
+                  src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png" 
+                  alt="AirAsia Logo" 
+                  className="airline-logo"
+                />
+                <h3>AIR ASIA</h3>
+              </div>
+              <div className="flight-info">
+                
+                <small>Premium Class</small>
+              </div>
             </div>
 
-            <div
-              className="col-10"
-              style={{
-                marginLeft: "16.65%",
-                overflowX: "hidden",
-                backgroundColor: "#ffffff",
-              }}
-            >
-              <div
-                style={{
-                  height: "50px",
-                  width: "100%",
-                  backgroundColor: "white",
-                }}
-                className="rounded shadow "
-              >
-               <div
-        className="rounded shadow mt-2"
-        style={{
-          backgroundColor: "#ffffff",
-          height: "50px",
-          width: "100%",
-          color: "#525f7f",
-          position: "sticky",
-          top: "0",
-          zIndex: "1",
-        }}
-      >
-        <div
-          className="container d-flex  align-items-center"
-          style={{ height: "100%" }}
-        >
-          <div>
-            <h4> <span style={{ color: "black",letterSpacing:"1px" }} >DashBoard</span></h4>
-          </div>
-          <div>
-          </div>
-          <div>
-            <i style={{ color: "red" }} className="fa-solid fa-bell"></i>
-          </div>
-        </div>
-      </div>
-    
-              </div>
            
-             
-    
-     <div className='container'>
-        <div>
-          <h2 style={{ display: "block", fontWeight: "bold", color: "#090979", marginTop: "30px" }}>𝐅𝐥𝐢𝐠𝐡𝐭  Details</h2>
-          <br />
-       
-        </div>
-        
-      </div>
-      <div className='bg-white rounded shadow p-3' style={{ 
-  background: "linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%)", 
-  border: "1px solid #e0e0e0", 
-  position: "relative", 
-  overflow: "hidden" 
-}}>
-  <div className="row align-items-center">
-    <div className="col-10">
-      <div className="row mb-3">
-        <div className="col-1">
-          <img src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png" alt="" width={"100%"} className="rounded" />
-        </div>
-        <div className="col-5" style={{ textAlign: "center" }}>
-          <h4 className='fw-bolder mb-1'>16:45 - 19:45</h4>
-          <span style={{ fontSize: "12px", color: "#6c757d" }}>TRV (Thiruvanthapuram) - DXB (Dubai)</span>
-        </div>
-        <div className="col">
-          <h6 className='fw-bolder text-success'>Direct</h6>
-        </div>
-        <div className="col">
-          <h6 className='fw-bolder'>4h 30m</h6>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-1">
-          <img src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png" alt="" width={"100%"} className="rounded" />
-        </div>
-        <div className="col-5" style={{ textAlign: "center" }}>
-          <h4 className='fw-bolder mb-1'>17:40 - 23:35</h4>
-          <span style={{ fontSize: "12px", color: "#6c757d" }}>DXB (Dubai) - TRV (Thiruvanthapuram)</span>
-        </div>
-        <div className="col">
-          <h6 className='fw-bolder text-success'>Direct</h6>
-        </div>
-        <div className="col">
-          <h6 className='fw-bolder'>4h 30m</h6>
-        </div>
-      </div>
-    </div>
-    <div className="col-2" style={{ textAlign: "center" }}>
-      <h4 className='fw-bolder text-danger'>40,532</h4>
-      <h6 className='text-danger'>Premium Class</h6>
-      <p style={{ fontSize: "12px", color: "#6c757d" }}>Seats: 50</p>
-    </div>
-  </div>
-  <div style={{ 
-    position: "absolute", 
-    top: "-50px", 
-    right: "-50px", 
-    width: "100px", 
-    height: "100px", 
-    background: "#990000", 
-    borderRadius: "50%", 
-    zIndex: "0" 
-  }}></div>
-  <div style={{ 
-    position: "absolute", 
-    bottom: "-50px", 
-    left: "-50px", 
-    width: "100px", 
-    height: "100px", 
-    background: "#000080", 
-    borderRadius: "50%", 
-    zIndex: "0" 
-  }}></div>
-</div>
+            <div className="ticket-body">
+              <div className="flight-details">
+                {/* Departure */}
+                <div className="departure">
+                  <div className="icon-circle">
+                    <i className="fa-solid fa-plane-departure"></i>
+                  </div>
+                  <div className="details">
+                    <div className="label">DEPARTURE</div>
+                    <div className="airport">Thiruvananthapuram (TRV)</div>
+                    <div className="date">Thu, 15 Jun 2023</div>
+                    <div className="time">16:45</div>
+                  </div>
+                </div>
 
+                
+                <div className="arrival">
+                  <div className="icon-circle">
+                    <i className="fa-solid fa-plane-arrival"></i>
+                  </div>
+                  <div className="details">
+                    <div className="label">ARRIVAL</div>
+                    <div className="airport">Dubai (DXB)</div>
+                    <div className="date">Thu, 15 Jun 2023</div>
+                    <div className="time">19:45</div>
+                  </div>
+                </div>
+              </div>
 
+          
+              <div className="flight-info-bar">
+                <div className="info-item">
+                  <div className="info-label">FLIGHT DURATION</div>
+                  <div className="info-value">4h 30m</div>
+                </div>
+                <div className="divider"></div>
+                <div className="info-item">
+                  <div className="info-label">FLIGHT TYPE</div>
+                  <div className="info-value direct">Direct</div>
+                </div>
+              </div>
 
-
-
-
- </div>
-
-
-</div>
-            
+              
+              <div className="passenger-price">
+                <div className="passenger">
+                  <div className="label">PASSENGER</div>
+                  <div className="name">Reha P</div>
+                </div>
+                <div className="price">
+                  <div className="label">TOTAL FARE</div>
+                  <div className="amount">₹40,532</div>
+                </div>
+              </div>
+            </div>
           </div>
-        
         </div>
-      
-    </div>
-  )
-}
+      </div>
 
-export default SingleFlightView
+     
+    </div>
+  );
+};
+
+export default SingleFlightView;

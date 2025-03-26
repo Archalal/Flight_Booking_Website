@@ -34,7 +34,7 @@ const UserDashNav = () => {
 
           <Nav style={{ display: 'flex', gap: '20px', marginRight: "50px" }}>
             <Nav.Link  style={{ textDecoration: "none" }}>Home</Nav.Link>
-            <Nav.Link  style={{ textDecoration: "none"}}>Flight Views</Nav.Link>
+            <Nav.Link  as={Link} to='/userflightview' style={{ textDecoration: "none"}} >Flight Views</Nav.Link>
             <Nav.Link  style={{ textDecoration: "none"}}>History</Nav.Link>
            
           </Nav>

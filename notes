@@ -1,0 +1,268 @@
+import React from 'react'
+
+
+
+const FlightTicket = () => {
+  return (
+    <div className='w-100'>
+       <div >
+          <h2 style={{ 
+            color: '#090979',
+            fontWeight: 'bold',
+            marginBottom: '20px',
+            fontSize: '1.8rem',
+            borderBottom: '2px solid #eee',
+            paddingBottom: '10px',
+             textAlign: 'center'
+          }}>
+            Flight Details
+          </h2>
+          
+        
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            padding: '25px',
+            marginBottom: '25px',
+            borderLeft: '5px solid #090979',
+            borderRight: '5px solid #090979',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+       
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '20px',
+              paddingBottom: '15px',
+              borderBottom: '1px dashed #e0e0e0'
+            }}>
+              <img 
+                src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png" 
+                alt="AirAsia" 
+                style={{ width: '60px', marginRight: '20px' }}
+              />
+              <div style={{ 
+                flexGrow: 1,
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+              }}>
+                <div>
+                  <div style={{ 
+                    fontWeight: 'bold', 
+                    fontSize: '1.3rem',
+                    color: '#333'
+                  }}>
+                    16:45 - 19:45
+                  </div>
+                  <div style={{ 
+                    color: '#6c757d', 
+                    fontSize: '0.95rem',
+                    marginTop: '5px'
+                  }}>
+                    TRV (Thiruvanthapuram) → DXB (Dubai)
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+           
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginBottom: '15px'
+            }}>
+              <span style={{ fontWeight: '600', color: '#28a745' }}>Direct</span>
+              <div style={{ fontWeight: '600' }}>
+                <span style={{ color: '#6c757d', marginRight: '10px' }}>Duration:</span>
+                <span>4h 30m</span>
+              </div>
+             
+            </div>
+            
+           
+            <div style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              paddingTop: '15px',
+              borderTop: '1px solid #f0f0f0'
+            }}>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ 
+                  color: '#dc3545', 
+                  fontWeight: 'bold', 
+                  fontSize: '1.5rem',
+                  marginBottom: '5px'
+                }}>
+                  ₹40,532
+                </div>
+                <div style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end'
+                }}>
+                  <span style={{ 
+                    color: '#dc3545', 
+                    fontWeight: 'bold',
+                    marginRight: '10px'
+                  }}>
+                    Business Class
+                  </span>
+                  <span style={{ 
+                    backgroundColor: '#f0f0f0',
+                    padding: '3px 10px',
+                    borderRadius: '12px',
+                    fontSize: '0.8rem',
+                    fontWeight: 'bold'
+                  }}>
+                    Seats: 50
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+          
+           
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+       
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            padding: '25px',
+            borderLeft: '5px solid #dc3545',
+            borderRight: '5px solid #dc3545',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+       
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '20px',
+              paddingBottom: '15px',
+              borderBottom: '1px dashed #e0e0e0'
+            }}>
+              <img 
+                src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png" 
+                alt="AirAsia" 
+                style={{ width: '60px', marginRight: '20px' }}
+              />
+              <div style={{ 
+                flexGrow: 1,
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+              }}>
+                <div>
+                  <div style={{ 
+                    fontWeight: 'bold', 
+                    fontSize: '1.3rem',
+                    color: '#333'
+                  }}>
+                    17:40 - 23:35
+                  </div>
+                  <div style={{ 
+                    color: '#6c757d', 
+                    fontSize: '0.95rem',
+                    marginTop: '5px'
+                  }}>
+                    DXB (Dubai) → TRV (Thiruvanthapuram)
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+        
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginBottom: '15px'
+            }}>
+              <span style={{ fontWeight: '600', color: '#28a745' }}>Direct</span>
+              <div style={{ fontWeight: '600' }}>
+                <span style={{ color: '#6c757d', marginRight: '10px' }}>Duration:</span>
+                <span>4h 30m</span>
+              </div>
+            
+            </div>
+            
+         
+            <div style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              paddingTop: '15px',
+              borderTop: '1px solid #f0f0f0'
+            }}>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ 
+                  color: '#dc3545', 
+                  fontWeight: 'bold', 
+                  fontSize: '1.5rem',
+                  marginBottom: '5px'
+                }}>
+                  ₹40,532
+                </div>
+                <div style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end'
+                }}>
+                  <span style={{ 
+                    color: '#dc3545', 
+                    fontWeight: 'bold',
+                    marginRight: '10px'
+                  }}>
+                    Premium Economy
+                  </span>
+                  <span style={{ 
+                    backgroundColor: '#f0f0f0',
+                    padding: '3px 10px',
+                    borderRadius: '12px',
+                    fontSize: '0.8rem',
+                    fontWeight: 'bold'
+                  }}>
+                    Seats: 12
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+          
+           
+          </div>
+
+
+
+          
+
+
+
+
+        </div>
+
+
+       
+
+     
+      
+    </div>
+  )
+}
+
+export default FlightTicket

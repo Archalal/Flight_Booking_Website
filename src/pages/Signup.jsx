@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const Signup = () => {
   return (
@@ -177,10 +179,12 @@ const Signup = () => {
 
              
               <div className="text-center mt-4">
-                <span style={{ color: "#6c757d" }}>Already have an account? </span>
-                <a href="#login" style={{ color: "#ff5a1d", fontWeight: "500" }}>
-                  Login here
-                </a>
+             
+               <span style={{ color: "#6c757d" }}>Already have an account? </span>
+             
+             <Link to={'/login'} style={{ color: "#ff5a1d" }}> login</Link>  
+             
+           
               </div>
             </form>
           </div>

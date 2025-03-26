@@ -164,7 +164,7 @@ const SearchTicketByUser = () => {
       <hr className="my-4" />
 
       <div className="container">
-        <div className="mt-4">
+        <div className="mt-4 ms-5">
           <div className="row justify-content-between align-items-center mb-4">
             <div className="col-12 col-md-4 mb-3 mb-md-0">
               <FloatingLabel controlId="floatingSelect" label="Sort by">
@@ -234,11 +234,11 @@ const SearchTicketByUser = () => {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-12">
-              <FlightTicket />
-            </div>
+        <div className="row">
+          <div className="col-12">
+            <FlightTicket />
           </div>
+        </div>
         </div>
       </div>
     </div>

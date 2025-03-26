@@ -2,6 +2,7 @@ import React from 'react'
 import FlightSidebar from './FlightSidebar'
 import TotalFlight from '../component/TotalFlight'
 import FlightAdded from './FlightAdded'
+import FlightEdit from './FlightEdit'
 
 
 
@@ -30,6 +31,7 @@ const AddFlights = () => {
   <div className="col-10"  style={{ marginLeft: "16.65%", overflowX: "hidden" }}>
     <TotalFlight />
     <FlightAdded />
+    <FlightEdit />
    
 
 

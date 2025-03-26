@@ -3,24 +3,22 @@ import UserDashNav from '../component/UserDashNav';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import './DashBoardForUsers.css'; 
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../component/Footer';
 
 const DashBoardForUsers = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+  const [tripType, setTripType] = useState("oneWay");
 
-    const[tripType,setTripType]=useState("oneWay")
+  const tripChange = (type) => {
+    setTripType(type);
+  };
 
-    const tripChange=(event)=>{
-        setTripType(event.target.value)
-    }
-    const onbtnClick=()=>{
-      navigate('/searchticketbyuser')
+  const onbtnClick = () => {
+    navigate('/searchticketbyuser');
+  };
 
-    }
-    onbtnClick()
   return (
     <div>
       <div>
@@ -32,32 +30,42 @@ const DashBoardForUsers = () => {
             <h2 className="fw-bold fs-3" style={{ marginTop: '29px', color: '#343a40' }}>
               The Best Flight Offers From Anywhere to Everywhere
             </h2>
+            
+            {/* Redesigned Trip Type Section */}
             <div className="row mb-3">
-              <div className="col-12 d-flex justify-content-center">
-                <Form.Group controlId="tripType">
-                  <Form.Label className="me-3 fw-bold">Trip Type:</Form.Label>
-                  <Form.Check
-                    inline
-                    type="radio"
-                    label="One Way"
-                    name="tripType"
-                    id="oneWay"
-                    value="oneWay"
-                    className="me-3"
-                    onChange={(e)=>tripChange(e)}
-                  />
-                  <Form.Check
-                    inline
-                    type="radio"
-                    label="Round Trip"
-                    name="tripType"
-                    id="roundTrip"
-                    value="roundTrip"
-                    onChange={(e)=>tripChange(e)}
-                  />
-                </Form.Group>
+              <div className="col-12 d-flex justify-content-center align-items-center">
+                <span className="me-3 fw-bold">Trip Type:</span>
+                <div className="btn-group" role="group">
+                  <button
+                    type="button"
+                    className={`btn ${tripType === 'oneWay' ? 'btn-primary' : 'btn-outline-primary'}`}
+                    style={{
+                      padding: '0.5rem 1.5rem',
+                      borderTopLeftRadius: '20px',
+                      borderBottomLeftRadius: '20px',
+                      border: '1px solid #0d6efd'
+                    }}
+                    onClick={() => tripChange('oneWay')}
+                  >
+                    One Way
+                  </button>
+                  <button
+                    type="button"
+                    className={`btn ${tripType === 'roundTrip' ? 'btn-primary' : 'btn-outline-primary'}`}
+                    style={{
+                      padding: '0.5rem 1.5rem',
+                      borderTopRightRadius: '20px',
+                      borderBottomRightRadius: '20px',
+                      border: '1px solid #0d6efd'
+                    }}
+                    onClick={() => tripChange('roundTrip')}
+                  >
+                    Round Trip
+                  </button>
+                </div>
               </div>
             </div>
+
             <div className="col-2">
               <FloatingLabel controlId="floatingInput" label="From" className="mb-3">
                 <Form.Control 
@@ -91,7 +99,7 @@ const DashBoardForUsers = () => {
                   type="date" 
                   placeholder="Return" 
                   className="custom-input"
-                  disabled={tripType=='oneWay'}
+                  disabled={tripType === 'oneWay'}
                 />
               </FloatingLabel>
             </div>
@@ -117,7 +125,7 @@ const DashBoardForUsers = () => {
               </FloatingLabel>
             </div>
             <Button
-            onClick={onbtnClick}
+              onClick={onbtnClick}
               variant="primary"
               style={{
                 margin: '20px auto',
@@ -132,11 +140,6 @@ const DashBoardForUsers = () => {
               Search
             </Button>
           </div>
-
-
-
-
-          
         </div>
         <div className="col-4">
           <div className="row">
