@@ -34,7 +34,7 @@ const BookedFlight = () => {
             <div className="card p-4 mb-4" style={{
               borderRadius: '12px',
               boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-              borderLeft: '4px solid blue'
+              borderLeft: '4px solid #ff3a0d'
             }}>
               <div className="row align-items-center">
                 <div className="col-3">
@@ -79,7 +79,7 @@ const BookedFlight = () => {
             <div className="card p-4" style={{
               borderRadius: '12px',
               boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-              borderLeft: '4px solid blue'
+              borderLeft: '4px solid #ff3a0d'
             }}>
               <div className="row align-items-center">
                 <div className="col-3">
@@ -129,7 +129,7 @@ const BookedFlight = () => {
                 height: '50px',
                 width: '90px',
                 borderRadius: '10px',
-                backgroundColor: '#2d3748"',
+                backgroundColor: '#ff3a0d',
                 border: 'none',
                 fontSize: '16px',
               }}
