@@ -32,8 +32,8 @@ const Header = () => {
           </Navbar.Brand>
 
           <Nav style={{ display: 'flex', gap: '20px', marginRight: "50px" }}>
-            <Nav.Link href="#home" style={{ textDecoration: "none", color: "white" }}>Home</Nav.Link>
-            <Nav.Link href="#features" style={{ textDecoration: "none", color: "white" }}>Features</Nav.Link>
+            <Nav.Link to='/' style={{ textDecoration: "none", color: "white" }}>Home</Nav.Link>
+            <Nav.Link  as={Link}  to='/aboutus' style={{ textDecoration: "none", color: "white" }}>About us</Nav.Link>
             <Nav.Link as={Link}   to={'/login'}
             style={{ textDecoration: "none", color: "white", paddingLeft: "2px" }}>
               <i className="fa-regular fa-user"></i> Login

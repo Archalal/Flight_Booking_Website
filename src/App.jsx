@@ -22,6 +22,7 @@ import { ToastContainer } from 'react-toastify'
 import UserFlightView from './pages/UserFlightView'
 import ForgetPassword from './pages/ForgetPassword'
 import Revenue from './component/Revenue'
+import AboutUs from './pages/AboutUs'
 
 
 
@@ -71,6 +72,7 @@ theme="light"
       <Route element={<UserFlightView />} path='/userflightview'></Route>
       <Route element={<ForgetPassword />} path='/forgetpassword'></Route>
       <Route element={<Revenue />} path='/revenue'></Route>
+      <Route element={<AboutUs />} path='/aboutus'></Route>
    
    
       

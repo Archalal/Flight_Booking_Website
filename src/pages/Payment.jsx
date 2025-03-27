@@ -8,7 +8,7 @@ const Payment = () => {
     };
 
     return (
-        <div className="container py-5 d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+        <div className="container py-5 d-flex justify-content-center align-items-center " style={{ minHeight: '100vh'}}>
             <div className="card border-0" style={{ 
                 width: '100%', 
                 maxWidth: '500px',
@@ -28,7 +28,7 @@ const Payment = () => {
 
                
                 <div className="card-body p-4 p-md-5" style={{ backgroundColor: '#f8f9fa' }}>
-                    <form onSubmit={payNow}>
+                    <form onClick={payNow}>
                       
                         <div className="mb-4 p-3 rounded-3" style={{
                             background: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
@@ -74,7 +74,7 @@ const Payment = () => {
                                     type="text"
                                     className="form-control py-3 border-start-0"
                                     placeholder="1234 5678 9012 3456"
-                                    required
+                                
                                     style={{ 
                                         borderColor: '#e0e0e0',
                                         borderRadius: '0.375rem'
@@ -89,7 +89,7 @@ const Payment = () => {
                                 type="text"
                                 className="form-control py-3"
                                 placeholder="John Doe"
-                                required
+                                
                                 style={{ 
                                     borderColor: '#e0e0e0',
                                     borderRadius: '0.375rem'
@@ -104,7 +104,7 @@ const Payment = () => {
                                     type="text"
                                     className="form-control py-3"
                                     placeholder="MM/YY"
-                                    required
+                                
                                     style={{ 
                                         borderColor: '#e0e0e0',
                                         borderRadius: '0.375rem'
@@ -118,7 +118,7 @@ const Payment = () => {
                                         type="password"
                                         className="form-control py-3"
                                         placeholder="•••"
-                                        required
+                                    
                                         style={{ 
                                             borderColor: '#e0e0e0',
                                             borderRadius: '0.375rem'
