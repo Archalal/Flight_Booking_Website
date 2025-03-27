@@ -45,13 +45,23 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-decoration-none text-white">
+                <Link to="/aboutus" className="text-decoration-none text-white">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-decoration-none text-white">
-                  Contact
+                <Link to="/admindashboard" className="text-decoration-none text-white">
+                  AdminDashBoard
+                </Link>
+              </li>
+              <li>
+                <Link to="/userdashboard" className="text-decoration-none text-white">
+                  UserDashBoard
+                </Link>
+              </li>
+              <li>
+                <Link to="/flightdashboard" className="text-decoration-none text-white">
+                  FlightDashBoard
                 </Link>
               </li>
               <li>

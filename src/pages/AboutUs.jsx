@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AboutUs = () => {
   return (
     <div className="about-page" style={{ overflowX: "hidden" }}>
-      {/* Hero Section */}
+     
       <section className="hero-section position-relative" style={{ 
         background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)",
         minHeight: "60vh",
@@ -56,7 +56,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Team Section */}
+  
       <section className="py-6 bg-light mt-5">
         <div className="container">
           <div className="row justify-content-center text-center mb-6">
@@ -124,7 +124,7 @@ const AboutUs = () => {
      
      
 
-      {/* CTA Section */}
+      
       <section className="py-6 bg-dark text-white position-relative mt-5" >
         <div className="container position-relative z-index-1">
           <div className="row justify-content-center text-center" style={{marginLeft:"280px"}}>
