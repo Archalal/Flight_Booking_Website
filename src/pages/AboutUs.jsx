@@ -16,7 +16,7 @@ const AboutUs = () => {
             <div className="col-lg-8 " style={{marginLeft:"300px"}}>
               <h1 className="display-3 fw-bold text-white mb-4">About AeroVista</h1>
               <p className="lead text-white-50 mb-0" style={{ fontSize: "1.5rem" }}>
-                Where innovation meets the skies
+                Where innovation meets the skies.....
               </p>
             </div>
           </div>
