@@ -1,122 +1,135 @@
-import React from 'react'
-import { Button } from "react-bootstrap";
-import { Link} from 'react-router-dom';
+import React from 'react';
+import { Button, Card, Badge } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const FlightBookedByUser = () => {
   return (
-    <div>
-         <div
-                style={{
-                  height: "50px",
-                  width: "100%",
-                  backgroundColor: "white",
-                }}
-                className="rounded shadow "
-              >
-               <div
-        className="rounded shadow mt-2"
-        style={{
-          backgroundColor: "#ffffff",
-          height: "50px",
-          width: "100%",
-          color: "#525f7f",
-          position: "sticky",
-          top: "0",
-          zIndex: "1",
-        }}
-      >
-        <div
-          className="container d-flex  align-items-center"
-          style={{ height: "100%" }}
-        >
-          <div>
-            <h4> <span style={{ color: "black",letterSpacing:"1px" }} >DashBoard</span></h4>
-          </div>
-          <div>
-          </div>
-          <div>
-            <i style={{ color: "red" }} className="fa-solid fa-bell"></i>
-          </div>
+    <div className="p-3" style={{ backgroundColor: '#f8fafc' }}>
+      {/* Header Section */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 className="m-0" style={{ fontWeight: '700', color: '#2d3748' }}>Flight Management</h2>
+          <p className="text-muted m-0">Manage all user flight bookings</p>
+        </div>
+        <div className="d-flex align-items-center">
+          <Button variant="light" className="me-3 p-2 rounded-circle">
+            <i className="fas fa-bell text-danger"></i>
+          </Button>
+          <Button variant="primary" className="rounded-pill">
+            <i className="fas fa-plus me-2"></i> Add New
+          </Button>
         </div>
       </div>
-    
+
+      {/* Stats Cards */}
+      <div className="row mb-4 g-4">
+        <div className="col-md-6">
+          <Card className="border-0 shadow-sm h-100" style={{ 
+            background: 'linear-gradient(135deg, #000080 0%, #1e3a8a 100%)',
+            color: 'white'
+          }}>
+            <Card.Body className="d-flex flex-column">
+              <div className="d-flex justify-content-between align-items-start">
+                <div>
+                  <h6 className="text-uppercase text-white-50 mb-2">Total Users</h6>
+                  <h2 className="mb-0">1,234</h2>
+                </div>
+                <div className="bg-white bg-opacity-10 p-3 rounded-circle">
+                  <i className="fas fa-users fs-4"></i>
+                </div>
               </div>
-              <h2 className="ms-2 mt-3" style={{ fontWeight: "bolder" }}>Flight Manage</h2> 
-              <div className="row mt-4 p-3">
-        <div className="col-md-6">
-          <div
-            className=" p-3 rounded "
-            style={{ height: "130px", backgroundColor: "#000080",color:"white" }}
-          >
-            <div  > <i className="fa-solid fa-eye  " style={{ color: "white" }}></i></div>
-            <h2 className="text-md font-bold">1,234</h2>
-            <h6 className="text-2xl ">Total Users </h6>
-          </div>
+              <div className="mt-auto">
+                <small className="text-white-50">+12% from last month</small>
+              </div>
+            </Card.Body>
+          </Card>
         </div>
         <div className="col-md-6">
-          <div
-            className=" p-3 rounded "
-            style={{ height: "130px", backgroundColor: "#0e2f44",color:"white" }}
-          >
-            <i className="fa-solid fa-cart-shopping " style={{color:"white"}} ></i>
-            <h2 className="text-md font-bold">567</h2>
-            <h6 className="text-2xl">Total Bookings from users</h6>
-          </div>
+          <Card className="border-0 shadow-sm h-100" style={{ 
+            background: 'linear-gradient(135deg, #0e2f44 0%, #1e3a8a 100%)',
+            color: 'white'
+          }}>
+            <Card.Body className="d-flex flex-column">
+              <div className="d-flex justify-content-between align-items-start">
+                <div>
+                  <h6 className="text-uppercase text-white-50 mb-2">Total Bookings</h6>
+                  <h2 className="mb-0">567</h2>
+                </div>
+                <div className="bg-white bg-opacity-10 p-3 rounded-circle">
+                  <i className="fas fa-plane fs-4"></i>
+                </div>
+              </div>
+              <div className="mt-auto">
+                <small className="text-white-50">+8% from last month</small>
+              </div>
+            </Card.Body>
+          </Card>
         </div>
-       
       </div>
 
+      {/* Bookings Table */}
+      <Card className="border-0 shadow-sm">
+        <Card.Body className="p-0">
+          <div className="table-responsive">
+            <table className="table table-hover align-middle mb-0">
+              <thead style={{ backgroundColor: '#f8f9fa' }}>
+                <tr>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Picture</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Name</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">E-Mail</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Date of Birth</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Address</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Phone</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Status</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="p-3">
+                    <div className="rounded-circle overflow-hidden" style={{ width: '60px', height: '60px' }}>
+                      <img 
+                        src="https://static.vecteezy.com/system/resources/previews/024/558/262/non_2x/businessman-isolated-illustration-ai-generative-free-png.png" 
+                        alt="Profile" 
+                        className="img-fluid"
+                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                      />
+                    </div>
+                  </td>
+                  <td className="p-3 fw-semibold">Reha P</td>
+                  <td className="p-3">reha0002@gmail.com</td>
+                  <td className="p-3">31/07/2000</td>
+                  <td className="p-3">Tvm, India</td>
+                  <td className="p-3">9876543212</td>
+                  <td className="p-3">
+                    <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
+                      <i className="fas fa-check-circle me-1"></i> Paid
+                    </Badge>
+                  </td>
+                  <td className="p-3">
+                    <Link to={'/singleflightview'}>
+                      <Button 
+                        variant="outline-primary" 
+                        size="sm" 
+                        className="rounded-pill px-3 d-flex align-items-center"
+                        style={{ borderWidth: "1.5px" }}
+                      >
+                        <i className="fas fa-eye me-2"></i> View Booking
+                      </Button>
+                    </Link>
+                  </td>
+                </tr>
+                {/* Additional rows would go here */}
+              </tbody>
+            </table>
+          </div>
+        </Card.Body>
+      </Card>
 
-
-
-      
-      <div className="table-responsive">
-              <table className="table table-hover align-middle">
-                <thead style={{ backgroundColor: "#f8f9fa" }}>
-                  <tr>
-                  <th className="p-3 text-secondary fw-normal">picture</th>
-                    <th className="p-3 text-secondary fw-normal">Name</th>
-                    <th className="p-3 text-secondary fw-normal">E-Mail</th>
-                    <th className="p-3 text-secondary fw-normal">Date of Birth</th>
-                    <th className="p-3 text-secondary fw-normal">Address</th>
-                    <th className="p-3 text-secondary fw-normal">Phone</th>
-                    <th className="p-3 text-secondary fw-normal">Status</th>
-                    <th className="p-3 text-secondary fw-normal">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                  <td className="p-3 text-center text-muted"> <img src="https://static.vecteezy.com/system/resources/previews/024/558/262/non_2x/businessman-isolated-illustration-ai-generative-free-png.png" width={"100%"} height={"160px"}></img></td>
-                
-                    <td className="p-3">Reha P</td>
-                    <td className="p-3">reha0002@gmail.com</td>
-                    <td className="p-3">31/07/2000</td>
-                    <td className="p-3">Tvm, India</td>
-                    <td className="p-3">9876543212</td>
-                    <td className="p-3">
-                      <span className="badge bg-success bg-opacity-10 text-success">Paid</span>
-                    </td>
-                    <td className="p-3">
-                      <Link to={'/singleflightview'}>
-                        <Button 
-                          variant="outline-primary" 
-                          size="sm" 
-                          className="rounded-pill px-3"
-                          style={{ borderWidth: "1.5px" }}
-                        >
-                          View Booking
-                        </Button>
-                      </Link>
-                    </td>
-                  </tr>
-               
-                </tbody>
-              </table>
-            </div>
-
-      
+    
+     
     </div>
   )
 }
 
-export default FlightBookedByUser
+export default FlightBookedByUser;

@@ -8,16 +8,22 @@ const AdminFlightManage = () => {
   return (
     <div style={{ display: 'flex' }}>
      
-      <div style={{
-        width: '250px',
-        backgroundColor: '#ffffff',
-        height: '100vh',
-        position: 'fixed',
-        padding: '20px',
-        boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)'
-      }}>
-        <SideBar />
-      </div>
+     <div
+              className="col-2"
+              style={{
+                backgroundColor: "#ffffff",
+                height: "100vh",
+                position: "fixed",
+                top: "0",
+                left: "0",
+                padding: "10px",
+                color: "#525f7f",
+                boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
+                zIndex: "1",
+              }}
+            >
+              <SideBar />
+            </div>
 
       
       <div style={{

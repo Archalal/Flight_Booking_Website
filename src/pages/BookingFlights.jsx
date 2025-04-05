@@ -12,7 +12,7 @@ const BookingFlights = () => {
       <div>
         <div className="w-100">
           <div className="row" style={{ background: "#f8f9fa" }}>
-            <div
+          <div
               className="col-2"
               style={{
                 backgroundColor: "#ffffff",
