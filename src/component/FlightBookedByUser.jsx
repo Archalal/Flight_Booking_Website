@@ -1,24 +1,18 @@
 import React from 'react';
 import { Button, Card, Badge } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import AdminNotification from './AdminNotification';
 
 const FlightBookedByUser = () => {
   return (
     <div className="p-3" style={{ backgroundColor: '#f8fafc' }}>
-      {/* Header Section */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
+     <AdminNotification />
+      <div className="d-flex justify-content-between align-items-center mb-4 mt-1">
         <div>
-          <h2 className="m-0" style={{ fontWeight: '700', color: '#2d3748' }}>Flight Management</h2>
+          <h2 className="m-0" style={{ fontWeight: '300', color: '#2d3748' }}>Flight Management</h2>
           <p className="text-muted m-0">Manage all user flight bookings</p>
         </div>
-        <div className="d-flex align-items-center">
-          <Button variant="light" className="me-3 p-2 rounded-circle">
-            <i className="fas fa-bell text-danger"></i>
-          </Button>
-          <Button variant="primary" className="rounded-pill">
-            <i className="fas fa-plus me-2"></i> Add New
-          </Button>
-        </div>
+        
       </div>
 
       {/* Stats Cards */}

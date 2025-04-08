@@ -27,8 +27,8 @@ const AdminFlightManage = () => {
 
       
       <div style={{
-        marginLeft: '250px',
-        padding: '20px',
+        marginLeft: '230px',
+        padding: '10px',
         width: 'calc(100% - 250px)',
         backgroundColor: '#f8f9fa',
         minHeight: '100vh'

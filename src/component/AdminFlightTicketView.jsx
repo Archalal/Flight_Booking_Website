@@ -3,7 +3,7 @@ import React from 'react'
 const AdminFlightTicketView = () => {
   return (
     <div>
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center mt-3">
       <div className='bg-white rounded-3 shadow p-4 mb-4' style={{ 
         width: '90%',
         maxWidth: '900px',

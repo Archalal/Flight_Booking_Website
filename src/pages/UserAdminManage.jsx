@@ -1,173 +1,125 @@
 import React from "react";
 import SideBar from "./SideBar";
-import { Button } from "react-bootstrap";
+import { Button, Badge, Table, Card } from "react-bootstrap";
 import TotalDisplay from "../component/TotalDisplay";
 import { Link } from "react-router-dom";
+import AdminNotification from "../component/AdminNotification";
 
 const UserAdminManage = () => {
   return (
-    <div>
-      <div>
-        <div className="w-100">
-          <div className="row" style={{ background: "#f8f9fa" }}>
-            <div
-              className="col-2"
-              style={{
-                backgroundColor: "#ffffff",
-                height: "100vh",
-                position: "fixed",
-                top: "0",
-                left: "0",
-                padding: "10px",
-                color: "#525f7f",
-                boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
-                zIndex: "1",
-              }}
-            >
-              <SideBar />
-            </div>
+    <div className="admin-dashboard" style={{ backgroundColor: "#f8f9fa" }}>
+      {/* Sidebar */}
+      <div
+        className="col-2"
+        style={{
+          backgroundColor: "#ffffff",
+          height: "100vh",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          padding: "10px",
+          color: "#525f7f",
+          boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
+          zIndex: "1",
+        }}
+      >
+        <SideBar />
+      </div>
 
-            <div
-              className="col-10"
-              style={{
-                marginLeft: "16.65%",
-                overflowX: "hidden",
-                backgroundColor: "#ffffff",
-              }}
-            >
-              <div
-                style={{
-                  height: "50px",
-                  width: "100%",
-                  backgroundColor: "white",
-                  boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-                }}
-                className="rounded"
-              >
-                <div
-                  className="rounded mt-2"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    height: "50px",
-                    width: "100%",
-                    color: "#525f7f",
-                    position: "sticky",
-                    top: "0",
-                    zIndex: "1",
-                    boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-                  }}
-                >
-                  <div
-                    className="container d-flex align-items-center"
-                    style={{ height: "100%" }}
-                  >
-                    <div>
-                      <h4>
-                        <span style={{ color: "black", letterSpacing: "1px" }}>
-                          DashBoard
-                        </span>
-                      </h4>
-                    </div>
-                    <div>
-                      <i
-                        style={{ color: "red" }}
-                        className="fa-solid fa-bell"
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2
-                className="ms-2 mt-3"
-                style={{ fontWeight: "bolder", color: "#2d3748" }}
-              >
-                User Manage
-              </h2>
-              <TotalDisplay />
-
-              <div className="row mt-2">
-                <div
-                  className="col rounded p-4 bg-white"
-                  style={{
-                    boxShadow: "0 2px 15px rgba(0,0,0,0.05)",
-                    border: "1px solid rgba(0,0,0,0.05)",
-                  }}
-                >
-                  <h2
-                    style={{
-                      display: "block",
-                      fontWeight: "bold",
-                      color: "#090979",
-                      marginTop: "30px",
-                    }}
-                  >
-                    All Users Details
-                  </h2>
-                  <table className="table table-hover mt-4">
-                    <thead>
-                      <tr>
-                        <th className="p-3 text-center text-muted">Picture</th>
-                        <th className="p-3 text-center text-muted">Name</th>
-                        <th className="p-3 text-center text-muted">E-Mail</th>
-                        <th className="p-3 text-center text-muted">
-                          Phone number
-                        </th>
-                        <th className="p-3 text-center text-muted">View</th>
-                        <th colSpan={2} className="p-3 text-center text-muted">
-                          Status
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="align-middle">
-                        <td className="p-3 text-center text-muted">
-                          {" "}
-                          <img
-                            src="https://static.vecteezy.com/system/resources/previews/024/558/262/non_2x/businessman-isolated-illustration-ai-generative-free-png.png"
-                            width={"100%"}
-                            height={"160px"}
-                          ></img>
-                        </td>
-                        <td className="p-3 text-center">Philip P</td>
-                        <td className="p-3 text-center">philip@gmail.com</td>
-                        <td className="p-3 text-center">9876543212</td>
-                        <td className="p-3 text-center">
-                          <Link to={"/adminsingleuser"}>
-                            <Button
-                              variant="outline-warning"
-                              size="sm"
-                              className="rounded-pill px-3"
-                            >
-                              View
-                            </Button>
-                          </Link>
-                        </td>
-                        <td className="p-3 text-center">
-                          <Button
-                            variant="outline-info"
-                            size="sm"
-                            className="rounded-pill px-3"
-                          >
-                            Accept
-                          </Button>
-                        </td>
-                        <td className="p-3 text-center">
-                          <Button
-                            variant="outline-danger"
-                            size="sm"
-                            className="rounded-pill px-3"
-                          >
-                            Reject
-                          </Button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Main Content */}
+      <div className="main-content" style={{ 
+        marginLeft: '220px',
+        padding: "20px",
+        width: 'calc(100% - 250px)',
+      }}>
+        {/* Header */}
+        <AdminNotification />
+        
+        {/* Page Title */}
+        <div className="d-flex justify-content-between align-items-center mb-4 mt-3">
+          <h2 className="m-0" style={{ fontWeight: "300", color: "#2d3748" }}>
+            <i className="fas fa-users me-2 text-primary"></i> User Management
+          </h2>
+       
         </div>
+
+        {/* Stats Cards */}
+        <TotalDisplay />
+
+        {/* Users Table */}
+        <Card className="border-0 shadow-sm mt-4">
+          <Card.Body className="p-0">
+            <div className="p-3 border-bottom bg-white">
+              <h5 className="mb-0" style={{ fontWeight: "600", color: "#2d3748" }}>
+                <i className="fas fa-list me-2 text-primary"></i> All Users Details
+              </h5>
+            </div>
+            
+            <div className="table-responsive">
+              <Table hover className="mb-0">
+                <thead style={{ backgroundColor: "#f8f9fa" }}>
+                  <tr>
+                    <th className="text-center p-3">Picture</th>
+                    <th className="p-3">Name</th>
+                    <th className="p-3">Email</th>
+                    <th className="p-3">Phone</th>
+                    <th className="p-3">Status</th>
+                    <th className="text-center p-3">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="text-center p-3">
+                      <div className="rounded-circle overflow-hidden mx-auto" style={{ width: "50px", height: "50px" }}>
+                        <img 
+                          src="https://static.vecteezy.com/system/resources/previews/024/558/262/non_2x/businessman-isolated-illustration-ai-generative-free-png.png" 
+                          alt="User" 
+                          className="img-fluid"
+                          style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                        />
+                      </div>
+                    </td>
+                    <td className="p-3 fw-semibold">Philip P</td>
+                    <td className="p-3">philip@gmail.com</td>
+                    <td className="p-3">9876543212</td>
+                    <td className="p-3">
+                      <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
+                        <i className="fas fa-check-circle me-1"></i> Active
+                      </Badge>
+                    </td>
+                    <td className="text-center p-3">
+                      <div className="d-flex justify-content-center">
+                        <Link to="/adminsingleuser" className="me-2">
+                          <Button 
+                            variant="outline-primary" 
+                            size="sm" 
+                            className="rounded-pill px-3"
+                          >
+                            <i className="fas fa-eye me-1"></i> View
+                          </Button>
+                        </Link>
+                        <Button 
+                          variant="outline-success" 
+                          size="sm" 
+                          className="rounded-pill px-3 me-2"
+                        >
+                          <i className="fas fa-check me-1"></i> Accept
+                        </Button>
+                        <Button 
+                          variant="outline-danger" 
+                          size="sm" 
+                          className="rounded-pill px-3"
+                        >
+                          <i className="fas fa-times me-1"></i> Reject
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );
