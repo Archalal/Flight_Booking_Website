@@ -266,3 +266,501 @@ const FlightTicket = () => {
 }
 
 export default FlightTicket
+
+
+
+
+import React, { useState } from 'react';
+import UserDashNav from '../component/UserDashNav';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../component/Footer';
+import { FaPlane, FaPlaneDeparture, FaPlaneArrival, FaUsers, FaCalendarAlt, FaExchangeAlt } from 'react-icons/fa';
+import { GiCommercialAirplane } from 'react-icons/gi';
+import { MdFlight } from 'react-icons/md';
+
+const DashBoardForUsers = () => {
+  const navigate = useNavigate();
+  const [tripType, setTripType] = useState("oneWay");
+  const [activeDeal, setActiveDeal] = useState(0);
+
+  const tripChange = (type) => setTripType(type);
+  const onbtnClick = () => navigate('/searchticketbyuser');
+
+  const flightDeals = [
+    {
+      id: 1,
+      city: "Kuala Lumpur",
+      country: "Malaysia",
+      price: "7,248",
+      image: "https://cdn.pixabay.com/photo/2016/11/13/12/52/kuala-lumpur-1820944_1280.jpg",
+      airline: "AirAsia",
+      departure: "Thu, 20 Mar",
+      return: "Sat, 22 Mar",
+      route: "IXZ-KUL",
+      direct: true
+    },
+    {
+      id: 2,
+      city: "Bangkok",
+      country: "Thailand",
+      price: "8,500",
+      image: "https://cdn.pixabay.com/photo/2016/11/06/05/36/bangkok-1802501_1280.jpg",
+      airline: "Thai Airways",
+      departure: "Fri, 15 Apr",
+      return: "Sun, 17 Apr",
+      route: "DEL-BKK",
+      direct: true
+    },
+    {
+      id: 3,
+      city: "Singapore",
+      country: "Singapore",
+      price: "9,200",
+      image: "https://cdn.pixabay.com/photo/2014/11/24/14/39/singapore-543689_1280.jpg",
+      airline: "Singapore Airlines",
+      departure: "Wed, 10 May",
+      return: "Fri, 12 May",
+      route: "MAA-SIN",
+      direct: false
+    },
+    {
+      id: 4,
+      city: "Dubai",
+      country: "UAE",
+      price: "15,000",
+      image: "https://cdn.pixabay.com/photo/2015/12/08/00/40/dubai-1081933_1280.jpg",
+      airline: "Emirates",
+      departure: "Mon, 5 Jun",
+      return: "Thu, 8 Jun",
+      route: "BOM-DXB",
+      direct: true
+    }
+  ];
+
+  return (
+    <div className="user-dashboard" style={{ backgroundColor: '#f8f9fa' }}>
+      <UserDashNav />
+      
+      {/* Hero Search Section */}
+      <div className="hero-section rounded-4 shadow p-4 m-4 bg-white" style={{ 
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
+        <div className="row">
+          <div className="col-lg-8">
+            <div style={{ height: '430px' }}>
+              <h2 className="fw-bold mb-4 mt-4" style={{ 
+                color: '#0d1b2a',
+                fontSize: '2.2rem',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+              }}>
+                <GiCommercialAirplane className="me-2 text-danger" />
+                The Best Flight Offers From Anywhere to Everywhere
+              </h2>
+              
+              {/* Trip Type Toggle */}
+              <div className="row mb-4">
+                <div className="col-12 d-flex justify-content-center align-items-center">
+                  <div className="p-2 rounded-pill bg-light">
+                    <button
+                      type="button"
+                      className={`btn ${tripType === 'oneWay' ? 'btn-primary' : 'btn-light'} rounded-pill me-2`}
+                      style={{
+                        padding: '0.5rem 1.5rem',
+                        fontWeight: '600',
+                        boxShadow: tripType === 'oneWay' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none'
+                      }}
+                      onClick={() => tripChange('oneWay')}
+                    >
+                      <FaPlane className="me-2" />
+                      One Way
+                    </button>
+                    <button
+                      type="button"
+                      className={`btn ${tripType === 'roundTrip' ? 'btn-primary' : 'btn-light'} rounded-pill`}
+                      style={{
+                        padding: '0.5rem 1.5rem',
+                        fontWeight: '600',
+                        boxShadow: tripType === 'roundTrip' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none'
+                      }}
+                      onClick={() => tripChange('roundTrip')}
+                    >
+                      <FaExchangeAlt className="me-2" />
+                      Round Trip
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Search Form */}
+              <div className="p-4 rounded-4 bg-white bg-opacity-80">
+                <div className="row g-3">
+                  <div className="col-md-3">
+                    <FloatingLabel controlId="floatingFrom" label={<span><FaPlaneDeparture className="me-2" />From</span>}>
+                      <Form.Control type="text" placeholder="From" style={{ height: '58px' }} />
+                    </FloatingLabel>
+                  </div>
+                  <div className="col-md-3">
+                    <FloatingLabel controlId="floatingTo" label={<span><FaPlaneArrival className="me-2" />To</span>}>
+                      <Form.Control type="text" placeholder="To" style={{ height: '58px' }} />
+                    </FloatingLabel>
+                  </div>
+                  <div className="col-md-2">
+                    <FloatingLabel controlId="floatingDepart" label={<span><FaCalendarAlt className="me-2" />Depart</span>}>
+                      <Form.Control type="date" placeholder="Depart" style={{ height: '58px' }} />
+                    </FloatingLabel>
+                  </div>
+                  <div className="col-md-2">
+                    <FloatingLabel controlId="floatingReturn" label={<span><FaCalendarAlt className="me-2" />Return</span>}>
+                      <Form.Control 
+                        type="date" 
+                        placeholder="Return" 
+                        style={{ height: '58px' }}
+                        disabled={tripType === 'oneWay'} 
+                      />
+                    </FloatingLabel>
+                  </div>
+                  <div className="col-md-2">
+                    <FloatingLabel controlId="floatingClass" label="Cabin Class">
+                      <Form.Select style={{ height: '58px' }}>
+                        <option value="economy">Economy</option>
+                        <option value="premium">Premium</option>
+                        <option value="business">Business</option>
+                      </Form.Select>
+                    </FloatingLabel>
+                  </div>
+                  <div className="col-md-2">
+                    <FloatingLabel controlId="floatingTravellers" label={<span><FaUsers className="me-2" />Travellers</span>}>
+                      <Form.Control 
+                        type="number" 
+                        placeholder="Travellers" 
+                        style={{ height: '58px' }}
+                        defaultValue="1"
+                        min="1" 
+                      />
+                    </FloatingLabel>
+                  </div>
+                </div>
+                <div className="row mt-4">
+                  <div className="col-12 text-center">
+                    <Button
+                      onClick={onbtnClick}
+                      className="hover-effect border-0"
+                      style={{
+                        height: '50px',
+                        width: '180px',
+                        borderRadius: '50px',
+                        backgroundColor: '#ff5a1d',
+                        fontSize: '18px',
+                        fontWeight: '600',
+                        boxShadow: '0 4px 8px rgba(255,90,29,0.3)',
+                      }}
+                    >
+                      <MdFlight className="me-2" />
+                      Search Flights
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+          {/* Side Images */}
+          <div className="col-lg-4 d-none d-lg-block">
+            <div className="h-100 d-flex flex-column justify-content-center">
+              <div className="row g-2">
+                {[
+                  "https://content.r9cdn.net/res/images/horizon/ui/horizontalSearchNavigation/Flights_02_1_5x.png",
+                  "https://content.r9cdn.net/res/images/horizon/ui/horizontalSearchNavigation/Flights_01_1_5x.png",
+                  "https://content.r9cdn.net/res/images/horizon/ui/horizontalSearchNavigation/Generic_02_1_5x.png",
+                  "https://content.r9cdn.net/res/images/horizon/ui/horizontalSearchNavigation/Flights_03_1_5x.png",
+                  "https://content.r9cdn.net/res/images/horizon/ui/horizontalSearchNavigation/Generic_04_1_5x.png",
+                  "https://content.r9cdn.net/res/images/horizon/ui/horizontalSearchNavigation/Flights_04_1_5x.png"
+                ].map((img, index) => (
+                  <div className="col-4" key={index}>
+                    <div className="rounded-3 overflow-hidden" style={{
+                      height: '120px',
+                      boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+                    }}>
+                      <img
+                        src={img}
+                        alt="Travel"
+                        className="img-fluid h-100 w-100 object-fit-cover hover-zoom"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      
+      {/* Flight Deals Section */}
+      <div className='container mt-5'>
+        <div className="mb-4">
+          <div className="d-flex justify-content-between align-items-center">
+            <h2 className="m-0 position-relative pb-2" style={{ 
+              fontWeight: "bold", 
+              color: "#0d1b2a",
+              fontSize: '2rem'
+            }}>
+              <span style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                width: '60px',
+                height: '4px',
+                backgroundColor: '#ff5a1d',
+                borderRadius: '2px'
+              }}></span>
+              ✈️ Flight deals from India
+            </h2>
+            <div>
+              <button 
+                className="btn btn-outline-secondary me-2 rounded-circle" 
+                style={{ width: '40px', height: '40px' }}
+                onClick={() => setActiveDeal(prev => (prev > 0 ? prev - 1 : flightDeals.length - 1))}
+              >
+                &lt;
+              </button>
+              <button 
+                className="btn btn-outline-secondary rounded-circle" 
+                style={{ width: '40px', height: '40px' }}
+                onClick={() => setActiveDeal(prev => (prev < flightDeals.length - 1 ? prev + 1 : 0))}
+              >
+                &gt;
+              </button>
+            </div>
+          </div>
+          
+          <p className="mb-4 text-secondary" style={{ fontSize: '1.1rem' }}>
+            Discover amazing flight deals with the lowest prices. Act fast – these offers won't last long!
+          </p>
+
+          <div className="row g-4">
+            {flightDeals.map((deal, index) => (
+              <div 
+                className={`col-md-6 col-lg-3 ${index === activeDeal ? 'active-deal' : ''}`}
+                key={deal.id}
+                style={{
+                  transition: 'all 0.3s ease',
+                  transform: index === activeDeal ? 'scale(1.05)' : 'scale(0.95)',
+                  opacity: index === activeDeal ? 1 : 0.7
+                }}
+              >
+                <Card 
+                  className="h-100 border-0 shadow-sm hover-card"
+                  onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+                  onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                >
+                  <div className="position-relative" style={{ height: '180px', overflow: 'hidden' }}>
+                    <Card.Img 
+                      variant="top" 
+                      src={deal.image} 
+                      className="hover-zoom"
+                    />
+                    <div className="position-absolute top-3 end-3 bg-danger bg-opacity-90 text-white px-3 py-1 rounded-pill small fw-bold">
+                      Hot Deal
+                    </div>
+                  </div>
+                  <Card.Body className="p-4">
+                    <Card.Title className="fw-bold mb-1" style={{ fontSize: '1.4rem', color: '#0d1b2a' }}>
+                      {deal.city}
+                    </Card.Title>
+                    <Card.Text className="text-secondary mb-3 d-flex align-items-center">
+                      <span className="me-2">🇲🇾</span>
+                      {deal.country}
+                    </Card.Text>
+                    <div className="row align-items-center mb-3">
+                      <div className="col-3">
+                        <div className="p-1 rounded border">
+                          <img 
+                            src={`https://logo.clearbit.com/${deal.airline.toLowerCase().replace(/\s/g, '')}.com`} 
+                            alt={deal.airline} 
+                            className="w-100"
+                            onError={(e) => {
+                              e.target.src = 'https://via.placeholder.com/50?text=Airline';
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <span className="fw-bold" style={{ fontSize: '0.95rem', color: '#0d1b2a' }}>
+                          {deal.departure}
+                        </span>
+                        <br />
+                        <small className="text-secondary">
+                          {deal.route} with {deal.airline}
+                        </small>
+                      </div>
+                      <div className="col-3 text-end small fw-bold" style={{ 
+                        color: deal.direct ? '#28a745' : '#ffc107'
+                      }}>
+                        {deal.direct ? 'Direct' : '1 Stop'}
+                      </div>
+                    </div>
+                    {tripType === 'roundTrip' && (
+                      <div className="row align-items-center mb-3">
+                        <div className="col-3">
+                          <div className="p-1 rounded border">
+                            <img 
+                              src={`https://logo.clearbit.com/${deal.airline.toLowerCase().replace(/\s/g, '')}.com`} 
+                              alt={deal.airline} 
+                              className="w-100"
+                              onError={(e) => {
+                                e.target.src = 'https://via.placeholder.com/50?text=Airline';
+                              }}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-6">
+                          <span className="fw-bold" style={{ fontSize: '0.95rem', color: '#0d1b2a' }}>
+                            {deal.return}
+                          </span>
+                          <br />
+                          <small className="text-secondary">
+                            {deal.route.split('-').reverse().join('-')} with {deal.airline}
+                          </small>
+                        </div>
+                        <div className="col-3 text-end small fw-bold" style={{ 
+                          color: deal.direct ? '#28a745' : '#ffc107'
+                        }}>
+                          {deal.direct ? 'Direct' : '1 Stop'}
+                        </div>
+                      </div>
+                    )}
+                    <div className="d-flex justify-content-between align-items-center mt-3">
+                      <div>
+                        <small className="text-secondary">Starting from</small>
+                        <div className="text-danger fw-bold" style={{ fontSize: '1.5rem' }}>
+                          ₹{deal.price}
+                        </div>
+                      </div>
+                      <button 
+                        className="btn btn-danger fw-bold px-3 py-2"
+                        style={{ borderRadius: '8px' }}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Additional Sections */}
+      <div className="container mt-5">
+        <div className="row g-4">
+          <div className="col-md-4">
+            <div className="p-4 rounded-3 shadow-sm h-100 border-start border-4 border-danger">
+              <h3 className="fw-bold" style={{ color: '#0d1b2a' }}>
+                <FaPlane className="me-2 text-danger" />
+                Why Book With Us?
+              </h3>
+              <ul className="mt-3 list-unstyled">
+                <li className="mb-2 d-flex align-items-start">
+                  <span className="me-2 text-danger">✓</span>
+                  Best price guarantee
+                </li>
+                <li className="mb-2 d-flex align-items-start">
+                  <span className="me-2 text-danger">✓</span>
+                  No booking fees
+                </li>
+                <li className="mb-2 d-flex align-items-start">
+                  <span className="me-2 text-danger">✓</span>
+                  24/7 customer support
+                </li>
+                <li className="mb-2 d-flex align-items-start">
+                  <span className="me-2 text-danger">✓</span>
+                  Easy cancellation
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-4 rounded-3 shadow-sm h-100 border-start border-4 border-primary">
+              <h3 className="fw-bold" style={{ color: '#0d1b2a' }}>
+                <FaPlaneDeparture className="me-2 text-primary" />
+                Popular Destinations
+              </h3>
+              <div className="mt-3">
+                <div className="d-flex justify-content-between mb-2">
+                  <span>Delhi to Dubai</span>
+                  <span className="text-primary">From ₹12,000</span>
+                </div>
+                <div className="d-flex justify-content-between mb-2">
+                  <span>Mumbai to Singapore</span>
+                  <span className="text-primary">From ₹9,500</span>
+                </div>
+                <div className="d-flex justify-content-between mb-2">
+                  <span>Bangalore to Bangkok</span>
+                  <span className="text-primary">From ₹8,200</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span>Chennai to Kuala Lumpur</span>
+                  <span className="text-primary">From ₹7,500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-4 rounded-3 shadow-sm h-100 border-start border-4 border-success">
+              <h3 className="fw-bold" style={{ color: '#0d1b2a' }}>
+                <FaUsers className="me-2 text-success" />
+                Travel Tips
+              </h3>
+              <div className="mt-3">
+                <div className="mb-3">
+                  <h6 className="fw-bold">Best Time to Book</h6>
+                  <p className="small">
+                    Book at least 6-8 weeks in advance for international flights to get the best deals.
+                  </p>
+                </div>
+                <div>
+                  <h6 className="fw-bold">Flexible Dates?</h6>
+                  <p className="small">
+                    Use our flexible date search to find cheaper options around your preferred dates.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <Footer />
+      
+      <style>{`
+        .hover-effect:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(255,90,29,0.3) !important;
+        }
+        .hover-zoom:hover {
+          transform: scale(1.1);
+        }
+        .hover-card {
+          transition: all 0.3s ease;
+          border-radius: 15px !important;
+        }
+        .active-deal {
+          z-index: 1;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default DashBoardForUsers;
