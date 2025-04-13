@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const Signup = () => {
+  const handleGoogleSuccess = (credentialResponse) => {
+    console.log("Google Auth Response:", credentialResponse);
+    alert("Google sign-in successful! Check console for details.");
+  };
+
   return (
     <div
       style={{
@@ -11,7 +16,6 @@ const Signup = () => {
         justifyContent: "center",
         backgroundColor: "#f8f9fa",
         padding: "28px 0",
-        
       }}
     >
       <div className="container">
@@ -41,9 +45,6 @@ const Signup = () => {
               Welcome! Sign up to experience our service.
             </p>
             <form style={{ width: "70%", maxWidth: "400px" }}> 
-      
-             
-
               <div className="mb-2">
                 <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
                   Full Name
@@ -57,21 +58,18 @@ const Signup = () => {
                 />
               </div>
 
-
               <div className="mb-2">
-                <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
+                <label htmlFor="picture" className="form-label" style={{ fontWeight: "500" }}>
                   Picture
                 </label>
                 <input
                   type="file"
                   className="form-control"
-                  id="name"
-                  placeholder="Enter your full name"
+                  id="picture"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
               </div>
 
-           
               <div className="mb-2">
                 <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>
                   Email address
@@ -85,7 +83,6 @@ const Signup = () => {
                 />
               </div>
 
-          
               <div className="mb-2">
                 <label htmlFor="dob" className="form-label" style={{ fontWeight: "500" }}>
                   Date of Birth
@@ -103,28 +100,27 @@ const Signup = () => {
                   Phone Number
                 </label>
                 <input
-                  type="number"
+                  type="tel"
                   className="form-control"
                   id="number"
-                   placeholder="Enter your Phone Number"
+                  placeholder="Enter your Phone Number"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
               </div>
+
               <div className="mb-2">
                 <label htmlFor="address" className="form-label" style={{ fontWeight: "500" }}>
-                  Enter Your Address
+                  Address
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   id="address"
-                   placeholder="Enter your Address"
+                  placeholder="Enter your Address"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
               </div>
-              
 
-            
               <div className="mb-2">
                 <label htmlFor="password" className="form-label" style={{ fontWeight: "500" }}>
                   Password
@@ -138,7 +134,6 @@ const Signup = () => {
                 />
               </div>
 
-            
               <div className="mb-2">
                 <label htmlFor="confirmPassword" className="form-label" style={{ fontWeight: "500" }}>
                   Confirm Password
@@ -152,7 +147,26 @@ const Signup = () => {
                 />
               </div>
 
-             
+              {/* Google Sign-In Button */}
+              <div className="text-center my-3">
+                <div className="d-flex align-items-center justify-content-center mb-3">
+                  <hr style={{ width: "30%", borderColor: "#dee2e6" }} />
+                  <span className="mx-2" style={{ color: "#6c757d" }}>Or</span>
+                  <hr style={{ width: "30%", borderColor: "#dee2e6" }} />
+                </div>
+                <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+                  <GoogleLogin
+                    onSuccess={handleGoogleSuccess}
+                    onError={() => console.error('Google Login Failed')}
+                    shape="pill"
+                    theme="filled_blue"
+                    size="medium"
+                    width="600"
+                    text="signup_with"
+                  />
+                </GoogleOAuthProvider>
+              </div>
+
               <div className="d-grid">
                 <button
                   type="submit"
@@ -167,34 +181,25 @@ const Signup = () => {
                     fontWeight: "600",
                     transition: "background-color 0.3s ease",
                     width: "50%",
-                 margin: "0 auto"
-
-                  
+                    margin: "0 auto"
                   }}
-                
                 >
                   Sign Up
                 </button>
               </div>
 
-             
               <div className="text-center mt-4">
-             
-               <span style={{ color: "#6c757d" }}>Already have an account? </span>
-             
-             <Link to={'/login'} style={{ color: "#ff5a1d" }}> login</Link>  
-             
-           
+                <span style={{ color: "#6c757d" }}>Already have an account? </span>
+                <Link to={'/login'} style={{ color: "#ff5a1d" }}> Login</Link>  
               </div>
             </form>
           </div>
 
-         
           <div className="col-md-5 p-0">
             <img
               src="https://cdn.pixabay.com/photo/2025/02/12/17/47/stewardess-9401950_1280.png"
               alt="Airplane"
-              style={{ width: "100%", height: "70%", objectFit: "cover",marginTop:"90px" }}
+              style={{ width: "100%", height: "70%", objectFit: "cover", marginTop: "90px" }}
             />
           </div>
         </div>

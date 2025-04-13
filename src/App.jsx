@@ -23,6 +23,7 @@ import UserFlightView from './pages/UserFlightView'
 import ForgetPassword from './pages/ForgetPassword'
 import Revenue from './component/Revenue'
 import AboutUs from './pages/AboutUs'
+import Auth from './pages/Auth'
 
 
 
@@ -73,6 +74,7 @@ theme="light"
       <Route element={<ForgetPassword />} path='/forgetpassword'></Route>
       <Route element={<Revenue />} path='/revenue'></Route>
       <Route element={<AboutUs />} path='/aboutus'></Route>
+     
    
    
       
