@@ -154,7 +154,8 @@ const Signup = () => {
                   <span className="mx-2" style={{ color: "#6c757d" }}>Or</span>
                   <hr style={{ width: "30%", borderColor: "#dee2e6" }} />
                 </div>
-                <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+                <GoogleOAuthProvider clientId="606492950601-4tmq4mpaetsn7f1eusdg3rfiakmo3id7.apps.googleusercontent.com
+">
                   <GoogleLogin
                     onSuccess={handleGoogleSuccess}
                     onError={() => console.error('Google Login Failed')}
