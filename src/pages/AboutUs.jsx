@@ -10,7 +10,7 @@ const AboutUs = () => {
           <div className="row justify-content-center text-center">
             <div className="col-lg-8 position-relative z-index-1">
               <h1 className="display-2 fw-bold text-white mb-4 animate__animated animate__fadeInDown">
-                About <span className="text-primary">AeroVista</span>
+                About <span className="text-primary">Aero Vista</span>
               </h1>
               <p className="lead text-white-70 mb-0 fs-3">
                 Elevating air travel through innovation and excellence
