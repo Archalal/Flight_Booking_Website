@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+
 
 const Signup = () => {
-  const handleGoogleSuccess = (credentialResponse) => {
-    console.log("Google Auth Response:", credentialResponse);
-    alert("Google sign-in successful! Check console for details.");
-  };
+ 
 
   return (
     <div
@@ -147,26 +144,7 @@ const Signup = () => {
                 />
               </div>
 
-              {/* Google Sign-In Button */}
-              <div className="text-center my-3">
-                <div className="d-flex align-items-center justify-content-center mb-3">
-                  <hr style={{ width: "30%", borderColor: "#dee2e6" }} />
-                  <span className="mx-2" style={{ color: "#6c757d" }}>Or</span>
-                  <hr style={{ width: "30%", borderColor: "#dee2e6" }} />
-                </div>
-                <GoogleOAuthProvider clientId="606492950601-4tmq4mpaetsn7f1eusdg3rfiakmo3id7.apps.googleusercontent.com
-">
-                  <GoogleLogin
-                    onSuccess={handleGoogleSuccess}
-                    onError={() => console.error('Google Login Failed')}
-                    shape="pill"
-                    theme="filled_blue"
-                    size="medium"
-                    width="600"
-                    text="signup_with"
-                  />
-                </GoogleOAuthProvider>
-              </div>
+            
 
               <div className="d-grid">
                 <button

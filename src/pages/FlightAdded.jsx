@@ -1,39 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Modal, FloatingLabel, Form } from "react-bootstrap";
-import { useState } from "react";
 
 const FlightAdded = () => {
   const [show, setShow] = useState(false);
-  const [formData, setFormData] = useState({
-    tripType: "one-way",
-    placeName: "",
-    placeImage: "",
-    logo: "",
-    departureDate: "",
-    arrivalDate: "",
-    departurePlace: "",
-    arrivalPlace: "",
-    cabinClass: "Business-class",
-    seats: "",
-    price: ""
-  });
-
+  const [tripType, setTripType] = useState("one-way");
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    handleClose();
-  };
+  
 
   return (
     <div className="container-fluid p-4">
@@ -60,49 +34,46 @@ const FlightAdded = () => {
             </h4>
           </Modal.Title>
         </Modal.Header>
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Modal.Body className="pt-0">
             <div className="row">
               <div className="col-md-6">
                 <FloatingLabel controlId="tripType" label="Trip Type" className="mb-3">
                   <Form.Select 
                     name="tripType"
-                    value={formData.tripType}
-                    onChange={handleChange}
                     className="border-2"
+                    value={tripType}
+                    onChange={((e)=>setTripType(e.target.value))}
                   >
                     <option value="one-way">One Way</option>
                     <option value="return">Return</option>
                   </Form.Select>
                 </FloatingLabel>
 
-                <FloatingLabel controlId="placeName" label="Name of the place" className="mb-3">
+                <FloatingLabel controlId="airlineName" label="Airline Name" className="mb-3">
+                  <Form.Control 
+                    type="text" 
+                    name="airlineName"
+                    placeholder="Enter airline name" 
+                    required
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="flightNumber" label="Flight Number" className="mb-3">
+                  <Form.Control 
+                    type="text" 
+                    name="flightNumber"
+                    placeholder="Enter flight number" 
+                    required
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="placeName" label="Destination Name" className="mb-3">
                   <Form.Control 
                     type="text" 
                     name="placeName"
-                    value={formData.placeName}
-                    onChange={handleChange}
-                    placeholder="Enter place name" 
-                  />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="placeImage" label="Image URL of the place" className="mb-3">
-                  <Form.Control 
-                    type="text" 
-                    name="placeImage"
-                    value={formData.placeImage}
-                    onChange={handleChange}
-                    placeholder="Enter image URL" 
-                  />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="logo" label="Airline Logo URL" className="mb-3">
-                  <Form.Control 
-                    type="text" 
-                    name="logo"
-                    value={formData.logo}
-                    onChange={handleChange}
-                    placeholder="Enter logo URL" 
+                    placeholder="Enter destination name" 
+                    required
                   />
                 </FloatingLabel>
               </div>
@@ -112,68 +83,157 @@ const FlightAdded = () => {
                   <Form.Control 
                     type="date" 
                     name="departureDate"
-                    value={formData.departureDate}
-                    onChange={handleChange}
+                    required
                   />
                 </FloatingLabel>
 
-                {formData.tripType === 'return' && (
-                  <FloatingLabel controlId="arrivalDate" label="Date of Arrival" className="mb-3">
-                    <Form.Control 
-                      type="date" 
-                      name="arrivalDate"
-                      value={formData.arrivalDate}
-                      onChange={handleChange}
-                    />
-                  </FloatingLabel>
+                <FloatingLabel controlId="departureTime" label="Departure Time" className="mb-3">
+                  <Form.Control 
+                    type="time" 
+                    name="departureTime"
+                    required
+                  />
+                </FloatingLabel>
+
+                {tripType === "return" && (
+                  <>
+                    <FloatingLabel controlId="arrivalDate" label="Return Date" className="mb-3">
+                      <Form.Control 
+                        type="date" 
+                        name="arrivalDate"
+                        required
+                      />
+                    </FloatingLabel>
+                    <FloatingLabel controlId="arrivalTime" label="Return Time" className="mb-3">
+                      <Form.Control 
+                        type="time" 
+                        name="arrivalTime"
+                        required
+                      />
+                    </FloatingLabel>
+                  </>
                 )}
 
-                <FloatingLabel controlId="departurePlace" label="Departure place" className="mb-3">
+                <FloatingLabel controlId="flightDuration" label="Flight Duration (hours)" className="mb-3">
                   <Form.Control 
-                    type="text" 
-                    name="departurePlace"
-                    value={formData.departurePlace}
-                    onChange={handleChange}
-                    placeholder="Enter departure place" 
-                  />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="arrivalPlace" label="Arrival place" className="mb-3">
-                  <Form.Control 
-                    type="text" 
-                    name="arrivalPlace"
-                    value={formData.arrivalPlace}
-                    onChange={handleChange}
-                    placeholder="Enter arrival place" 
+                    type="number" 
+                    name="flightDuration"
+                    placeholder="Enter flight duration" 
+                    min="0"
+                    step="0.1"
                   />
                 </FloatingLabel>
               </div>
             </div>
 
+            {/* Rest of your form remains the same */}
             <div className="row">
               <div className="col-md-6">
+                <FloatingLabel controlId="departurePlace" label="Departure City" className="mb-3">
+                  <Form.Control 
+                    type="text" 
+                    name="departurePlace"
+                    placeholder="Enter departure city" 
+                    required
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="departureAirport" label="Departure Airport Code" className="mb-3">
+                  <Form.Control 
+                    type="text" 
+                    name="departureAirport"
+                    placeholder="e.g., JFK" 
+                    required
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="placeImage" label="Destination Image URL" className="mb-3">
+                  <Form.Control 
+                    type="url" 
+                    name="placeImage"
+                    placeholder="Enter image URL" 
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="logo" label="Airline Logo URL" className="mb-3">
+                  <Form.Control 
+                    type="url" 
+                    name="logo"
+                    placeholder="Enter logo URL" 
+                  />
+                </FloatingLabel>
+              </div>
+
+              <div className="col-md-6">
+                <FloatingLabel controlId="arrivalPlace" label="Arrival City" className="mb-3">
+                  <Form.Control 
+                    type="text" 
+                    name="arrivalPlace"
+                    placeholder="Enter arrival city" 
+                    required
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="arrivalAirport" label="Arrival Airport Code" className="mb-3">
+                  <Form.Control 
+                    type="text" 
+                    name="arrivalAirport"
+                    placeholder="e.g., LAX" 
+                    required
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="baggageAllowance" label="Baggage Allowance" className="mb-3">
+                  <Form.Control 
+                    type="text" 
+                    name="baggageAllowance"
+                    placeholder="e.g., 1 x 23kg" 
+                  />
+                </FloatingLabel>
+
+                <div className="row mb-3">
+                  <div className="col-md-6">
+                    <FloatingLabel controlId="refundable" label="Refundable">
+                      <Form.Select name="refundable">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                      </Form.Select>
+                    </FloatingLabel>
+                  </div>
+                  <div className="col-md-6">
+                    <FloatingLabel controlId="mealsIncluded" label="Meals Included">
+                      <Form.Select name="mealsIncluded">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                      </Form.Select>
+                    </FloatingLabel>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-4">
                 <FloatingLabel controlId="cabinClass" label="Cabin Class" className="mb-3">
                   <Form.Select 
                     name="cabinClass"
-                    value={formData.cabinClass}
-                    onChange={handleChange}
                     className="border-2"
                   >
                     <option value="Business-class">Business class</option>
-                    <option value="Premium-class">Premium Class</option>
+                    <option value="Premium-class">Premium Economy</option>
                     <option value="Economy-class">Economy class</option>
+                    <option value="First-class">First class</option>
                   </Form.Select>
                 </FloatingLabel>
               </div>
               <div className="col-md-3">
-                <FloatingLabel controlId="seats" label="No of Seats" className="mb-3">
+                <FloatingLabel controlId="seats" label="Available Seats" className="mb-3">
                   <Form.Control 
                     type="number" 
                     name="seats"
-                    value={formData.seats}
-                    onChange={handleChange}
                     placeholder="0" 
                     min="1"
+                    required
                   />
                 </FloatingLabel>
               </div>
@@ -182,11 +242,10 @@ const FlightAdded = () => {
                   <Form.Control 
                     type="number" 
                     name="price"
-                    value={formData.price}
-                    onChange={handleChange}
                     placeholder="0.00" 
                     min="0"
                     step="0.01"
+                    required
                   />
                 </FloatingLabel>
               </div>
