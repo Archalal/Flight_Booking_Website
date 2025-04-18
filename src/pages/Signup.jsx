@@ -1,8 +1,93 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/allApi";
+
 
 
 const Signup = () => {
+  const navigate=useNavigate()
+ const[userData,setUserData]=useState({
+  name:"",
+  image:"",
+  email:"",
+  dob:"",
+  phoneNumber:"",
+  address:"",
+  password:""
+
+ })
+ const[validEmail,setValidEmail]=useState(false)
+ const[validNumber,setValidNumber]=useState(false)
+
+ console.log(userData);
+ const[confirmPassword,setConfirmPassword]=useState("")
+ console.log(confirmPassword);
+ 
+
+ const onRegisterSubmit=async(e)=>{
+  e.preventDefault(); // Prevent default form submission
+
+  if(userData.name&&userData.image&&userData.email&&userData.dob&&userData.phoneNumber&&userData.address&&userData.password&&confirmPassword){
+  
+ try{
+  if(userData.email.endsWith('@gmail.com')) {
+    setValidEmail(true)
+   if(userData.phoneNumber.length==10){
+    setValidNumber(true)
+    if(userData.password===confirmPassword){
+
+      const payload = new FormData();
+      payload.append("name",userData.name)
+      payload.append("image",userData.image)
+      payload.append("email",userData.email)
+      payload.append("dob",userData.dob)
+      payload.append("phoneNumber",userData.phoneNumber)
+      payload.append("address",userData.address)
+      payload.append("password",userData.password)
+      console.log(payload);
+      
+  
+      const reqHeaders={
+        "Content-Type":"multipart/form-data"
+      }
+     
+      const apiResponse= await registerUser(payload,reqHeaders)
+    if(apiResponse.status==200){
+      alert("Registered sucessful")
+      navigate('/login')
+    }
+    else{
+      alert("already registered please login")
+      navigate('/login')
+    }
+      
+    
+  }else{
+    alert("password doesn't match")
+
+  }
+
+   }else{
+    setValidNumber(false)
+    
+   }
+
+  }else{
+    setValidEmail(false)
+    alert("please fill valid email Id")
+  }
+  
+ }
+ catch(err){
+  console.log(err);
+  
+ }
+   
+
+  }else{
+    alert("fill the form")
+  }
+ }
  
 
   return (
@@ -47,6 +132,7 @@ const Signup = () => {
                   Full Name
                 </label>
                 <input
+                onChange={((e)=>(setUserData({...userData,name:e.target.value})))}
                   type="text"
                   className="form-control"
                   id="name"
@@ -60,6 +146,7 @@ const Signup = () => {
                   Picture
                 </label>
                 <input
+                onChange={((e)=>(setUserData({...userData,image:e.target.files[0]})))}
                   type="file"
                   className="form-control"
                   id="picture"
@@ -68,16 +155,21 @@ const Signup = () => {
               </div>
 
               <div className="mb-2">
-                <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>
-                  Email address
-                </label>
+              <label style={{ fontWeight: "500" }}>
+              Email address
+             </label>
                 <input
-                  type="email"
+                 onChange={((e)=>(setUserData({...userData,email:e.target.value})))}
+                  type="text"
                   className="form-control"
                   id="email"
                   placeholder="Enter your email"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                 
                 />
+                 {
+                   validEmail?"":<span style={{color:"red"}}>Enter valid email id</span>
+                  }
               </div>
 
               <div className="mb-2">
@@ -85,6 +177,7 @@ const Signup = () => {
                   Date of Birth
                 </label>
                 <input
+                 onChange={((e)=>(setUserData({...userData,dob:e.target.value})))}
                   type="date"
                   className="form-control"
                   id="dob"
@@ -97,12 +190,16 @@ const Signup = () => {
                   Phone Number
                 </label>
                 <input
+                 onChange={((e)=>(setUserData({...userData,phoneNumber:e.target.value})))}
                   type="tel"
                   className="form-control"
                   id="number"
                   placeholder="Enter your Phone Number"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
+                  {
+                    validNumber?"":<span style={{color:"red"}}>Enter valid  Number</span>
+                  }
               </div>
 
               <div className="mb-2">
@@ -110,6 +207,7 @@ const Signup = () => {
                   Address
                 </label>
                 <input
+                 onChange={((e)=>(setUserData({...userData,address:e.target.value})))}
                   type="text"
                   className="form-control"
                   id="address"
@@ -123,6 +221,7 @@ const Signup = () => {
                   Password
                 </label>
                 <input
+                 onChange={((e)=>(setUserData({...userData,password:e.target.value})))}
                   type="password"
                   className="form-control"
                   id="password"
@@ -136,6 +235,7 @@ const Signup = () => {
                   Confirm Password
                 </label>
                 <input
+                onChange={((e)=>(setConfirmPassword(e.target.value)))}
                   type="password"
                   className="form-control"
                   id="confirmPassword"
@@ -148,6 +248,7 @@ const Signup = () => {
 
               <div className="d-grid">
                 <button
+                onClick={onRegisterSubmit}
                   type="submit"
                   className="btn mt-3"
                   style={{

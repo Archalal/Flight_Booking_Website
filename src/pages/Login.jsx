@@ -13,14 +13,14 @@ const Login = () => {
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const decoded = jwtDecode(credentialResponse.credential);
-      
+      console.log(decoded)
       // In production, you would send this to your backend
       const userData = {
         email: decoded.email,
         name: decoded.name,
-        picture: decoded.picture,
         role: document.getElementById('role').value || "user"
       };
+    
       
       console.log("User data:", userData);
       navigate("/dashboard");
