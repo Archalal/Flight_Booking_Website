@@ -16,12 +16,13 @@ const Signup = () => {
   password:""
 
  })
- const[validEmail,setValidEmail]=useState(false)
- const[validNumber,setValidNumber]=useState(false)
+ 
+//  const[validEmail,setValidEmail]=useState(false)
+//  const[validNumber,setValidNumber]=useState(false)
 
- console.log(userData);
+//  console.log(userData);
  const[confirmPassword,setConfirmPassword]=useState("")
- console.log(confirmPassword);
+//  console.log(confirmPassword);
  
 
  const onRegisterSubmit=async(e)=>{
@@ -31,9 +32,9 @@ const Signup = () => {
   
  try{
   if(userData.email.endsWith('@gmail.com')) {
-    setValidEmail(true)
+    // setValidEmail(true)
    if(userData.phoneNumber.length==10){
-    setValidNumber(true)
+    // setValidNumber(true)
     if(userData.password===confirmPassword){
 
       const payload = new FormData();
@@ -68,12 +69,13 @@ const Signup = () => {
   }
 
    }else{
-    setValidNumber(false)
+    // setValidNumber(false)
+    alert("enter valid number")
     
    }
 
   }else{
-    setValidEmail(false)
+    // setValidEmail(false)
     alert("please fill valid email Id")
   }
   
@@ -167,9 +169,9 @@ const Signup = () => {
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                  
                 />
-                 {
+                 {/* {
                    validEmail?"":<span style={{color:"red"}}>Enter valid email id</span>
-                  }
+                  } */}
               </div>
 
               <div className="mb-2">
@@ -197,9 +199,9 @@ const Signup = () => {
                   placeholder="Enter your Phone Number"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
-                  {
+                  {/* {
                     validNumber?"":<span style={{color:"red"}}>Enter valid  Number</span>
-                  }
+                  } */}
               </div>
 
               <div className="mb-2">
