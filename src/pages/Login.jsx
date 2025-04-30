@@ -2,62 +2,99 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import { verifyUser } from "../../services/allApi";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const[userVerify,setUserVerify]=useState({
+    email:"",
+    password:""
+  })
+  // const [error, setError] = useState("");
   const navigate = useNavigate();
+  
 
   // Handle successful Google login
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const decoded = jwtDecode(credentialResponse.credential);
       console.log(decoded)
-      // In production, you would send this to your backend
+  
       const userData = {
         email: decoded.email,
         name: decoded.name,
-        role: document.getElementById('role').value || "user"
+       
       };
-    
+        if(userData.email){
+          let apiResponse= await verifyUser(userData)
+          if(apiResponse.status==200){
+            let token=sessionStorage.setItem("token",apiResponse.data.token)
+          
+              navigate('/userdashboard')
+              
+  
+
+          }else{
+            alert("invalid emailId/not registered")
+          }
+          
+        
+          
+          
+          
+        }
       
-      console.log("User data:", userData);
-      navigate("/dashboard");
+      // console.log("User data:", userData);
+     
       
     } catch (error) {
       console.error("Error processing Google login:", error);
-      setError("Failed to process Google login");
+      alert("Failed to process Google login");
     }
   };
 
   // Handle Google login failure
   const handleGoogleFailure = () => {
-    setError("Google login failed. Please try again.");
+    alert("Google login failed. Please try again.");
   };
 
   // Handle Email/Password Login
   const handleEmailLogin = async (e) => {
     e.preventDefault();
-    setError("");
-    
-    if (!email || !password) {
-      setError("Please fill in all fields");
-      return;
-    }
 
-    try {
-      const role = document.getElementById('role').value;
-      console.log("Email login attempt:", { email, password, role });
+    if(userVerify.email &&userVerify.password  ){
+      let apiResponse= await verifyUser(userVerify)
+      console.log(apiResponse.data);
+      let token=sessionStorage.setItem("token",apiResponse.data.token)
+      console.log(token)
       
-      // Simulate successful login
-      navigate("/dashboard");
-    } catch (error) {
-      console.error("Login error:", error);
-      setError(error.message);
-    }
-  };
+     if(apiResponse.data.role=="admin"){
+    
+      navigate('/admin')
+     }
+     else if(apiResponse.data.role=="user"){
+      navigate('/userdashboard')
 
+     }
+     else if(apiResponse.data.role=="flight"){
+    
+
+      navigate('/flightdashboard')
+
+     }
+     else{
+      console.log("Not found please registeror invalid username/password");
+      
+     }
+      
+
+    }else{
+      console.log("fill the form");
+      
+    }
+  }
+   
+    
+   
   return (
     <div
       style={{
@@ -93,11 +130,7 @@ const Login = () => {
               Welcome back! Login to experience our service.
             </p>
             
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            )}
+            
             
             <GoogleOAuthProvider 
         clientId="606492950601-4tmq4mpaetsn7f1eusdg3rfiakmo3id7.apps.googleusercontent.com"
@@ -108,7 +141,7 @@ const Login = () => {
             onError={handleGoogleFailure}
             useOneTap
             auto_select
-            width="300"
+            width="100%"
             size="large"
             text="continue_with"
             shape="rectangular"
@@ -141,24 +174,7 @@ const Login = () => {
             </div>
 
             <form onSubmit={handleEmailLogin}>
-              <div className="mb-2">
-                <label htmlFor="role" className="form-label" style={{ fontWeight: "500" }}>
-                  Role
-                </label>
-                <select
-                  className="form-control"
-                  id="role"
-                  defaultValue=""
-                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
-                  required
-                >
-                  <option value="" disabled hidden>
-                    Choose Your role
-                  </option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
-              </div>
+             
               
               <div className="mb-3">
                 <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>
@@ -168,8 +184,8 @@ const Login = () => {
                   type="email"
                   className="form-control"
                   id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={userVerify.email}
+                  onChange={(e) => setUserVerify({...userVerify,email:e.target.value})}
                   placeholder="Enter your email"
                   required
                 />
@@ -183,8 +199,8 @@ const Login = () => {
                   type="password"
                   className="form-control"
                   id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={userVerify.password}
+                  onChange={(e) => setUserVerify({...userVerify,password:e.target.value})}
                   placeholder="Enter your password"
                   required
                 />

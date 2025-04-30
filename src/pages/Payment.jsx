@@ -54,7 +54,7 @@ const Payment = () => {
                             <div className="d-flex justify-content-between">
                                 <div>
                                     <p className="mb-1 small opacity-75">CARDHOLDER NAME</p>
-                                    <h6 className="mb-0 fw-normal">JOHN DOE</h6>
+                                    <h6 className="mb-0 fw-normal">archa</h6>
                                 </div>
                                 <div>
                                     <p className="mb-1 small opacity-75">EXPIRES</p>
@@ -88,7 +88,7 @@ const Payment = () => {
                             <input
                                 type="text"
                                 className="form-control py-3"
-                                placeholder="John Doe"
+                                placeholder="archa"
                                 
                                 style={{ 
                                     borderColor: '#e0e0e0',

@@ -35,32 +35,32 @@ const FlightSidebar = () => {
              <ul style={{ listStyle: "none", padding: "0",marginTop:"30px",marginLeft:"1px" }}>
                <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
               
-                 <Link  to={'/flightdashboard'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+                 <Link  to={'/flight'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
                  <i class="fa-solid fa-house"></i><span className='ms-2'>OverView</span>
                  </Link>
                </li>
       
             <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
               
-              <Link  to={'/addflights'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+              <Link  to={'/flight/addflights'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
               <i class="fa-solid fa-plane-departure"></i><span className='ms-2'>Flight Add </span>
               </Link>
             </li>
             <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
               
-              <Link  to={'/flightviewbyFlightDash'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+              <Link  to={'/flight/flightviewbyFlightDash'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
               <i class="fa-solid fa-plane-departure"></i><span className='ms-2'>Flight View</span>
               </Link>
             </li>
             <li style={{ margin: "15px 0",marginTop:"40px" }}>
               
-              <Link  to={'/flightbookingview'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+              <Link  to={'/flight/flightbookingview'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
               <i class="fa-solid fa-cart-shopping"></i> <span className='ms-2'>Booking Flights</span>
               </Link>
             </li>
             <li style={{ margin: "15px 0",marginTop:"40px" }}>
               
-              <Link  to={'/revenue'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+              <Link  to={'/flight/revenue'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
               <i class="fa-solid fa-sack-dollar"></i>  <span className='ms-2'>Revenue Details</span>
               </Link>
             </li>

@@ -7,7 +7,6 @@ const FlightAdded = () => {
   
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
 
   return (
     <div className="container-fluid p-4">
@@ -43,7 +42,7 @@ const FlightAdded = () => {
                     name="tripType"
                     className="border-2"
                     value={tripType}
-                    onChange={((e)=>setTripType(e.target.value))}
+                    onChange={(e) => setTripType(e.target.value)}
                   >
                     <option value="one-way">One Way</option>
                     <option value="return">Return</option>
@@ -67,15 +66,6 @@ const FlightAdded = () => {
                     required
                   />
                 </FloatingLabel>
-
-                <FloatingLabel controlId="placeName" label="Destination Name" className="mb-3">
-                  <Form.Control 
-                    type="text" 
-                    name="placeName"
-                    placeholder="Enter destination name" 
-                    required
-                  />
-                </FloatingLabel>
               </div>
 
               <div className="col-md-6">
@@ -95,25 +85,6 @@ const FlightAdded = () => {
                   />
                 </FloatingLabel>
 
-                {tripType === "return" && (
-                  <>
-                    <FloatingLabel controlId="arrivalDate" label="Return Date" className="mb-3">
-                      <Form.Control 
-                        type="date" 
-                        name="arrivalDate"
-                        required
-                      />
-                    </FloatingLabel>
-                    <FloatingLabel controlId="arrivalTime" label="Return Time" className="mb-3">
-                      <Form.Control 
-                        type="time" 
-                        name="arrivalTime"
-                        required
-                      />
-                    </FloatingLabel>
-                  </>
-                )}
-
                 <FloatingLabel controlId="flightDuration" label="Flight Duration (hours)" className="mb-3">
                   <Form.Control 
                     type="number" 
@@ -121,23 +92,14 @@ const FlightAdded = () => {
                     placeholder="Enter flight duration" 
                     min="0"
                     step="0.1"
+                    required
                   />
                 </FloatingLabel>
               </div>
             </div>
 
-            {/* Rest of your form remains the same */}
             <div className="row">
               <div className="col-md-6">
-                <FloatingLabel controlId="departurePlace" label="Departure City" className="mb-3">
-                  <Form.Control 
-                    type="text" 
-                    name="departurePlace"
-                    placeholder="Enter departure city" 
-                    required
-                  />
-                </FloatingLabel>
-
                 <FloatingLabel controlId="departureAirport" label="Departure Airport Code" className="mb-3">
                   <Form.Control 
                     type="text" 
@@ -147,78 +109,64 @@ const FlightAdded = () => {
                   />
                 </FloatingLabel>
 
-                <FloatingLabel controlId="placeImage" label="Destination Image URL" className="mb-3">
+                <FloatingLabel controlId="departureCity" label="Departure City" className="mb-3">
                   <Form.Control 
-                    type="url" 
-                    name="placeImage"
-                    placeholder="Enter image URL" 
-                  />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="logo" label="Airline Logo URL" className="mb-3">
-                  <Form.Control 
-                    type="url" 
-                    name="logo"
-                    placeholder="Enter logo URL" 
+                    type="text" 
+                    name="departureCity"
+                    placeholder="Enter departure city" 
+                    required
                   />
                 </FloatingLabel>
               </div>
 
               <div className="col-md-6">
-                <FloatingLabel controlId="arrivalPlace" label="Arrival City" className="mb-3">
+                <FloatingLabel controlId="destinationAirport" label="Destination Airport Code" className="mb-3">
                   <Form.Control 
                     type="text" 
-                    name="arrivalPlace"
-                    placeholder="Enter arrival city" 
-                    required
-                  />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="arrivalAirport" label="Arrival Airport Code" className="mb-3">
-                  <Form.Control 
-                    type="text" 
-                    name="arrivalAirport"
+                    name="destinationAirport"
                     placeholder="e.g., LAX" 
                     required
                   />
                 </FloatingLabel>
 
-                <FloatingLabel controlId="baggageAllowance" label="Baggage Allowance" className="mb-3">
+                <FloatingLabel controlId="destinationCity" label="Destination City" className="mb-3">
                   <Form.Control 
                     type="text" 
-                    name="baggageAllowance"
-                    placeholder="e.g., 1 x 23kg" 
+                    name="destinationCity"
+                    placeholder="Enter destination city" 
+                    required
                   />
                 </FloatingLabel>
-
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <FloatingLabel controlId="refundable" label="Refundable">
-                      <Form.Select name="refundable">
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
-                      </Form.Select>
-                    </FloatingLabel>
-                  </div>
-                  <div className="col-md-6">
-                    <FloatingLabel controlId="mealsIncluded" label="Meals Included">
-                      <Form.Select name="mealsIncluded">
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
-                      </Form.Select>
-                    </FloatingLabel>
-                  </div>
-                </div>
               </div>
             </div>
 
+            {tripType === "return" && (
+              <div className="row">
+                <div className="col-md-6">
+                  <FloatingLabel controlId="returnDate" label="Return Date" className="mb-3">
+                    <Form.Control 
+                      type="date" 
+                      name="returnDate"
+                      required
+                    />
+                  </FloatingLabel>
+                </div>
+                <div className="col-md-6">
+                  <FloatingLabel controlId="returnTime" label="Return Time" className="mb-3">
+                    <Form.Control 
+                      type="time" 
+                      name="returnTime"
+                      required
+                    />
+                  </FloatingLabel>
+                </div>
+              </div>
+            )}
+
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <FloatingLabel controlId="cabinClass" label="Cabin Class" className="mb-3">
-                  <Form.Select 
-                    name="cabinClass"
-                    className="border-2"
-                  >
+                  <Form.Select name="cabinClass">
                     <option value="Business-class">Business class</option>
                     <option value="Premium-class">Premium Economy</option>
                     <option value="Economy-class">Economy class</option>
@@ -226,17 +174,16 @@ const FlightAdded = () => {
                   </Form.Select>
                 </FloatingLabel>
               </div>
+              
               <div className="col-md-3">
-                <FloatingLabel controlId="seats" label="Available Seats" className="mb-3">
-                  <Form.Control 
-                    type="number" 
-                    name="seats"
-                    placeholder="0" 
-                    min="1"
-                    required
-                  />
+                <FloatingLabel controlId="refundable" label="Refundable" className="mb-3">
+                  <Form.Select name="refundable">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                  </Form.Select>
                 </FloatingLabel>
               </div>
+              
               <div className="col-md-3">
                 <FloatingLabel controlId="price" label="Price ($)" className="mb-3">
                   <Form.Control 
@@ -245,6 +192,18 @@ const FlightAdded = () => {
                     placeholder="0.00" 
                     min="0"
                     step="0.01"
+                    required
+                  />
+                </FloatingLabel>
+              </div>
+              
+              <div className="col-md-3">
+                <FloatingLabel controlId="seats" label="Available Seats" className="mb-3">
+                  <Form.Control 
+                    type="number" 
+                    name="seats"
+                    placeholder="0" 
+                    min="1"
                     required
                   />
                 </FloatingLabel>

@@ -1,24 +1,14 @@
 import React from 'react';
-import SideBar from './SideBar';
 import './SingleFlightView.css'
 
 const SingleFlightView = () => {
   return (
-    <div className="main-container">
+    <div>
      
-      <div className="sidebar">
-        <SideBar />
-      </div>
-
-     
-      <div className="main-content">
       
-        <div className="top-nav">
-          <h4>Flight Details</h4>
-          <div className="notification-icon">
-            <i className="fa-solid fa-bell"></i>
-          </div>
-        </div>
+      
+      
+       
 
        
         <div className="ticket-container">
@@ -102,7 +92,7 @@ const SingleFlightView = () => {
       </div>
 
      
-    </div>
+    
   );
 };
 

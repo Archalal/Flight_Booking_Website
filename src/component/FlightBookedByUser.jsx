@@ -101,7 +101,7 @@ const FlightBookedByUser = () => {
                     </Badge>
                   </td>
                   <td className="p-3">
-                    <Link to={'/singleflightview'}>
+                    <Link to={'/admin/useradminmanage/:id/singleflightview'} >
                       <Button 
                         variant="outline-primary" 
                         size="sm" 

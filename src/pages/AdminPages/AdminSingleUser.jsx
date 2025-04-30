@@ -1,16 +1,45 @@
-import React from 'react';
-import Header from '../component/Header';
+import React, { useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+import { getSingleUserId } from '../../../services/allApi';
+import baseURL from '../../../services/baseURL';
+
+
 
 const AdminSingleUser = () => {
   const navigate = useNavigate();
+  const[singleUserData,setSingleUserData]=useState({})
+
+  useEffect(()=>{
+    singleUser()
+  },[])
+
+ let userSingleId= sessionStorage.getItem("singleUserId")
+ console.log(userSingleId);
+
+ const singleUser=async()=>{
+  const apiResponse=await getSingleUserId(userSingleId)
+  
+  if(apiResponse.status==200){
+    setSingleUserData(apiResponse.data)
+
+  }
+  else{
+    console.log("something went wrong");
+    
+  }
+  
+ }
+ 
+
+  
 
   return (
     <div className="min-vh-100 d-flex flex-column" style={{ 
       backgroundColor: '#f0f2f5',
       backgroundImage: 'radial-gradient(at top right, #e6e9f0 0%, #f0f2f5 70%)'
     }}>
-      <Header />
+    
       
       <div className="container py-4 flex-grow-1 d-flex align-items-center">
         <div className="row justify-content-center w-100">
@@ -61,7 +90,7 @@ const AdminSingleUser = () => {
                         boxShadow: '0 8px 20px rgba(0,0,0,0.15)'
                       }}>
                         <img
-                          src="https://static.vecteezy.com/system/resources/previews/024/558/262/non_2x/businessman-isolated-illustration-ai-generative-free-png.png"
+                          src={`${baseURL}/uploads/${singleUserData.image}`}
                           alt="Profile"
                           className="img-fluid rounded-circle border border-4 border-white"
                           style={{ 
@@ -83,7 +112,7 @@ const AdminSingleUser = () => {
                         WebkitTextFillColor: 'transparent',
                         fontWeight: '600'
                       }}>
-                        Philip Johnson
+                      {singleUserData.name}
                       </h2>
                       
                       <div className="detail-item mb-3 p-3 rounded" style={{
@@ -99,7 +128,7 @@ const AdminSingleUser = () => {
                           </div>
                           <div>
                             <small className="text-muted d-block" style={{ fontSize: '0.8rem' }}>Email Address</small>
-                            <span className="fw-medium">philip2@gmail.com</span>
+                            <span className="fw-medium">{singleUserData.email}</span>
                           </div>
                         </div>
                       </div>
@@ -117,7 +146,7 @@ const AdminSingleUser = () => {
                           </div>
                           <div>
                             <small className="text-muted d-block" style={{ fontSize: '0.8rem' }}>Date of Birth</small>
-                            <span className="fw-medium">31/07/2000</span>
+                            <span className="fw-medium">{singleUserData.dob}</span>
                           </div>
                         </div>
                       </div>
@@ -135,7 +164,7 @@ const AdminSingleUser = () => {
                           </div>
                           <div>
                             <small className="text-muted d-block" style={{ fontSize: '0.8rem' }}>Location</small>
-                            <span className="fw-medium">Trivandrum, India</span>
+                            <span className="fw-medium">{singleUserData.address}</span>
                           </div>
                         </div>
                       </div>
@@ -153,31 +182,13 @@ const AdminSingleUser = () => {
                           </div>
                           <div>
                             <small className="text-muted d-block" style={{ fontSize: '0.8rem' }}>Contact Number</small>
-                            <span className="fw-medium">+91 6735738922</span>
+                            <span className="fw-medium">{singleUserData.phoneNumber}</span>
                           </div>
                         </div>
                       </div>
                       
-                      {/* Darker Gradient Action Buttons */}
-                      <div className="d-flex flex-wrap gap-3 mt-4 pt-3 border-top">
-                        <button className="btn px-4 py-2 fw-bold shadow-sm d-flex align-items-center" style={{
-                          background: 'linear-gradient(135deg, #4f46e5 0%, #312e81 100%)',
-                          color: 'white',
-                          border: 'none',
-                          transition: 'all 0.3s ease'
-                        }}>
-                          <i className="bi bi-check-circle-fill me-2 fs-5"></i>
-                          Approve User
-                        </button>
-                        <button className="btn btn-outline-danger px-4 py-2 fw-bold shadow-sm d-flex align-items-center" style={{
-                          borderColor: '#dc2626',
-                          color: '#dc2626',
-                          transition: 'all 0.3s ease'
-                        }}>
-                          <i className="bi bi-x-circle-fill me-2 fs-5"></i>
-                          Reject Request
-                        </button>
-                      </div>
+                    
+                      
                     </div>
                   </div>
                 </div>

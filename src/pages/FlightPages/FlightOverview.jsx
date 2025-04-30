@@ -1,5 +1,5 @@
 import React from 'react'
-import OverView from '../component/OverView'
+import OverView from '../../component/OverView'
 
 const FlightOverview = () => {
   return (

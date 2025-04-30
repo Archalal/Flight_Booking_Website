@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Badge } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import AdminNotification from './AdminNotification';
+import { getAllFlights } from '../../services/allApi';
+
 
 const TotalFlight = () => {
+
+  const[flightDatas,setFlightData]=useState([])
+  const[filteredArray,setfilteredArray]=useState([])
+  useEffect(()=>{
+    getFlights()
+  },[])
+  console.log("hi",flightDatas);
+  console.log(filteredArray);
+  
+  
+
+  const getFlights=async()=>{
+    const apiResponse =await getAllFlights()
+   if(apiResponse.status==200){
+    setFlightData(apiResponse.data)
+    const arrayreduce= apiResponse.data.slice(-3)
+    setfilteredArray(arrayreduce)
+   }
+    
+  }
+  
+ 
   return (
     <div style={{ backgroundColor: '#f8fafc' }}>
       <AdminNotification />
@@ -90,11 +114,21 @@ const TotalFlight = () => {
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td className="p-3 fw-semibold">BA-245</td>
-                  <td className="p-3">London (LHR)</td>
-                  <td className="p-3">15 Jun 2023, 08:30</td>
+            {
+              filteredArray?.map((a,index)=>(
+                <tbody>
+                <tr key={index}>
+                  <td className="p-3 fw-semibold">{a.flightNumber}</td>
+                  <td className="p-3">{a.destinationName}</td>
+                  <td className="p-3">{
+
+                    
+                     new Date(a.dateOfDeparture).toLocaleString("en-US",{
+                        dateStyle:"medium",
+                        timeStyle:"short"
+                      })
+            }
+                    </td>
                   <td className="p-3">
                     <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
                       <i className="fas fa-check-circle me-1"></i> On Time
@@ -116,6 +150,8 @@ const TotalFlight = () => {
                 </tr>
                 {/* Additional rows would go here */}
               </tbody>
+              ))
+            }
             </table>
           </div>
         </Card.Body>

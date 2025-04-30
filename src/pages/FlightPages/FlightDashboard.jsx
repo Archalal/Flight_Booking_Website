@@ -1,15 +1,16 @@
 import React from 'react'
 import FlightSidebar from './FlightSidebar'
-import TotalFlight from '../component/TotalFlight'
-import FlightBookedByUser from '../component/FlightBookedByUser'
+import { Outlet } from 'react-router-dom'
 
 
 
 
-const FlightBookingView = () => {
+
+const FlightDashboard = () => {
   return (
     <div>
-          <div className="row">
+        
+        <div className="row">
             <div className="col-2"
               style={{
                 backgroundColor: "#ffffff",
@@ -25,13 +26,14 @@ const FlightBookingView = () => {
                 <FlightSidebar />
             </div>
             <div className="col-10" style={{ marginLeft: "16.65%", overflowX: "hidden" }}>
-                <FlightBookedByUser />
-            
+           <Outlet />
+           
             </div>
         </div>
+     
       
     </div>
   )
 }
 
-export default FlightBookingView
+export default FlightDashboard

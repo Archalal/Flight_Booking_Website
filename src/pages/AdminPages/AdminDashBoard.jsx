@@ -1,6 +1,9 @@
 import React from "react";
-import DashBoard from "./DashBoard";
+
+import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
+
+
 
 
 const AdminDashBoard = () => {
@@ -28,7 +31,7 @@ const AdminDashBoard = () => {
           </div>
 
           <div className="col-10" style={{ marginLeft: "16.65%", overflowX: "hidden" }}>
-          <DashBoard />
+          <Outlet />
             
           </div>
         </div>

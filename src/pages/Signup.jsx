@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/allApi";
 
@@ -7,6 +7,7 @@ import { registerUser } from "../../services/allApi";
 const Signup = () => {
   const navigate=useNavigate()
  const[userData,setUserData]=useState({
+  role:"user",
   name:"",
   image:"",
   email:"",
@@ -17,8 +18,21 @@ const Signup = () => {
 
  })
  
-//  const[validEmail,setValidEmail]=useState(false)
-//  const[validNumber,setValidNumber]=useState(false)
+ const[validEmail,setValidEmail]=useState(false)
+ const[validNumber,setValidNumber]=useState(false)
+
+ useEffect(()=>{
+  if(userData.email){
+    if(userData.email.endsWith("@gmail.com")){
+      setValidEmail(true)
+
+    }else{
+      setValidEmail(false)
+      console.log("not an valid email id");
+      
+    }
+  }
+ },[userData.email])
 
 //  console.log(userData);
  const[confirmPassword,setConfirmPassword]=useState("")
@@ -32,12 +46,13 @@ const Signup = () => {
   
  try{
   if(userData.email.endsWith('@gmail.com')) {
-    // setValidEmail(true)
+    setValidEmail(true)
    if(userData.phoneNumber.length==10){
-    // setValidNumber(true)
+    setValidNumber(true)
     if(userData.password===confirmPassword){
 
       const payload = new FormData();
+      payload.append("role",userData.role)
       payload.append("name",userData.name)
       payload.append("image",userData.image)
       payload.append("email",userData.email)
@@ -47,13 +62,14 @@ const Signup = () => {
       payload.append("password",userData.password)
       console.log(payload);
       
+      
   
       const reqHeaders={
         "Content-Type":"multipart/form-data"
       }
      
       const apiResponse= await registerUser(payload,reqHeaders)
-    if(apiResponse.status==200){
+    if(apiResponse.status==201){
       alert("Registered sucessful")
       navigate('/login')
     }
@@ -69,13 +85,13 @@ const Signup = () => {
   }
 
    }else{
-    // setValidNumber(false)
+    setValidNumber(false)
     alert("enter valid number")
     
    }
 
   }else{
-    // setValidEmail(false)
+    setValidEmail(false)
     alert("please fill valid email Id")
   }
   
@@ -129,6 +145,24 @@ const Signup = () => {
               Welcome! Sign up to experience our service.
             </p>
             <form style={{ width: "70%", maxWidth: "400px" }}> 
+            {/* <div className="mb-2">
+                <label htmlFor="role" className="form-label" style={{ fontWeight: "500" }}>
+                  Role
+                </label>
+                <select
+                  className="form-control"
+                  id="role"
+                  defaultValue=""
+                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                  required
+                >
+                  <option value="" disabled hidden>
+                    Choose Your role
+                  </option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
+              </div> */}
               <div className="mb-2">
                 <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
                   Full Name
@@ -140,7 +174,10 @@ const Signup = () => {
                   id="name"
                   placeholder="Enter your full name"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
+                
+                
                 />
+               
               </div>
 
               <div className="mb-2">
@@ -169,9 +206,9 @@ const Signup = () => {
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                  
                 />
-                 {/* {
-                   validEmail?"":<span style={{color:"red"}}>Enter valid email id</span>
-                  } */}
+                 {
+                   validEmail?"":<span style={{color:"blue",fontSize:"12px"}}>Enter valid EmailId ex:elena@gmail.com </span>
+                  }
               </div>
 
               <div className="mb-2">
@@ -199,9 +236,9 @@ const Signup = () => {
                   placeholder="Enter your Phone Number"
                   style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
                 />
-                  {/* {
-                    validNumber?"":<span style={{color:"red"}}>Enter valid  Number</span>
-                  } */}
+                  {
+                    validNumber?"":<span style={{color:"blue",fontSize:"12px"}}>Enter valid  Number</span>
+                  }
               </div>
 
               <div className="mb-2">
