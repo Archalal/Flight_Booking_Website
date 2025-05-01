@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import UserDashNav from '../component/UserDashNav';
 import FlightTicket from '../component/FlightTicket';
-import { 
-  FaPlane, 
-  FaPlaneArrival, 
-  FaPlaneDeparture, 
-  FaUserFriends, 
-  FaCalendarAlt, 
-  FaSearch,
-  FaSortAmountDown,
-  FaExchangeAlt
-} from 'react-icons/fa';
+import {  FaPlane, FaPlaneArrival, FaPlaneDeparture, FaUserFriends, FaCalendarAlt, FaSearch,FaSortAmountDown,FaExchangeAlt} from 'react-icons/fa';
+import { getSearchedFlights } from '../../services/allApi';
+import { useNavigate } from 'react-router-dom';
 
 const SearchTicketByUser = () => {
   const [tripType, setTripType] = useState("oneWay");
   const [stopType, setStopType] = useState("direct");
-  const [sortBy, setSortBy] = useState("cheapest");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  
 
   const tripChange = (e) => {
     setTripType(e.target.value);
@@ -30,14 +21,85 @@ const SearchTicketByUser = () => {
     setStopType(e.target.value);
   };
 
-  const handleSortChange = (e) => {
-    setSortBy(e.target.value);
-  };
+  const navigate=useNavigate()
+  const query=location.search
+  
+useEffect(()=>{ 
+  searchedFlights()
+},[query])
 
-  const swapLocations = () => {
-    setFrom(to);
-    setTo(from);
+  const[searchedData,setSearchedData]=useState([])
+  const searchParams=new URLSearchParams(location.search)
+
+  const departureName=searchParams.get("departureName")
+  const destinationName=searchParams.get("destinationName")
+  const dateOfDeparture=searchParams.get("dateOfDeparture")
+  const cabinClass=searchParams.get("cabinClass")
+  const returnDate=searchParams.get("returnDate")
+  const avaiableSeat=searchParams.get("avaiableSeat")
+  
+
+
+   const[changedFliter,setChangedFilter]=useState({
+    departureName:departureName,
+    destinationName:destinationName,
+    dateOfDeparture:dateOfDeparture,
+    returnDate:returnDate,
+    cabinClass:cabinClass,
+    avaiableSeat:avaiableSeat
+
+   })
+
+ 
+   
+    
+
+
+  
+  console.log(query);
+  const searchedFlights=async()=>{
+    try{
+
+      let apiResponse=await  getSearchedFlights(query)
+      console.log(apiResponse);
+      
+    if(apiResponse.status==200){
+      setSearchedData(apiResponse.data)
+
+    }else{
+      console.log("something went wrong");
+      
+    }
+
+    }catch(err){
+      console.log(err);
+      
+    }
+   
+    
+  }
+
+  const handleSearchSubmit =async () => {
+    const queryParams = new URLSearchParams(changedFliter).toString();
+    navigate(`?${queryParams}`);
+    try{
+
+      let apiResponse=await  getSearchedFlights(query)
+    if(apiResponse.status==200){
+      setSearchedData(apiResponse.data)
+
+    }else{
+      console.log("something went wrong");
+      
+    }
+
+    }catch(err){
+      console.log(err);
+      
+    }
+   
   };
+  
 
   return (
     <div className="bg-light min-vh-100">
@@ -161,8 +223,8 @@ const SearchTicketByUser = () => {
                     height: '58px',
                     borderColor: '#6e45e2'
                   }}
-                  value={from}
-                  onChange={(e) => setFrom(e.target.value)}
+                  value={changedFliter.departureName}
+                  onChange={(e) => setChangedFilter({...changedFliter,departureName:e.target.value})}
                 />
               </FloatingLabel>
             </div>
@@ -175,7 +237,7 @@ const SearchTicketByUser = () => {
                   border: '2px solid #6e45e2',
                   cursor: 'pointer'
                 }}
-                onClick={swapLocations}
+              
               >
                 <FaExchangeAlt style={{ color: '#6e45e2' }} />
               </div>
@@ -192,8 +254,8 @@ const SearchTicketByUser = () => {
                     height: '58px',
                     borderColor: '#6e45e2'
                   }}
-                  value={to}
-                  onChange={(e) => setTo(e.target.value)}
+                  value={changedFliter.destinationName}
+                  onChange={(e) => setChangedFilter({...changedFliter,destinationName:e.target.value})}
                 />
               </FloatingLabel>
             </div>
@@ -212,6 +274,8 @@ const SearchTicketByUser = () => {
                     height: '58px',
                     borderColor: '#6e45e2'
                   }}
+                  value={changedFliter.dateOfDeparture}
+                  onChange={(e) => setChangedFilter({...changedFliter,dateOfDeparture:e.target.value})}
                 />
               </FloatingLabel>
             </div>
@@ -231,6 +295,8 @@ const SearchTicketByUser = () => {
                     borderColor: '#6e45e2'
                   }}
                   disabled={tripType === "oneWay"}
+                  value={changedFliter.returnDate}
+                  onChange={(e) => setChangedFilter({...changedFliter,returnDate:e.target.value})}
                 />
               </FloatingLabel>
             </div>
@@ -245,7 +311,10 @@ const SearchTicketByUser = () => {
                   style={{ 
                     height: '58px',
                     borderColor: '#6e45e2'
+                    
                   }}
+                  value={changedFliter.cabinClass}
+                  onChange={(e) => setChangedFilter({...changedFliter,cabinClass:e.target.value})}
                 >
                   <option value="economy">Economy</option>
                   <option value="premium">Premium</option>
@@ -271,6 +340,8 @@ const SearchTicketByUser = () => {
                     height: '58px',
                     borderColor: '#6e45e2'
                   }}
+                  value={changedFliter.avaiableSeat}
+                  onChange={(e) => setChangedFilter({...changedFliter,avaiableSeat:e.target.value})}
                 />
               </FloatingLabel>
             </div>
@@ -293,6 +364,7 @@ const SearchTicketByUser = () => {
                   transition: 'all 0.3s ease',
                   minWidth: '250px'
                 }}
+                onClick={handleSearchSubmit}
               >
                 <FaSearch className="me-2" /> Search Flights
               </Button>
@@ -314,8 +386,7 @@ const SearchTicketByUser = () => {
               }>
                 <Form.Select 
                   aria-label="Sort by"
-                  value={sortBy}
-                  onChange={handleSortChange}
+                 
                   className="border-2"
                   style={{
                     borderRadius: '8px',
@@ -401,7 +472,7 @@ const SearchTicketByUser = () => {
           {/* Flight Results */}
           <div className="row ">
             <div className="col-12">
-              <FlightTicket />
+              <FlightTicket  flights={searchedData} />
              
             </div>
           </div>

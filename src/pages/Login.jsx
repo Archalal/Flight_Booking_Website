@@ -26,8 +26,11 @@ const Login = () => {
       };
         if(userData.email){
           let apiResponse= await verifyUser(userData)
+          console.log(apiResponse.data);
+          
           if(apiResponse.status==200){
             let token=sessionStorage.setItem("token",apiResponse.data.token)
+            let name=sessionStorage.setItem("username",apiResponse.data.username)
           
               navigate('/userdashboard')
               
@@ -65,6 +68,9 @@ const Login = () => {
       let apiResponse= await verifyUser(userVerify)
       console.log(apiResponse.data);
       let token=sessionStorage.setItem("token",apiResponse.data.token)
+      let name=sessionStorage.setItem("username",apiResponse.data.username)
+    console.log(name);
+    
       console.log(token)
       
      if(apiResponse.data.role=="admin"){

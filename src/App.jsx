@@ -84,10 +84,9 @@ theme="light"
      
      
       <Route element={<DashBoardForUsers />} path='/userdashboard'></Route>
-      <Route element={<SearchTicketByUser />}  path="/:from/:to/:departure/:returnDate/:cabin/:passengers/searchticketbyuser"></Route>
-      <Route element={<SearchTicketByUser />}  path="/:from/:to/:departure/:cabin/:passengers/searchticketbyuser"></Route>
+      <Route path="/searchticketbyuser" element={<SearchTicketByUser />} />
       <Route element={<FlightTicket />} path='/flightticket'></Route>
-      <Route element={<BookedFlight />} path='/bookedflight'></Route>
+      <Route element={<BookedFlight />} path='/bookedflight/:id'></Route>
 
       <Route  element={<FlightDashboard />} path='/Flight'>
       <Route index element={<FlightOverview />} />

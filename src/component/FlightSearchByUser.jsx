@@ -13,7 +13,7 @@ const FlightSearchByUser = () => {
   const [tripType, setTripType] = useState("oneWay");
 
   const tripChange = (type) => setTripType(type);
-  // const onbtnClick = () => navigate('/searchticketbyuser');
+  
 
   const[toSearch,setToSearch]=useState("")
   const[fromSearch,setFromSearch]=useState("")
@@ -24,14 +24,18 @@ const FlightSearchByUser = () => {
   console.log(toSearch,fromSearch,departureSearch,returnSearch,cabinSearch,passengersSearch);
 
 
-  const onbtnClick=()=>{
-    if(tripType=="oneWay"){
-      navigate(`/${fromSearch}/${toSearch}/${departureSearch}/${cabinSearch}/${passengersSearch}/searchticketbyuser`);
-    }else{
-      navigate(`/${fromSearch}/${toSearch}/${departureSearch}/${returnSearch}/${cabinSearch}/${passengersSearch}/searchticketbyuser`);
+  const onBtnClick = () => {
+    let query = `?departureName=${fromSearch}&destinationName=${toSearch}&dateOfDeparture=${departureSearch}&cabinClass=${cabinSearch}&avaiableSeat=${passengersSearch}`;
+  
+    if (tripType !== "oneWay") {
+      query += `&returnDate=${returnSearch}`;
     }
-
-  }
+    sessionStorage.setItem("passengers",passengersSearch)
+    
+  
+    navigate(`/searchticketbyuser${query}`);
+  };
+  
   
   
 
@@ -127,7 +131,7 @@ const FlightSearchByUser = () => {
                     type="number" 
                     placeholder="1" 
                     min="1"
-                    value="1"
+                    defaultValue={1}
                     
                     onChange={((e)=>(setSearchPassenger(e.target.value)))}
                   />
@@ -136,7 +140,7 @@ const FlightSearchByUser = () => {
             </div>
 
             <Button
-              onClick={onbtnClick}
+              onClick={onBtnClick}
               className="search-button"
             >
               <MdFlight className="icon" />
