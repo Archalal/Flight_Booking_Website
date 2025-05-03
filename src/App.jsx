@@ -34,6 +34,9 @@ import FlightBookingView from './pages/FlightPages/FlightBookingView'
 import FlightEdit from './pages/FlightEdit'
 import AdminStaffAdd from './pages/AdminPages/AdminStaffAdd'
 import AdminSingleUser from './pages/AdminPages/AdminSingleUser'
+import Notification from './pages/AdminPages/Notification'
+import UserHistory from './pages/UserHistory'
+
 
 
 
@@ -78,6 +81,7 @@ theme="light"
       <Route element={<AdminStaffAdd />} path='adminstaffadd'></Route>
       <Route element={<AdminSingleUser />} path='useradminmanage/:id/adminsingleuser'></Route>
       <Route element={<SingleFlightView />} path='useradminmanage/:id/singleflightview'></Route>
+      <Route element ={<Notification />} path='notification'></Route>
       <Route path='revenue' element={<AdminRevenue />}/> 
     </Route>
 
@@ -107,6 +111,7 @@ theme="light"
       <Route element={<Payment />} path='/payment'></Route>
       <Route element={<UserFlightView />} path='/userflightview'></Route>
       <Route element={<ForgetPassword />} path='/forgetpassword'></Route>
+      <Route element={<UserHistory />} path='/userhistory'></Route>
       
      
       <Route element={<AboutUs />} path='/aboutus'></Route>

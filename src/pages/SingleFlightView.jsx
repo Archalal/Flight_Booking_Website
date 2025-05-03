@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './SingleFlightView.css'
+import { useParams } from 'react-router-dom';
+import { singleBooking } from '../../services/allApi';
+
+
 
 const SingleFlightView = () => {
+  const {id}=useParams()
+  console.log(id);
+  const[data,setData]=useState("")
+useEffect(()=>{
+  viewUserBooking()
+},[data])
+
+  const viewUserBooking=async()=>{
+ try{
+  const  apiResponse=await singleBooking(id)
+  console.log(apiResponse)
+  setData(apiResponse.data)
+
+ }catch(err){
+  console.log(err);
+  
+ }
+
+  }
+  
+
   return (
     <div>
+
+
      
       
-      
-      
-       
-
-       
+    
         <div className="ticket-container">
           <h2 className="ticket-title"> Flight Ticket</h2>
 
@@ -28,7 +51,7 @@ const SingleFlightView = () => {
               </div>
               <div className="flight-info">
                 
-                <small>Premium Class</small>
+                <small>{data.flightId?.cabinClass} Class</small>
               </div>
             </div>
 
@@ -42,7 +65,7 @@ const SingleFlightView = () => {
                   </div>
                   <div className="details">
                     <div className="label">DEPARTURE</div>
-                    <div className="airport">Thiruvananthapuram (TRV)</div>
+                    <div className="airport">{data.departureName}</div>
                     <div className="date">Thu, 15 Jun 2023</div>
                     <div className="time">16:45</div>
                   </div>
@@ -55,7 +78,7 @@ const SingleFlightView = () => {
                   </div>
                   <div className="details">
                     <div className="label">ARRIVAL</div>
-                    <div className="airport">Dubai (DXB)</div>
+                    <div className="airport">{data.destinationName}</div>
                     <div className="date">Thu, 15 Jun 2023</div>
                     <div className="time">19:45</div>
                   </div>
@@ -66,7 +89,7 @@ const SingleFlightView = () => {
               <div className="flight-info-bar">
                 <div className="info-item">
                   <div className="info-label">FLIGHT DURATION</div>
-                  <div className="info-value">4h 30m</div>
+                  <div className="info-value">{data.flightId?.flightDuration}</div>
                 </div>
                 <div className="divider"></div>
                 <div className="info-item">
@@ -79,11 +102,11 @@ const SingleFlightView = () => {
               <div className="passenger-price">
                 <div className="passenger">
                   <div className="label">PASSENGER</div>
-                  <div className="name">Reha P</div>
+                  <div className="name">{data.username}</div>
                 </div>
                 <div className="price">
                   <div className="label">TOTAL FARE</div>
-                  <div className="amount">₹40,532</div>
+                  <div className="amount">₹{data.price}</div>
                 </div>
               </div>
             </div>

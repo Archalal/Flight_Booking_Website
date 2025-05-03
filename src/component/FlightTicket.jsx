@@ -6,10 +6,48 @@ import { useNavigate } from 'react-router-dom';
 
 const FlightTicket = ({flights}) => {
   const navigate=useNavigate()
+
+
+   
+    const searchParams=new URLSearchParams(location.search)
+  
+    const departureName=searchParams.get("departureName")
+    const destinationName=searchParams.get("destinationName")
+    const dateOfDeparture=searchParams.get("dateOfDeparture")
+    const cabinClass=searchParams.get("cabinClass")
+    const returnDate=searchParams.get("returnDate")
+    const avaiableSeat=searchParams.get("avaiableSeat")
+    console.log(avaiableSeat);
+    
+    
+
+
   console.log(flights);
   const FlightTicket=(id)=>{
-    sessionStorage.setItem("flightticketid",id)
-    navigate(`/bookedflight/${id}`)
+   const token= sessionStorage.getItem("token")
+
+    if(token){
+
+       let query = `?departureName=${departureName}&destinationName=${destinationName}&dateOfDeparture=${dateOfDeparture}&cabinClass=${cabinClass}&avaiableSeat=${avaiableSeat}`;
+        if (returnDate) {
+          query += `&returnDate=${returnDate}`;
+        }
+        navigate(`/bookedflight/${id}/${query}`)
+      
+      
+       
+  
+      }else{
+       alert("fill the form");
+        
+      }
+  
+
+
+
+
+    // sessionStorage.setItem("flightticketid",id)
+    
 
 
 

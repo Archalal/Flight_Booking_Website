@@ -14,6 +14,8 @@ const FlightSearchByUser = () => {
 
   const tripChange = (type) => setTripType(type);
   
+  console.log(tripType);
+  
 
   const[toSearch,setToSearch]=useState("")
   const[fromSearch,setFromSearch]=useState("")
@@ -25,17 +27,29 @@ const FlightSearchByUser = () => {
 
 
   const onBtnClick = () => {
-    let query = `?departureName=${fromSearch}&destinationName=${toSearch}&dateOfDeparture=${departureSearch}&cabinClass=${cabinSearch}&avaiableSeat=${passengersSearch}`;
-  
-    if (tripType !== "oneWay") {
-      query += `&returnDate=${returnSearch}`;
+    const token=sessionStorage.getItem("token")
+    if(token){
+      if(toSearch&&fromSearch&&departureSearch&&cabinSearch&&passengersSearch){
+        let query = `?departureName=${fromSearch}&destinationName=${toSearch}&dateOfDeparture=${departureSearch}&cabinClass=${cabinSearch}&avaiableSeat=${passengersSearch}`;
+        navigate(`/searchticketbyuser${query}`);
+       if(tripType=="roundTrip"){
+        if (toSearch&&fromSearch&&departureSearch&&returnSearch&&cabinSearch&&passengersSearch) {
+          query += `&returnDate=${returnSearch}`;
+          navigate(`/searchticketbyuser${query}`);
+        }else{
+          alert("fill the return date")
+         }
+       }
+       
+
+      }
+      else{
+        alert("fill the form")
+      }
+    }else{
+      alert("please login in")
     }
-    sessionStorage.setItem("passengers",passengersSearch)
-    
-  
-    navigate(`/searchticketbyuser${query}`);
-  };
-  
+  }
   
   
 

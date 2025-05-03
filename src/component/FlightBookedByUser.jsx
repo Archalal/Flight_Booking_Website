@@ -1,9 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Badge } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AdminNotification from './AdminNotification';
+import { flightBooked, singleBooking } from '../../services/allApi';
+import baseURL from '../../services/baseURL';
+
 
 const FlightBookedByUser = () => {
+
+  const[data,setData]=useState([])
+  
+  const navigate=useNavigate()
+
+  
+ 
+  
+
+  useEffect(()=>{
+    bookedUser()
+  },[])
+
+  const bookedUser=async()=>{
+    
+    try{
+
+      let apiResponse=await flightBooked()
+     setData(apiResponse.data)
+     console.log(apiResponse.data);
+     
+     
+     
+     
+      
+
+    }catch(err){
+      console.log(err);
+      
+    }
+  }
+
+  const onUserClick=async(id)=>{
+
+    try{
+
+      let apiResponse =await singleBooking(id)
+      console.log(apiResponse);
+      navigate(`/admin/useradminmanage/${id}/singleflightview`)
+      
+      
+
+    }catch(err){
+      console.log(err);
+      
+    }
+
+  }
   return (
     <div className="p-3" style={{ backgroundColor: '#f8fafc' }}>
      <AdminNotification />
@@ -78,43 +129,50 @@ const FlightBookedByUser = () => {
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td className="p-3">
-                    <div className="rounded-circle overflow-hidden" style={{ width: '60px', height: '60px' }}>
-                      <img 
-                        src="https://static.vecteezy.com/system/resources/previews/024/558/262/non_2x/businessman-isolated-illustration-ai-generative-free-png.png" 
-                        alt="Profile" 
-                        className="img-fluid"
-                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                      />
-                    </div>
-                  </td>
-                  <td className="p-3 fw-semibold">Reha P</td>
-                  <td className="p-3">reha0002@gmail.com</td>
-                  <td className="p-3">31/07/2000</td>
-                  <td className="p-3">Tvm, India</td>
-                  <td className="p-3">9876543212</td>
-                  <td className="p-3">
-                    <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
-                      <i className="fas fa-check-circle me-1"></i> Paid
-                    </Badge>
-                  </td>
-                  <td className="p-3">
-                    <Link to={'/admin/useradminmanage/:id/singleflightview'} >
-                      <Button 
-                        variant="outline-primary" 
-                        size="sm" 
-                        className="rounded-pill px-3 d-flex align-items-center"
-                        style={{ borderWidth: "1.5px" }}
-                      >
-                        <i className="fas fa-eye me-2"></i> View Booking
-                      </Button>
-                    </Link>
-                  </td>
-                </tr>
-                {/* Additional rows would go here */}
-              </tbody>
+           {
+            data?.map((a,index)=>(
+              <tbody key={index}>
+              <tr>
+                <td className="p-3">
+                  <div className="rounded-circle overflow-hidden" style={{ width: '60px', height: '60px' }}>
+                    <img 
+                      src={`${baseURL}/uploads/${a.userId.image}`}
+                      alt="Profile" 
+                      className="img-fluid"
+                      style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                    />
+                  </div>
+                </td>
+                <td className="p-3 fw-semibold">{a.userId?.name}</td>
+                <td className="p-3">{a.userId?.email}</td>
+                <td className="p-3">{a.userId.dob}</td>
+                <td className="p-3">{a.userId.address}</td>
+                <td className="p-3">{a.userId.phoneNumber}</td>
+                <td className="p-3">
+                  <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
+                    <i className="fas fa-check-circle me-1"></i> Paid
+                  </Badge>
+                </td>
+                <td className="p-3">
+                
+                    <Button 
+                      variant="outline-primary" 
+                      size="sm" 
+                      className="rounded-pill px-3 d-flex align-items-center"
+                      style={{ borderWidth: "1.5px" }}
+                      onClick={()=>{
+                        onUserClick(a._id)
+                      }}
+                    >
+                      <i className="fas fa-eye me-2"></i> View Booking
+                    </Button>
+                
+                </td>
+              </tr>
+              {/* Additional rows would go here */}
+            </tbody>
+            ))
+           }
             </table>
           </div>
         </Card.Body>

@@ -32,7 +32,12 @@ const Login = () => {
             let token=sessionStorage.setItem("token",apiResponse.data.token)
             let name=sessionStorage.setItem("username",apiResponse.data.username)
           
+            if(apiResponse.data.role=="user"){
               navigate('/userdashboard')
+            }
+            else if(apiResponse.data.role=="staff"){
+              navigate('/Flight')
+            }
               
   
 

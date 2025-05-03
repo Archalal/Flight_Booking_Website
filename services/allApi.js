@@ -37,3 +37,33 @@ export const getSingleFlight=async(id)=>{
 export const userbookedFlights=async(id,reuestBody,reqHeaders)=>{
     return await commonAPi("post",`/bookedflights/${id}`,reuestBody,reqHeaders)
 }
+
+
+export const getNotification=async()=>{
+    return await commonAPi('get','/getallnotification',"")
+}
+
+export const singleNotification=async(id)=>{
+    return await commonAPi("get",`/${id}/getSinglenotification`,"")
+
+}
+
+export const deleteNotification=async(id)=>{
+    return await commonAPi("delete",`/${id}/deletenotification`,{})
+
+}
+
+export const flightBooked=async()=>{
+    return await commonAPi("get",`/flightbooked`,"")
+
+}
+
+export const singleBooking=async(id)=>{
+    return await commonAPi("get",`/${id}/singlebooking`,"")
+
+}
+
+export const bookedTicket=async(reqheaders)=>{
+    return await commonAPi("get",`/ticketbooking`,"",reqheaders)
+
+}

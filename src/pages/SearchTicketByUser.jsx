@@ -49,14 +49,7 @@ useEffect(()=>{
     avaiableSeat:avaiableSeat
 
    })
-
- 
-   
-    
-
-
-  
-  console.log(query);
+  console.log(changedFliter,"opop");
   const searchedFlights=async()=>{
     try{
 
@@ -373,10 +366,10 @@ useEffect(()=>{
         </div>
       </div>
 
-      {/* Results Section */}
+
       <div className="container mb-5 me-1">
         <div className="bg-white p-4 rounded-4 shadow">
-          {/* Filters */}
+        
           <div className="row justify-content-between align-items-center mb-4 g-3">
             <div className="col-12 col-md-5 col-lg-4">
               <FloatingLabel controlId="floatingSort" label={

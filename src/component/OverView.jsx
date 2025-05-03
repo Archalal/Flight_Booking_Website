@@ -1,12 +1,16 @@
 import React from 'react';
 import { Button, Card, Badge, Row, Col } from "react-bootstrap";
 import AdminNotification from './AdminNotification';
+import { Link } from 'react-router-dom';
+
 
 const OverView = () => {
   return (
     <div className="p-3" style={{ backgroundColor: '#f8fafc' }}>
       {/* Header Section */}
-     <AdminNotification />
+    <Link to={'/admin/notification'} style={{textDecoration:"none"}}>
+    <AdminNotification />
+    </Link>
       {/* Stats Cards */}
       <Row className="mb-4 g-4">
         <Col md={6} lg={3}>
