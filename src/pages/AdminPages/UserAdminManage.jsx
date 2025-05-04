@@ -43,8 +43,9 @@ const UserAdminManage = () => {
    
       <div >
        
-        <AdminNotification />
-        
+      <Link to={'/admin/notification'} style={{textDecoration:"none"}}>
+    <AdminNotification />
+    </Link>
       
         <div className="d-flex justify-content-betwen align-items-center mb-4 mt-3">
           <h2 className="m-0" style={{ fontWeight: "300", color: "#2d3748" }}>

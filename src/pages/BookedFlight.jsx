@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import UserDashNav from '../component/UserDashNav';
 import { Button } from 'react-bootstrap';
-import { userbookedFlights, getSingleFlight } from '../../services/allApi';
-import { useParams } from 'react-router-dom';
+import { userbookedFlights, getSingleFlight ,statusChange} from '../../services/allApi';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'; // PayPal import
+
+
 
 const BookedFlight = () => {
   const [ticket, setTicket] = useState("");
   const [total, setTotal] = useState("");
+  const[isBooked,setIsBooked]=useState(false)
+  const[bookinId,setBookingId]=useState("")
+ 
+  const navigate=useNavigate()
   
   const username = sessionStorage.getItem("username");
   const searchParams = new URLSearchParams(location.search);
@@ -53,7 +59,10 @@ const BookedFlight = () => {
           "authorization": `Bearer ${token}`,
         };
         const apiResponse = await userbookedFlights(id, flightDetails, requestedHeaders);
-        if (apiResponse.status == 200) {
+        if (apiResponse.status == 201) {
+          alert("you are going to booking")
+          setIsBooked(true)
+          setBookingId(apiResponse.data._id)
           console.log(apiResponse);
         } else {
           alert("ticket is already booked");
@@ -65,6 +74,34 @@ const BookedFlight = () => {
       console.log(err);
     }
   };
+
+  
+  
+
+  const statusUpdate=async()=>{
+ 
+    try {
+     
+      const token=sessionStorage.getItem("token")
+      const reqHeaders={
+        "authorization":`Bearer ${token}`
+      }
+     const apiResponse=  await statusChange(bookinId, "successful",reqHeaders);
+     console.log(apiResponse);
+    
+     
+    
+    } catch (error) {
+      console.error("Error updating booking status:", error);
+      
+    }
+   
+  }
+
+
+
+
+
   
   const date = new Date(ticket.dateOfDeparture);
   const formattedDate = date.toLocaleDateString("en-US", {
@@ -218,27 +255,34 @@ const BookedFlight = () => {
           </div>
 
           {/* PayPal Button */}
+         {
+          isBooked?
           <div className="d-flex justify-content-center mt-4">
-            <PayPalScriptProvider options={{ "client-id": "AUcaPf_ix5FcJuchVEQMiu5MzJueOHKIZm2VLGGjdeWV1NhQVpVs8hkW-2_f0r7M4g-C5lvalvooLWxw" , currency: "USD"}}>
-            <PayPalButtons
-    createOrder={(data, actions) => {
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: total.toString(),  // assuming `total` is in USD now
-            currency_code: "USD"
-          }
-        }]
-      });
-    }}
-    onApprove={(data, actions) => {
-      return actions.order.capture().then((details) => {
-        alert(`Transaction completed by ${details.payer.name.given_name}`);
-      });
-    }}
-              />
-            </PayPalScriptProvider>
-          </div>
+          <PayPalScriptProvider options={{ "client-id": "AUcaPf_ix5FcJuchVEQMiu5MzJueOHKIZm2VLGGjdeWV1NhQVpVs8hkW-2_f0r7M4g-C5lvalvooLWxw" , currency: "USD"}}>
+          <PayPalButtons
+  createOrder={(data, actions) => {
+    return actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: total.toString(),  // assuming `total` is in USD now
+          currency_code: "USD"
+        }
+      }]
+    });
+  }}
+  onApprove={(data, actions) => {
+    return actions.order.capture().then((details) => {
+      alert(`Transaction completed by ${details.payer.name.given_name}`);
+      statusUpdate()
+      setTimeout(() => {
+        navigate('/userdashboard');
+      }, 1000); 
+    });
+  }}
+            />
+          </PayPalScriptProvider>
+        </div>:""
+         }
 
         </div>
       </div>

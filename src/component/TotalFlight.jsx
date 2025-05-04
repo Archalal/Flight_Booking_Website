@@ -30,7 +30,9 @@ const TotalFlight = () => {
  
   return (
     <div style={{ backgroundColor: '#f8fafc' }}>
-      <AdminNotification />
+     <Link to={'/admin/notification'} style={{textDecoration:"none"}}>
+    <AdminNotification />
+    </Link>
       {/* Header Section */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>

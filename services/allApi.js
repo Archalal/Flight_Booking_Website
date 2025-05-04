@@ -67,3 +67,24 @@ export const bookedTicket=async(reqheaders)=>{
     return await commonAPi("get",`/ticketbooking`,"",reqheaders)
 
 }
+
+
+export  const statusChange=async(id,requestBody,reqHeaders)=>{
+    return await commonAPi("patch",`/bookingstatus/${id}`,{status:requestBody},reqHeaders)
+}
+export  const cancelTicket=async(id,requestBody,reqHeaders)=>{
+    return await commonAPi("patch",`/cancelTicket/${id}`,{status:requestBody},reqHeaders)
+}
+
+
+export const approvedByAdmin=async(id,requestBody,reqHeaders)=>{
+    return await commonAPi("patch",`/approved/${id}`,{status:requestBody},reqHeaders)
+}
+export const rejectByAdmin=async(id,requestBody,reqHeaders)=>{
+    return await commonAPi("patch",`/reject/${id}`,{status:requestBody},reqHeaders)
+    
+}
+export const getMonthlyStats = async (reqHeaders) => {
+    return await commonAPi("get", "/monthlyBooking", "",reqHeaders);
+  };
+  

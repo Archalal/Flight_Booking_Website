@@ -1,37 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import UserDashNav from '../component/UserDashNav';
-import { bookedTicket } from '../../services/allApi';
+import { bookedTicket, cancelTicket } from '../../services/allApi';
+
 import jsPDF from 'jspdf';
 
 const UserHistory = () => {
   const [data, setData] = useState([]);
   console.log(data);
+  // const[isCancel,setCancel]=useState(false)
   
 
   useEffect(() => {
-    const fetchTickets = async () => {
-      const token = sessionStorage.getItem("token");
-      if (token) {
-        const reqHeaders = {
-          "Authorization": `Bearer ${token}`,
-        };
-        try {
-          const apiResponse = await bookedTicket(reqHeaders);
-          if (apiResponse.status === 200) {
-            setData(apiResponse.data);
-          } else {
-            console.error("Something went wrong");
-          }
-        } catch (error) {
-          console.error("Error fetching tickets:", error);
-        }
-      } else {
-        console.log("Please login");
-      }
-    };
-
     fetchTickets();
   }, []);
+
+
+  const fetchTickets = async () => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const reqHeaders = {
+        "Authorization": `Bearer ${token}`,
+      };
+      try {
+        const apiResponse = await bookedTicket(reqHeaders);
+        if (apiResponse.status === 200) {
+          setData(apiResponse.data);
+        } else {
+          console.error("Something went wrong");
+        }
+      } catch (error) {
+        console.error("Error fetching tickets:", error);
+      }
+    } else {
+      console.log("Please login");
+    }
+  };
+
+
+  const cancellationTicket=async(id)=>{
+    try{
+      const token=sessionStorage.getItem("token")
+     const reqHeaders={
+        "authorization":`Bearer ${token}`
+      }
+      console.log(reqHeaders);
+      
+      const reqBody="requested"
+      const apiResponse=await cancelTicket(id,reqBody,reqHeaders)
+      
+      if(apiResponse.status==200){
+       
+        fetchTickets()
+        console.log(apiResponse.data);
+        
+      }else{
+        console.log("api call err");
+        
+      }
+      
+
+      
+
+    }catch(err){
+      alert("Something went wrong",err)
+    }
+  }
+
 
   const handleDownload = (ticket) => {
     const doc = new jsPDF();
@@ -98,6 +132,7 @@ const UserHistory = () => {
       <UserDashNav />
       <div style={{  padding: '20px' }}>
         <h1 style={{ marginBottom: '30px', color: '#333',textAlign:"center" }}>Flight Booking History</h1>
+        <h6>Note:The Cancellation Option avaiable only for 24hrs! happy Journey</h6>
         <div
           style={{
             overflowX: 'auto',
@@ -119,6 +154,7 @@ const UserHistory = () => {
                 <th style={{ padding: '16px', textAlign: 'left' }}>Status</th>
                 <th style={{ padding: '16px', textAlign: 'left' }}>Price</th>
                 <th style={{ padding: '16px', textAlign: 'left' }}>Ticket Download</th>
+                <th style={{ padding: '16px', textAlign: 'left' }}>Cancellation</th>
               </tr>
             </thead>
             <tbody>
@@ -139,23 +175,39 @@ const UserHistory = () => {
                     <div style={{ color: '#6c757d' }}>08:30 AM</div>
                   </td>
                   <td style={{ padding: '16px' }}>
+                   {
+                    ticket.status=="successful"?
                     <span
-                      style={{
-                        padding: '4px 8px',
-                        borderRadius: '12px',
-                        backgroundColor: '#e8f5e9',
-                        color: '#2e7d32',
-                        fontSize: '14px',
-                      }}
-                    >
-                      Completed
-                    </span>
+                    style={{
+                      padding: '4px 8px',
+                      borderRadius: '12px',
+                      backgroundColor: '#e8f5e9',
+                      color: '#2e7d32',
+                      fontSize: '14px',
+                    }}
+                  >
+                    Completed
+                  </span>:
+                   <span
+                   style={{
+                     padding: '4px 8px',
+                     borderRadius: '12px',
+                     backgroundColor: 'red',
+                     color: 'white',
+                     fontSize: '14px',
+                   }}
+                 >
+                   pending
+                 </span>
+                   }
                   </td>
                   <td style={{ padding: '16px', fontWeight: '600' }}>
                     ₹{ticket.price}
                   </td>
                   <td style={{ padding: '16px' }}>
-                    <button
+                    {
+                      ticket.status=="successful"?
+                      <button
                       onClick={() => handleDownload(ticket)}
                       style={{
                         padding: '6px 12px',
@@ -167,7 +219,90 @@ const UserHistory = () => {
                       }}
                     >
                       Download Ticket
+                    </button>:<p>Cant download Ticket</p>
+                    }
+                   
+                  </td>
+
+                  <td style={{ padding: '16px' }}>
+                    
+                    {
+                      ticket.cancellationStatus=="requested"?
+                      <button
+                     
+                      style={{
+                        padding: '6px 12px',
+                        backgroundColor: 'yellow',
+                        color: 'black',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                      }}
+
+                      
+                    >
+                      Requested
                     </button>
+                      
+                      : ticket.cancellationStatus=="cancelled" || ticket.cancellationStatus=="none" && ticket.status!="pending"?
+                      <button
+                     
+                      style={{
+                        padding: '6px 12px',
+                        backgroundColor: 'red',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                      }}
+                      onClick={()=>cancellationTicket(ticket._id)}
+
+                      
+                    >
+                      Cancelation
+                    </button>: ticket.cancellationStatus=="approved"?
+                    <p style={{
+                    
+                      color: 'orange',
+                      fontWeight: 'bold'
+                    }}>
+                      Approved
+                    </p>
+                    : ticket.cancellationStatus=="approved"?<p
+                    style={{
+                    
+                      color: 'red',
+                      fontWeight: 'bold'
+                    }}
+                    >Rejected</p>
+                    :ticket.cancellationStatus=="expired"?
+                    <p
+                    style={{
+                    
+                      color: 'orange',
+                      fontWeight: 'bold'
+                    }}
+                    >Sorry you cant Cancel the ticket</p>
+                    :ticket.cancellationStatus=="rejected"?
+                    <p
+                    style={{
+                    
+                      color: 'red',
+                      fontWeight: 'bold'
+                    }}
+                    >Rejected </p>
+                    :
+                    <p
+                    style={{
+                    
+                      color: 'orange',
+                      fontWeight: 'bold'
+                    }}
+                    >Payment Not Done </p>
+                   
+
+                    
+                    }
                   </td>
                 </tr>
               ))}

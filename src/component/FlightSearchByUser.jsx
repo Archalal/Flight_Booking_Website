@@ -132,7 +132,7 @@ const FlightSearchByUser = () => {
                  defaultValue="economy"
                 >
                   <Form.Select>
-                    <option value="economy">Economy</option>
+                    <option  value="economy">Economy</option>
                     <option value="premium">Premium Economy</option>
                     <option value="business">Business</option>
                   </Form.Select>

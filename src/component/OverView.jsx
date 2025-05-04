@@ -106,7 +106,7 @@ const OverView = () => {
         </Col>
       </Row>
 
-      {/* Recent Activity Section - Simplified */}
+      
       <Card className="border-0 shadow-sm">
   <Card.Body className="p-0">
     <div className="p-3 border-bottom">

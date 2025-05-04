@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Badge } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AdminNotification from './AdminNotification';
-import { flightBooked, singleBooking } from '../../services/allApi';
+import { approvedByAdmin, flightBooked, rejectByAdmin, singleBooking } from '../../services/allApi';
 import baseURL from '../../services/baseURL';
+
 
 
 const FlightBookedByUser = () => {
@@ -55,9 +56,50 @@ const FlightBookedByUser = () => {
     }
 
   }
+
+  const approved=async(data)=>{
+    console.log(data._id);
+    
+
+    const token=sessionStorage.getItem("token")
+   const reqheaders={
+      "authorization":`Bearer ${token}`
+    }
+   
+    const reqBody="approved"
+    const apiResponse=await approvedByAdmin(data._id,reqBody,reqheaders)
+    console.log(apiResponse);
+    
+    
+
+  }
+  const rejectCancellation=async(data)=>{
+
+
+    const token=sessionStorage.getItem("token")
+    const reqheaders={
+       "authorization":`Bearer ${token}`
+     }
+    
+     const reqBody="rejected"
+     const apiResponse=await rejectByAdmin(data._id,reqBody,reqheaders)
+     console.log(apiResponse);
+     
+     
+ 
+   
+
+  }
+  
+
+
+
+
   return (
     <div className="p-3" style={{ backgroundColor: '#f8fafc' }}>
-     <AdminNotification />
+      <Link to={'/admin/notification'} style={{textDecoration:"none"}}>
+    <AdminNotification />
+    </Link>
       <div className="d-flex justify-content-between align-items-center mb-4 mt-1">
         <div>
           <h2 className="m-0" style={{ fontWeight: '300', color: '#2d3748' }}>Flight Management</h2>
@@ -122,11 +164,12 @@ const FlightBookedByUser = () => {
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Picture</th>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Name</th>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">E-Mail</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Date of Birth</th>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Address</th>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Phone</th>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Status</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Cancellation</th>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Actions</th>
+                
                 </tr>
               </thead>
            {
@@ -145,14 +188,52 @@ const FlightBookedByUser = () => {
                 </td>
                 <td className="p-3 fw-semibold">{a.userId?.name}</td>
                 <td className="p-3">{a.userId?.email}</td>
-                <td className="p-3">{a.userId.dob}</td>
+               
                 <td className="p-3">{a.userId.address}</td>
                 <td className="p-3">{a.userId.phoneNumber}</td>
                 <td className="p-3">
                   <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
-                    <i className="fas fa-check-circle me-1"></i> Paid
+                    <i className="fas fa-check-circle me-1"></i> {a.status}
                   </Badge>
                 </td>
+             {
+              a.cancellationStatus=="requested"
+              ?
+              <td>
+              
+                <button
+                    style={{
+                      border: ' green none ',
+                      backgroundColor: '#e6ffe6',
+                      color: 'green',
+                      padding: '6px 12px',
+                      borderRadius: '4px',
+
+                    }}
+                    onClick={()=>approved(a)}
+                    >
+                    Approve
+                    </button>
+
+                    <button
+                    style={{
+                      border: ' red none',
+                      backgroundColor: '#ffe6e6',
+                      color: 'red',
+                      padding: '6px 12px',
+                      borderRadius: '4px',
+                      marginLeft:"3px",
+                    }}
+                    onClick={()=>rejectCancellation(a)}
+                    >
+                    Reject
+                    </button>
+
+
+                    </td>:
+                    <td><p>Not Requested</p></td>
+                                }
+                
                 <td className="p-3">
                 
                     <Button 
