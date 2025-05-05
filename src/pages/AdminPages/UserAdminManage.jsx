@@ -13,8 +13,10 @@ const UserAdminManage = () => {
   const[userData,setUserData]=useState([])
   const navigate=useNavigate()
 
+
   useEffect(()=>{
     getUsers()
+  
 
   },[])
 
@@ -37,6 +39,7 @@ const UserAdminManage = () => {
 
 
   }
+  
   return (
     <div className="admin-dashboard" style={{ backgroundColor: "#f8f9fa" }}>
      

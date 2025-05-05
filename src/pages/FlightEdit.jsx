@@ -1,51 +1,378 @@
-import React from 'react'
-import Card from 'react-bootstrap/Card';
-import './HomeContent.css';
+import React, { useEffect, useState } from 'react';
+import { FloatingLabel, Form } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import baseURL from '../../services/baseURL';
+import { updateFlight } from '../../services/allApi';
 
 
-const FlightEdit = () => {
-  return (
-    <div className='mt-5 p-3'>
-        <Card style={{ width: '19rem', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease' }}>
-            <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2016/11/13/12/52/kuala-lumpur-1820944_1280.jpg" style={{ height: '180px', objectFit: 'cover' }} />
-            <Card.Body style={{ padding: '1.5rem' }}>
-              <Card.Title style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.5rem' }}>Kuala Lumpur</Card.Title>
-              <Card.Text style={{ color: '#6c757d', marginBottom: '1.5rem' }}>Malaysia</Card.Text>
-              <Card.Text>
-                <div className="row" style={{ marginBottom: '1rem' }}>
-                  <div className="col-3">
-                    <img src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png" alt="AirAsia Logo" style={{ width: '100%', borderRadius: '8px' }} />
-                  </div>
-                  <div className="col-6">
-                    <span style={{ fontWeight: 'bolder', fontSize: '0.95rem' }}>Thu, 20 Mar</span>
-                    <br />
-                    <span style={{ fontSize: '12px', color: '#6c757d' }}>IXZ-KUL with AirAsia</span>
-                  </div>
-                  <div className="col-3" style={{ textAlign: 'right', color: '#28a745', fontWeight: '500' }}>Direct</div>
-                </div>
-                <div className="row" style={{ marginBottom: '1.5rem' }}>
-                  <div className="col-3">
-                    <img src="https://logos-world.net/wp-content/uploads/2023/01/AirAsia-Logo-2002.png" alt="AirAsia Logo" style={{ width: '100%', borderRadius: '8px' }} />
-                  </div>
-                  <div className="col-6">
-                    <span style={{ fontWeight: 'bolder', fontSize: '0.95rem' }}>Sat, 22 Mar</span>
-                    <br />
-                    <span style={{ fontSize: '12px', color: '#6c757d' }}>KUL-IXZ with AirAsia</span>
-                  </div>
-                  <div className="col-3" style={{ textAlign: 'right', color: '#28a745', fontWeight: '500' }}>Direct</div>
-                </div>
-              </Card.Text>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <button style={{ backgroundColor: '#ff5a1d', color: 'white', border: 'none', borderRadius: '8px', padding: '8px 16px', fontSize: '0.9rem', fontWeight: '500', cursor: 'pointer', transition: 'background-color 0.3s ease' }} >Edit</button>
-                <span style={{ color: '#ff5a1d', fontWeight: 'bolder', fontSize: '1.25rem' }}>From 7,248</span>
+const FlightEdit = ({ flights }) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const[preview,setPreview]=useState()
+
+  
+  const formatDate = (date) => {
+    if (!date) return '';
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+  console.log("hi",flights);
+  
+
+  const [flightData, setFlightData] = useState({
+    flightId:flights._id,
+    tripType: flights.tripType ,
+    airlineName: flights.airlineName ,
+    flightNumber: flights.flightNumber ,
+    departureAirportCode: flights.departureAirportCode ,
+    departureName: flights.departureName  ,
+    dateOfDeparture: formatDate(flights.dateOfDeparture) ,
+    timeOfDeparture: flights.timeOfDeparture ,
+    destinationAirportCode: flights.destinationAirportCode ,
+    destinationImg: "",
+    destinationName: flights.destinationName ,
+    dateOfDestination: formatDate(flights.dateOfDestination),
+    timeOfDestination: flights.timeOfDestination ,
+    flightDuration: flights.flightDuration ,
+    refundable: flights.refundable,
+    cabinClass: flights.cabinClass ,
+    price: flights.price ,
+    returnDate: flights.returnDate ,
+    returnTime: flights.returnTime,
+    avaiableSeat: flights.avaiableSeat ,
+    stop: flights.stop
+  });
+useEffect(()=>{
+  if(flightData.destinationImg){
+    setPreview(URL.createObjectURL(flightData.destinationImg))
+  }
+},[flightData.destinationImg])
+
+ const saveFlights=async(e)=>{
+          e.preventDefault(); 
+      const token=sessionStorage.getItem("token")
+      if(token){
+        
+         
+            const payload = new FormData();
+            preview
+            ? payload.append("destinationImg", flightData.destinationImg)
+            : payload.append("destinationImg", flights.destinationImg);
+          
+            payload.append("tripType", flightData.tripType);
+            payload.append("airlineName", flightData.airlineName);
+            payload.append("flightNumber", flightData.flightNumber);
+            payload.append("departureAirportCode", flightData.departureAirportCode);
+            payload.append("departureName", flightData.departureName);
+            payload.append("dateOfDeparture", flightData.dateOfDeparture);
+            payload.append("timeOfDeparture", flightData.timeOfDeparture);
+            payload.append("destinationAirportCode", flightData.destinationAirportCode);
+            payload.append("destinationImg", flightData.destinationImg);
+            payload.append("destinationName", flightData.destinationName);
+            payload.append("timeOfDestination", flightData.timeOfDestination);
+            payload.append("flightDuration", flightData.flightDuration);
+            payload.append("dateOfDestination", flightData.dateOfDestination);
+            payload.append("refundable", flightData.refundable);
+            payload.append("cabinClass", flightData.cabinClass);
+            payload.append("returnDate", flightData.returnDate);
+            payload.append("returnTime", flightData.returnTime);
+            payload.append("avaiableSeat", flightData.avaiableSeat);
+            payload.append("stop", flightData.stop);
+            const reqHeaders={
+              "authorization":`Bearer ${token}`,
+              "Content-Type":"multipart/form-data"
+            }
+            try{
+              const apiResponse=await updateFlight(flightData.flightId,payload,reqHeaders)
+              console.log(apiResponse.data);
               
-                <button style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '8px', padding: '8px 16px', fontSize: '0.9rem', fontWeight: '500', cursor: 'pointer', transition: 'background-color 0.3s ease' }} ><i className="fa-solid fa-trash"></i></button>
-              </div>
-            </Card.Body>
-          </Card>
-      
-    </div>
-  )
-}
+              
+            if(apiResponse.status==200){
+              console.log(apiResponse.data);
+              alert("Flight  updated Successfully")
+              
+            }else{
+              alert("something went wrong")
+            }
+              
 
-export default FlightEdit
+            }catch(err){
+              console.log(err);
+              
+            }
+          
+           
+          
+          
+
+      }else{
+        alert("please login")
+      }
+
+    }
+
+
+
+
+
+  return (
+    <div>
+      <button
+        onClick={handleShow}
+        style={{
+          backgroundColor: '#ff5a1d',
+          color: 'white',
+          border: 'none',
+          borderRadius: '8px',
+          padding: '8px 16px',
+          fontSize: '0.9rem',
+          fontWeight: '500',
+          cursor: 'pointer',
+          transition: 'background-color 0.3s ease',
+        }}
+      >
+        Edit
+      </button>
+
+      <Modal show={show} onHide={handleClose} size="lg" centered>
+        <Modal.Header closeButton className="border-0 pb-0">
+          <Modal.Title className="w-100">
+            <h4 className="text-center mb-3" style={{ color: '#2d3748', fontWeight: '600' }}>
+              Edit Flight Details
+            </h4>
+          </Modal.Title>
+        </Modal.Header>
+
+        <Form>
+          <Modal.Body className="pt-0">
+            <div className="row">
+              <div className="col-md-6">
+                <label>
+                  <input
+                    type="file"
+                    style={{ display: 'none' }}
+                    onChange={(e) => setFlightData({ ...flightData, destinationImg: e.target.files[0] })}
+                  />
+                  <img
+                    src={preview?preview:`${baseURL}/uploads/${flights.destinationImg}`}
+                    alt="image"
+                    className="img-fluid"
+                  />
+                </label>
+
+                <FloatingLabel controlId="tripType" label="Trip Type" className="mb-3">
+                  <Form.Select
+                    value={flightData.tripType}
+                    onChange={(e) => setFlightData({ ...flightData, tripType: e.target.value })}
+                  >
+                    <option value="one-way">One Way</option>
+                    <option value="return">Return</option>
+                  </Form.Select>
+                </FloatingLabel>
+
+                <FloatingLabel controlId="airlineName" label="Airline Name" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    value={flightData.airlineName}
+                    onChange={(e) => setFlightData({ ...flightData, airlineName: e.target.value })}
+                  />
+                </FloatingLabel>
+
+                <Form.Control
+                type="text"
+                value={flightData.flightNumber}
+                onChange={(e) => setFlightData({ ...flightData, flightNumber: e.target.value })}
+                required
+              />
+
+              </div>
+
+              <div className="col-md-6">
+              <FloatingLabel controlId="departureDate" label="Date of Departure" className="mb-3">
+                <Form.Control
+                  type="date"
+                  value={flightData.dateOfDeparture}
+                  onChange={(e) => setFlightData({ ...flightData, dateOfDeparture: e.target.value })}
+                />
+              </FloatingLabel>
+
+
+                <FloatingLabel controlId="departureTime" label="Departure Time" className="mb-3">
+                  <Form.Control
+                    type="time"
+                    value={flightData.timeOfDeparture}
+                    onChange={(e) => setFlightData({ ...flightData, timeOfDeparture: e.target.value })}
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="destinationTime" label="Destination Time" className="mb-3">
+                  <Form.Control
+                    type="time"
+                    value={flightData.timeOfDestination}
+                    onChange={(e) => setFlightData({ ...flightData, timeOfDestination: e.target.value })}
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="dateOfDestination" label="Destination Date" className="mb-3">
+                  <Form.Control
+                    type="date"
+                    value={flightData.dateOfDestination}
+                    onChange={(e) => setFlightData({ ...flightData, dateOfDestination: e.target.value })}
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="flightDuration" label="Flight Duration (hours)" className="mb-3">
+                  <Form.Control
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    value={flightData.flightDuration}
+                    onChange={(e) => setFlightData({ ...flightData, flightDuration: e.target.value })}
+                  />
+                </FloatingLabel>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-6">
+                <FloatingLabel controlId="departureAirport" label="Departure Airport Code" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    value={flightData.departureAirportCode}
+                    onChange={(e) => setFlightData({ ...flightData, departureAirportCode: e.target.value })}
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="departureCity" label="Departure City" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    value={flightData.departureName}
+                    onChange={(e) => setFlightData({ ...flightData, departureName: e.target.value })}
+                  />
+                </FloatingLabel>
+              </div>
+
+              <div className="col-md-6">
+                <FloatingLabel controlId="destinationAirport" label="Destination Airport Code" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    value={flightData.destinationAirportCode}
+                    onChange={(e) => setFlightData({ ...flightData, destinationAirportCode: e.target.value })}
+                  />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="destinationCity" label="Destination City" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    value={flightData.destinationName}
+                    onChange={(e) => setFlightData({ ...flightData, destinationName: e.target.value })}
+                  />
+                </FloatingLabel>
+              </div>
+            </div>
+
+            {flightData.tripType === 'return' && (
+              <div className="row">
+                <div className="col-md-6">
+                  <FloatingLabel controlId="returnDate" label="Return Date" className="mb-3">
+                    <Form.Control
+                      type="date"
+                      value={flightData.returnDate}
+                      onChange={(e) => setFlightData({ ...flightData, returnDate: e.target.value })}
+                    />
+                  </FloatingLabel>
+                </div>
+                <div className="col-md-6">
+                  <FloatingLabel controlId="returnTime" label="Return Time" className="mb-3">
+                    <Form.Control
+                      type="time"
+                      value={flightData.returnTime}
+                      onChange={(e) => setFlightData({ ...flightData, returnTime: e.target.value })}
+                    />
+                  </FloatingLabel>
+                </div>
+              </div>
+            )}
+
+            <div className="row mt-1">
+              <div className="col-md-3">
+                <FloatingLabel controlId="cabinClass" label="Cabin Class" className="mb-3">
+                  <Form.Select
+                    value={flightData.cabinClass}
+                    onChange={(e) => setFlightData({ ...flightData, cabinClass: e.target.value })}
+                  >
+                    <option value="business">Business</option>
+                    <option value="premium">Premium Economy</option>
+                    <option value="economy">Economy</option>
+                  </Form.Select>
+                </FloatingLabel>
+              </div>
+
+              <div className="col-md-3">
+                <FloatingLabel controlId="stop" label="Stop" className="mb-3">
+                  <Form.Select
+                    value={flightData.stop}
+                    onChange={(e) => setFlightData({ ...flightData, stop: e.target.value })}
+                  >
+                    <option value="direct">Direct</option>
+                    <option value="oneStop">One Stop</option>
+                  </Form.Select>
+                </FloatingLabel>
+              </div>
+
+              <div className="col-md-3">
+                <FloatingLabel controlId="refundable" label="Refundable" className="mb-3">
+                  <Form.Select
+                    value={flightData.refundable}
+                    onChange={(e) => setFlightData({ ...flightData, refundable: e.target.value })}
+                  >
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </Form.Select>
+                </FloatingLabel>
+              </div>
+
+              <div className="col-md-3">
+                <FloatingLabel controlId="price" label="Price ($)" className="mb-3">
+                  <Form.Control
+                    type="number"
+                    value={flightData.price}
+                    onChange={(e) => setFlightData({ ...flightData, price: e.target.value })}
+                  />
+                </FloatingLabel>
+              </div>
+
+              <div className="col-md-3">
+                <FloatingLabel controlId="seats" label="Available Seats" className="mb-3">
+                  <Form.Control
+                    type="number"
+                    value={flightData.avaiableSeat}
+                    onChange={(e) => setFlightData({ ...flightData, avaiableSeat: e.target.value })}
+                  />
+                </FloatingLabel>
+              </div>
+            </div>
+          </Modal.Body>
+
+          <Modal.Footer className="border-0">
+            <Button variant="outline-secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="primary" type="submit"
+               onClick={saveFlights}>
+            
+              Save Flight
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+    </div>
+  );
+};
+
+export default FlightEdit;

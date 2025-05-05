@@ -50,23 +50,23 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/admindashboard" className="text-decoration-none text-white">
-                  AdminDashBoard
+                <Link to="/admin" className="text-decoration-none text-black">
+                • AdminDashBoard
                 </Link>
               </li>
               <li>
-                <Link to="/userdashboard" className="text-decoration-none text-white">
-                  UserDashBoard
+                <Link to="/userdashboard" className="text-decoration-none text-black">
+                • UserDashBoard
                 </Link>
               </li>
               <li>
-                <Link to="/flightdashboard" className="text-decoration-none text-white">
-                  FlightDashBoard
+                <Link to="/flight" className="text-decoration-none text-black">
+                • FlightDashBoard
                 </Link>
               </li>
               <li>
-                <Link to="/login" className="text-decoration-none text-white">
-                  Login
+                <Link to="/login" className="text-decoration-none text-black">
+                • Login
                 </Link>
               </li>
             </ul>

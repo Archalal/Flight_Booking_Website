@@ -29,10 +29,7 @@ const FlightBookedByUser = () => {
      setData(apiResponse.data)
      console.log(apiResponse.data);
      
-     
-     
-     
-      
+    
 
     }catch(err){
       console.log(err);
@@ -69,6 +66,7 @@ const FlightBookedByUser = () => {
     const reqBody="approved"
     const apiResponse=await approvedByAdmin(data._id,reqBody,reqheaders)
     console.log(apiResponse);
+    bookedUser()
     
     
 
@@ -84,6 +82,7 @@ const FlightBookedByUser = () => {
      const reqBody="rejected"
      const apiResponse=await rejectByAdmin(data._id,reqBody,reqheaders)
      console.log(apiResponse);
+     bookedUser()
      
      
  
@@ -231,7 +230,8 @@ const FlightBookedByUser = () => {
 
 
                     </td>:
-                    <td><p>Not Requested</p></td>
+                   a.cancellationStatus=="approved"?
+                   <p >Cancellation approved</p>:<p>Cancellation Rejected</p>
                                 }
                 
                 <td className="p-3">
@@ -250,7 +250,7 @@ const FlightBookedByUser = () => {
                 
                 </td>
               </tr>
-              {/* Additional rows would go here */}
+            
             </tbody>
             ))
            }

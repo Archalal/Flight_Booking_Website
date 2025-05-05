@@ -3,27 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import { Line } from 'react-chartjs-2';
 import OverView from '../component/OverView';
 import { getMonthlyStats } from '../../services/allApi';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import { Chart as ChartJS,CategoryScale,LinearScale,PointElement,LineElement,BarElement,Title,Tooltip,Legend,} from 'chart.js';ChartJS.register(CategoryScale,LinearScale,PointElement,LineElement,BarElement,Title,Tooltip,Legend);
 
 const DashBoard = () => {
   const [monthlyRevenue, setMonthlyRevenue] = useState(Array(12).fill(0));

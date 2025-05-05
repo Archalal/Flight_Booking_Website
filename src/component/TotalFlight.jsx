@@ -109,11 +109,11 @@ const TotalFlight = () => {
               <thead style={{ backgroundColor: '#f8f9fa' }}>
                 <tr>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Flight No.</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Destination</th>
                   <th className="p-3 text-uppercase text-muted fw-semibold small">Departure</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Status</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Bookings</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Actions</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Destination</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Date</th>
+                  <th className="p-3 text-uppercase text-muted fw-semibold small">Stop</th>
+                 
                 </tr>
               </thead>
             {
@@ -121,7 +121,9 @@ const TotalFlight = () => {
                 <tbody>
                 <tr key={index}>
                   <td className="p-3 fw-semibold">{a.flightNumber}</td>
+                  <td className="p-3">{a.departureName}</td>
                   <td className="p-3">{a.destinationName}</td>
+                  
                   <td className="p-3">{
 
                     
@@ -129,28 +131,14 @@ const TotalFlight = () => {
                         dateStyle:"medium",
                         timeStyle:"short"
                       })
+                      
             }
                     </td>
-                  <td className="p-3">
-                    <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
-                      <i className="fas fa-check-circle me-1"></i> On Time
-                    </Badge>
-                  </td>
-                  <td className="p-3">124</td>
-                  <td className="p-3">
-                    <Link to={'/flightdetails'}>
-                      <Button 
-                        variant="outline-primary" 
-                        size="sm" 
-                        className="rounded-pill px-3 d-flex align-items-center"
-                        style={{ borderWidth: "1.5px" }}
-                      >
-                        <i className="fas fa-eye me-2"></i> View
-                      </Button>
-                    </Link>
-                  </td>
+                    <td className="p-3">{a.stop}</td>
+                 
+                
                 </tr>
-                {/* Additional rows would go here */}
+               
               </tbody>
               ))
             }

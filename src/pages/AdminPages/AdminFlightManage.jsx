@@ -4,13 +4,12 @@ import AdminFlightTicketView from '../../component/AdminFlightTicketView';
 
 const AdminFlightManage = () => {
   return (
-    // Remove the outer flex container - layout handles this
+    
     <div style={{
-      // Match sidebar width
-     
+    
       backgroundColor: '#f8f9fa',
       minHeight: '100vh',
-      padding: '20px' // Add some breathing room
+      padding: '20px' 
     }}>
       <TotalFlight />
       <AdminFlightTicketView />

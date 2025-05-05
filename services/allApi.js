@@ -88,3 +88,32 @@ export const getMonthlyStats = async (reqHeaders) => {
     return await commonAPi("get", "/monthlyBooking", "",reqHeaders);
   };
   
+  export const gettotalUser = async () => {
+    return await commonAPi("get", "/totaluser", "",);
+  };
+  export const gettotalflight = async () => {
+    return await commonAPi("get", "/totalflight", "",);
+  };
+  export const gettotalBooking = async () => {
+    return await commonAPi("get", "/totalbooking", "",);
+  };
+  export const deleteStaff = async (id,reqHeaders) => {
+    return await commonAPi("delete", `/deletestaff/${id}`, {},reqHeaders);
+  };
+  export const adminStaffAdd = async (requestBody,reqHeaders) => {
+    return await commonAPi("post", `/adminstaffadd`, requestBody,reqHeaders);
+  };
+
+
+  export const addingFlights=async(requestBody,reqHeaders)=>{
+    return await commonAPi("post","/flightadd",requestBody,reqHeaders)
+  }
+
+  export const getallViewFlights=async()=>{
+    return await commonAPi("get","/allFlights","")
+  }
+  export const updateFlight=async(id,requestBody,reqHeaders)=>{
+    return await commonAPi("put",`/flight/${id}/edit`,requestBody,reqHeaders)
+
+}
+  

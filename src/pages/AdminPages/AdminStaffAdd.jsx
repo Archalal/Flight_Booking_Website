@@ -1,9 +1,82 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUserPlus } from 'react-icons/fa';
+import { Table } from 'react-bootstrap';
+import { adminStaffAdd, deleteStaff, getAllUser } from '../../../services/allApi';
+
 
 const AdminStaffAdd = () => {
+  const[userData,setUserData]=useState([])
+  useEffect(()=>{
+    getUsers()
+   
+  },[setUserData])
+ 
+  const[staffData,seStaffData]=useState({
+    name:"",
+    email:"",
+    password:"",
+    role:"staff"
+  })
+
+   const getUsers=async()=>{
+      const apiResponse=await getAllUser()
+      let filter= apiResponse.data.filter((a)=>(a.role==="staff" ))
+       setUserData(filter)
+     
+       
+  
+    }
+
+   
+    const getAddAdmin=async()=>{
+      try{
+        const token=sessionStorage.getItem("token")
+        const reqHeaders={
+          "authorization":`Bearer ${token}`
+        }
+        const apiResponse=await adminStaffAdd(staffData,reqHeaders)
+        alert("staff added successfully")
+        getUsers()
+        
+
+      }catch(err){
+        console.log(err);
+        
+      }
+    }
+
+    const onDeleteStaff=async(id)=>{
+      console.log(id);
+      
+      try{
+        const token=sessionStorage.getItem("token")
+       if(token){
+        const reqHeaders={
+          "authorization":`Bearer ${token}`
+        }
+
+        const apiResponse=await deleteStaff(id,reqHeaders)
+        getUsers()
+        console.log(apiResponse.data);
+       
+       
+        
+       }else{
+        alert("please login")
+       }
+
+
+
+      }catch(err){
+        console.log(err);
+        
+      }
+    }
+
+  
   return (
-    <div style={{
+  <div>
+      <div style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -64,7 +137,9 @@ const AdminStaffAdd = () => {
                 color: '#111827',
                 transition: 'all 0.2s',
                 background: 'white'
+                
               }}
+              onChange={(e)=>seStaffData({...staffData,name:e.target.value})}
             />
           </div>
 
@@ -89,6 +164,7 @@ const AdminStaffAdd = () => {
                 transition: 'all 0.2s',
                 background: 'white'
               }}
+              onChange={(e)=>seStaffData({...staffData,email:e.target.value})}
             />
           </div>
 
@@ -113,6 +189,7 @@ const AdminStaffAdd = () => {
                 transition: 'all 0.2s',
                 background: 'white'
               }}
+              onChange={(e)=>seStaffData({...staffData,password:e.target.value})}
             />
           </div>
 
@@ -156,12 +233,58 @@ const AdminStaffAdd = () => {
             cursor: 'pointer',
             transition: 'all 0.2s',
             boxShadow: '0 4px 6px rgba(124, 58, 237, 0.2)'
-          }}>
+          }}
+          onClick={getAddAdmin}>
             Create Staff Account
           </button>
         </form>
       </div>
     </div>
+
+
+    <div className="p-4">
+      <div className="card shadow-sm border-0">
+        <div className="card-body p-0">
+          <div className="table-responsive">
+            <Table hover className="mb-0">
+              <thead className="bg-light">
+                <tr>
+                
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Delete</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+              
+              {
+                userData?.map((a,index)=>(
+                  <tr key={index}>
+                
+                  <td>
+                   
+                  {a.name}
+                  </td>
+                 <td>{a.email}</td>
+
+                 <td className="btn text-center">
+                  <i className="fa-solid fa-trash" style={{color: "red", cursor: "pointer"}} 
+                  onClick={()=>onDeleteStaff(a._id)}></i>
+                
+                </td>
+                </tr>
+                ))
+              }
+                
+              </tbody>
+            </Table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
   );
 };
 

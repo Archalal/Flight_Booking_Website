@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const SearchTicketByUser = () => {
   const [tripType, setTripType] = useState("oneWay");
   const [stopType, setStopType] = useState("direct");
+  const [sortBy, setSortBy] = useState("cheapest");
   
 
   const tripChange = (e) => {
@@ -20,6 +21,10 @@ const SearchTicketByUser = () => {
   const stopChange = (e) => {
     setStopType(e.target.value);
   };
+  const sortChange = (e) => {
+    setSortBy(e.target.value);
+  };
+
 
   const navigate=useNavigate()
   const query=location.search
@@ -29,6 +34,8 @@ useEffect(()=>{
 },[query])
 
   const[searchedData,setSearchedData]=useState([])
+  console.log(searchedData);
+  
   const searchParams=new URLSearchParams(location.search)
 
   const departureName=searchParams.get("departureName")
@@ -49,7 +56,7 @@ useEffect(()=>{
     avaiableSeat:avaiableSeat
 
    })
-  console.log(changedFliter,"opop");
+  // console.log(changedFliter,"opop");
   const searchedFlights=async()=>{
     try{
 
@@ -73,8 +80,8 @@ useEffect(()=>{
   }
 
   const handleSearchSubmit =async () => {
-    const queryParams = new URLSearchParams(changedFliter).toString();
-    navigate(`?${queryParams}`);
+    const queryParams = new URLSearchParams(changedFliter).toString(); //converts that object into a query string
+    navigate(`?${queryParams}`); //updates the url in the browser (without page reload)
     try{
 
       let apiResponse=await  getSearchedFlights(query)
@@ -92,13 +99,28 @@ useEffect(()=>{
     }
    
   };
+  const filteredFlights = searchedData
+  .filter(flight => 
+    stopType === "direct" ? flight.stop === "direct" : flight.stop === "oneStop"
+  )
+  .sort((a, b) => {
+    switch (sortBy) {
+      case "cheapest":
+        return a.price - b.price;
+      case "highest":
+        return b.price - a.price;
+      default:
+        return 0;
+    }
+  });
+
+  
   
 
   return (
     <div className="bg-light min-vh-100">
       <UserDashNav />
-      
-      {/* Hero Section */}
+   
       <div className="py-5 position-relative" style={{ 
         background: 'linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%)',
         color: 'white',
@@ -386,12 +408,14 @@ useEffect(()=>{
                     backgroundColor: '#fff',
                     height: '58px',
                     borderColor: '#6e45e2'
+                  
                   }}
+                  
+                  onChange={sortChange}
+                   value={sortBy}
                 >
                   <option value="cheapest">Cheapest</option>
                   <option value="best">Best</option>
-                  <option value="fastest">Fastest</option>
-                  <option value="earliest">Earliest</option>
                 </Form.Select>
               </FloatingLabel>
             </div>
@@ -462,10 +486,10 @@ useEffect(()=>{
             </div>
           </div>
 
-          {/* Flight Results */}
+        
           <div className="row ">
             <div className="col-12">
-              <FlightTicket  flights={searchedData} />
+              <FlightTicket  flights={filteredFlights} />
              
             </div>
           </div>

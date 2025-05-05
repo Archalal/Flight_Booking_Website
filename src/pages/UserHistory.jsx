@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import UserDashNav from '../component/UserDashNav';
-import { bookedTicket, cancelTicket } from '../../services/allApi';
+import { bookedTicket, cancelTicket, statusChange } from '../../services/allApi';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'; // PayPal import
 
 import jsPDF from 'jspdf';
+
 
 const UserHistory = () => {
   const [data, setData] = useState([]);
@@ -65,7 +67,31 @@ const UserHistory = () => {
       alert("Something went wrong",err)
     }
   }
-
+  const statusUpdate=async(id)=>{
+    console.log(id);
+    
+   
+      try {
+       
+        const token=sessionStorage.getItem("token")
+        const reqHeaders={
+          "authorization":`Bearer ${token}`
+        }
+       const apiResponse=  await statusChange(id, "successful",reqHeaders);
+       
+       fetchTickets()
+       console.log(apiResponse);
+      
+       
+      
+      } catch (error) {
+        console.error("Error updating booking status:", error);
+        
+      }
+     
+    }
+  
+  
 
   const handleDownload = (ticket) => {
     const doc = new jsPDF();
@@ -155,6 +181,7 @@ const UserHistory = () => {
                 <th style={{ padding: '16px', textAlign: 'left' }}>Price</th>
                 <th style={{ padding: '16px', textAlign: 'left' }}>Ticket Download</th>
                 <th style={{ padding: '16px', textAlign: 'left' }}>Cancellation</th>
+                <th style={{ padding: '16px', textAlign: 'left' }}>Payment</th>
               </tr>
             </thead>
             <tbody>
@@ -244,7 +271,7 @@ const UserHistory = () => {
                       Requested
                     </button>
                       
-                      : ticket.cancellationStatus=="cancelled" || ticket.cancellationStatus=="none" && ticket.status!="pending"?
+                      :  ticket.cancellationStatus=="none" && ticket.status!="pending"?
                       <button
                      
                       style={{
@@ -299,10 +326,38 @@ const UserHistory = () => {
                       fontWeight: 'bold'
                     }}
                     >Payment Not Done </p>
-                   
-
                     
                     }
+                  </td>
+                  <td>  
+                 {
+                   ticket.status=="pending"&&ticket.cancellationStatus=="none"? 
+                   <div className="d-flex justify-content-center mt-4">
+                            <PayPalScriptProvider options={{ "client-id": "AUcaPf_ix5FcJuchVEQMiu5MzJueOHKIZm2VLGGjdeWV1NhQVpVs8hkW-2_f0r7M4g-C5lvalvooLWxw" , currency: "USD"}}>
+                            <PayPalButtons
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [{
+                          amount: {
+                            value: (ticket.totalPassenger*ticket.price).toString(),  // assuming `total` is in USD now
+                            currency_code: "USD"
+                          }
+                        }]
+                      });
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order.capture().then((details) => {
+                        alert(`Transaction completed by ${details.payer.name.given_name}`);
+                        statusUpdate(ticket._id)
+                    
+    
+                      });
+                    }}
+                              />
+                            </PayPalScriptProvider>
+                          </div>:<p>Payment completed</p>
+                 }
+
                   </td>
                 </tr>
               ))}

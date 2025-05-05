@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-const Notification = () => {
+const NotificationFlight = () => {
 
     const [show, setShow] = useState(false);
 
@@ -13,30 +13,31 @@ const Notification = () => {
 
     const[allNotification,setNotifications]=useState([])
     const[singleNot,setSingleNot]=useState([])
-    
-
+   
     useEffect(()=>{
-        getAllNotification(),
-        onDeleteNotify()
-       
+      
+        getStaffNotification()
     },[])
-  
+   
     
 
-
-    const getAllNotification=async()=>{
-        try{
-
-            const apiResponse =await getNotification()
-            setNotifications(apiResponse.data)
-
-
-        }catch(err){
-            alert(err)
-        }
-    }
 
    
+
+    const getStaffNotification=async()=>{
+      try{
+
+          const apiResponse =await getNotification()
+          let filteredResponse=apiResponse.data.filter((a)=>a.userType=="userBooked")
+          console.log("hi",filteredResponse);
+          
+          setNotifications(filteredResponse)
+
+
+      }catch(err){
+          alert(err)
+      }
+  }
 
     const viewNotification=async(id)=>{
 
@@ -59,7 +60,7 @@ const Notification = () => {
     const onDeleteNotify=async(id)=>{
         try{
             let apiResponse=await deleteNotification(id)
-            getAllNotification()
+            getStaffNotification()
             console.log(apiResponse);
             
 
@@ -68,7 +69,7 @@ const Notification = () => {
             
         }
     }
-
+   
 
 
 
@@ -173,4 +174,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default NotificationFlight;

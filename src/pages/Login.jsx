@@ -15,6 +15,7 @@ const Login = () => {
 
   // Handle successful Google login
   const handleGoogleSuccess = async (credentialResponse) => {
+    console.log(credentialResponse)
     try {
       const decoded = jwtDecode(credentialResponse.credential);
       console.log(decoded)
@@ -29,8 +30,9 @@ const Login = () => {
           console.log(apiResponse.data);
           
           if(apiResponse.status==200){
-            let token=sessionStorage.setItem("token",apiResponse.data.token)
-            let name=sessionStorage.setItem("username",apiResponse.data.username)
+            sessionStorage.setItem("token",apiResponse.data.token)
+            sessionStorage.setItem("username",apiResponse.data.username)
+            sessionStorage.setItem("role",apiResponse.data.role)
           
             if(apiResponse.data.role=="user"){
               navigate('/userdashboard')

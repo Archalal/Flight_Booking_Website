@@ -1,8 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card,Badge } from 'react-bootstrap';
+import { gettotalBooking, gettotalflight, gettotalUser } from '../../services/allApi';
+
+
 
 
 const TotalDisplay = () => {
+  useEffect(()=>{
+    totalUser(),
+    totalFligt(),
+    totalBooking()
+  },[])
+   const[user,setUser]=useState("")
+    const[flight,setFlight]=useState("")
+     const[booking,setBooking]=useState("")
+     console.log("hi",booking);
+     
+  const totalUser=async()=>{
+  
+    try{
+      let apiResponse=await gettotalUser()
+      setUser(apiResponse.data)
+      
+
+    }catch(err){
+      console.log(err);
+      
+    }
+  }
+   const totalFligt=async()=>{
+  
+      try{
+        let apiResponse=await gettotalflight()
+        setFlight(apiResponse.data)
+        
+  
+      }catch(err){
+        console.log(err);
+        
+      }
+    }
+    const totalBooking=async()=>{
+  
+      try{
+        let apiResponse=await gettotalBooking()
+        console.log(apiResponse.data,"ok");
+        
+        setBooking(apiResponse.data)
+        
+  
+      }catch(err){
+        console.log(err);
+        
+      }
+    }
   return (
       <div className="row mb-4 g-4">
         <div className="col-md-4">
@@ -14,18 +65,13 @@ const TotalDisplay = () => {
               <div className="d-flex justify-content-between align-items-start">
                 <div>
                   <h6 className="text-uppercase text-muted mb-2">Total Users</h6>
-                  <h2 className="mb-0">1,234</h2>
+                  <h2 className="mb-0">{user}</h2>
                 </div>
                 <div className="bg-white bg-opacity-30 p-3 rounded-circle">
                   <i className="fas fa-plane-departure fs-4" style={{ color: '#27ae60' }}></i>
                 </div>
               </div>
-              <div className="mt-auto">
-                <Badge bg="light" text="success" className="px-2 py-1 rounded-pill">
-                  <i className="fas fa-arrow-up me-1"></i> 12%
-                </Badge>
-                <small className="text-muted ms-2">from last month</small>
-              </div>
+             
             </Card.Body>
           </Card>
         </div>
@@ -38,17 +84,11 @@ const TotalDisplay = () => {
               <div className="d-flex justify-content-between align-items-start">
                 <div>
                   <h6 className="text-uppercase text-muted mb-2">Total Bookings</h6>
-                  <h2 className="mb-0">567</h2>
+                  <h2 className="mb-0">{booking}</h2>
                 </div>
                 <div className="bg-white bg-opacity-30 p-3 rounded-circle">
                   <i className="fas fa-calendar-check fs-4" style={{ color: '#2980b9' }}></i>
                 </div>
-              </div>
-              <div className="mt-auto">
-                <Badge bg="light" text="success" className="px-2 py-1 rounded-pill">
-                  <i className="fas fa-arrow-up me-1"></i> 8%
-                </Badge>
-                <small className="text-muted ms-2">from last month</small>
               </div>
             </Card.Body>
           </Card>
@@ -61,8 +101,8 @@ const TotalDisplay = () => {
             <Card.Body className="d-flex flex-column">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-muted mb-2">Total Bookings</h6>
-                  <h2 className="mb-0">567</h2>
+                  <h6 className="text-uppercase text-muted mb-2">Total flight</h6>
+                  <h2 className="mb-0">{flight}</h2>
                 </div>
                 <div className="bg-white bg-opacity-30 p-3 rounded-circle">
                   <i className="fas fa-calendar-check fs-4" style={{ color: '#2980b9' }}></i>
