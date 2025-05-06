@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -30,11 +30,13 @@ import AdminSingleUser from './pages/AdminPages/AdminSingleUser'
 import Notification from './pages/AdminPages/Notification'
 import UserHistory from './pages/UserHistory'
 import NotificationFlight from './pages/FlightPages/NotificationFlight'
+import { useContext } from 'react'
+import { LoginContext } from './component/Context/AuthContext'
 
 
 function App() {
  
-
+ const {isLoggined,setIsLoginned}=useContext(LoginContext)
   return (
     <>
      <ToastContainer
@@ -57,7 +59,8 @@ theme="light"
       <Route element={<Signup />} path='/signup'></Route>
       
 
-      <Route element={<AdminDashBoard />} path='/admin'> 
+      <Route path="/admin" element={isLoggined ? <AdminDashBoard /> : <Navigate to="/login" />}
+>
       <Route index element={<DashBoard />} />  
       <Route path='useradminmanage' element={<UserAdminManage />} /> 
       <Route path='adminflightmanage' element={<AdminFlightManage />} />
@@ -72,8 +75,7 @@ theme="light"
      
      
      
-
-      <Route  element={<FlightDashboard />} path='/Flight'>
+    <Route path="/Flight" element={isLoggined ? <FlightDashboard /> : <Navigate to="/login" />}>
       <Route index element={<FlightOverview />} />
       <Route element={<AddFlights />} path='addflights'></Route>
       <Route element={<FlightViewByFlightDash />} path='flightviewbyFlightDash'></Route>
@@ -85,8 +87,8 @@ theme="light"
       </Route>
 
     
-    
-      <Route element={<DashBoardForUsers />} path='/userdashboard'></Route>
+      <Route path="/userdashboard" element={isLoggined ? <DashBoardForUsers /> : <Navigate to="/login" />}></Route>
+      {/* <Route element={<DashBoardForUsers />} path='/userdashboard'></Route> */}
       <Route path="/searchticketbyuser" element={<SearchTicketByUser />} />
       <Route element={<FlightTicket />} path='/flightticket'></Route>
       <Route element={<BookedFlight />} path='/bookedflight/:id'></Route>

@@ -33,10 +33,10 @@ const UserDashNav = () => {
           </Navbar.Brand>
 
           <Nav style={{ display: 'flex', gap: '20px', marginRight: "50px" }}>
-            <Nav.Link  style={{ textDecoration: "none" }}>Home</Nav.Link>
+          <Nav.Link as={Link} to={"/userdashboard"} style={{ textDecoration: "none",fontWeight:"bolder"}}>Home</Nav.Link>
             <Nav.Link  as={Link} to='/userflightview' style={{ textDecoration: "none"}} >Flight Views</Nav.Link>
             <Nav.Link as={Link} to={"/userhistory"} style={{ textDecoration: "none",fontWeight:"bolder"}}>History</Nav.Link>
-           
+            <Nav.Link as={Link} to={"/"} style={{ textDecoration: "none",fontWeight:"bolder"}}>logout</Nav.Link>
           </Nav>
         </div>
       </Container>

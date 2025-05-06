@@ -26,7 +26,7 @@ const AdminFlightTicketView = () => {
     <div>
        <div className="d-flex flex-column align-items-center mt-3">
       {
-        flight.map((a)=>(
+        flight?.map((a)=>(
           a.returnDate?
           <div className='bg-white rounded-3 shadow p-4 mb-4 mt-3' style={{ 
             width: '90%',

@@ -84,6 +84,7 @@ export const rejectByAdmin=async(id,requestBody,reqHeaders)=>{
     return await commonAPi("patch",`/reject/${id}`,{status:requestBody},reqHeaders)
     
 }
+
 export const getMonthlyStats = async (reqHeaders) => {
     return await commonAPi("get", "/monthlyBooking", "",reqHeaders);
   };
@@ -114,6 +115,10 @@ export const getMonthlyStats = async (reqHeaders) => {
   }
   export const updateFlight=async(id,requestBody,reqHeaders)=>{
     return await commonAPi("put",`/flight/${id}/edit`,requestBody,reqHeaders)
+
+}
+export const totalBookedPrice=async()=>{
+    return await commonAPi("get","/revenue")
 
 }
   

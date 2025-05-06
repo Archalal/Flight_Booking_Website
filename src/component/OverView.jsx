@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Badge, Row, Col } from "react-bootstrap";
-import AdminNotification from './AdminNotification';
+
 import { Link } from 'react-router-dom';
-import { getAllUser, gettotalBooking, gettotalflight, gettotalUser,getAllFlights,flightBooked } from '../../services/allApi';
-import FlightNotification from './FlightNotification';
+import { getAllUser, gettotalBooking, gettotalflight, gettotalUser,getAllFlights,flightBooked, totalBookedPrice,   } from '../../services/allApi';
+import AdminNotification from './AdminNotification';
+
+
 
 
 const OverView = () => {
@@ -13,12 +15,14 @@ const OverView = () => {
     totalBooking(),
     singleUser(),
     flightrecent(),
-    bookingrecent()
+    bookingrecent(),
+    totalRevenue()
 
   },[])
   const[user,setUser]=useState("")
   const[flight,setFlight]=useState("")
   const[booking,setBooking]=useState("")
+  const[revenue,setRevenue]=useState("")
   const[singleData,setSingleUse]=useState([])
   const[singleFlight,setSingleFlight]=useState([])
   const[singleBooking,setSingleBooking]=useState([])
@@ -99,11 +103,26 @@ const OverView = () => {
       
     }
   }
+  const totalRevenue=async()=>{
+    try{
+      const apiResponse= await totalBookedPrice()
+      let total=apiResponse.data[0].revenue
+      console.log(total,"hi");
+      
+      setRevenue(total)
+    
+      
+
+    }catch(err){
+      console.log(err);
+      
+    }
+  }
   return (
     <div className="p-3" style={{ backgroundColor: '#f8fafc' }}>
       {/* Header Section */}
-    <Link to={'/flight/notification'} style={{textDecoration:"none"}}>
-   <FlightNotification />
+    <Link to={'/admin/notification'} style={{textDecoration:"none"}}>
+  <AdminNotification  />
     </Link>
       {/* Stats Cards */}
       <Row className="mb-4 g-4">
@@ -153,7 +172,7 @@ const OverView = () => {
               <div className="d-flex justify-content-between align-items-start">
                 <div>
                   <h6 className="text-uppercase text-white-50 mb-2">Total Revenue</h6>
-                  <h2 className="mb-0">$12,345</h2>
+                  <h2 className="mb-0">{revenue}</h2>
                 </div>
                 <div className="bg-white bg-opacity-20 p-3 rounded-circle">
                   <i style={{color:'purple'}} className="fas fa-dollar-sign fs-4"></i>

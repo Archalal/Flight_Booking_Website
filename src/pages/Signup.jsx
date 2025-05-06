@@ -33,6 +33,15 @@ const Signup = () => {
     }
   }
  },[userData.email])
+ useEffect(() => {
+  if (userData.phoneNumber) {
+    if (/^\d{10}$/.test(userData.phoneNumber)) {
+      setValidNumber(true);
+    } else {
+      setValidNumber(false);
+    }
+  }
+}, [userData.phoneNumber]);
 
 //  console.log(userData);
  const[confirmPassword,setConfirmPassword]=useState("")
@@ -45,10 +54,7 @@ const Signup = () => {
   if(userData.name&&userData.image&&userData.email&&userData.dob&&userData.phoneNumber&&userData.address&&userData.password&&confirmPassword){
   
  try{
-  if(userData.email.endsWith('@gmail.com')) {
-    setValidEmail(true)
-   if(userData.phoneNumber.length==10){
-    setValidNumber(true)
+ 
     if(userData.password===confirmPassword){
 
       const payload = new FormData();
@@ -84,16 +90,7 @@ const Signup = () => {
 
   }
 
-   }else{
-    setValidNumber(false)
-    alert("enter valid number")
-    
-   }
-
-  }else{
-    setValidEmail(false)
-    alert("please fill valid email Id")
-  }
+  
   
  }
  catch(err){
@@ -145,24 +142,7 @@ const Signup = () => {
               Welcome! Sign up to experience our service.
             </p>
             <form style={{ width: "70%", maxWidth: "400px" }}> 
-            {/* <div className="mb-2">
-                <label htmlFor="role" className="form-label" style={{ fontWeight: "500" }}>
-                  Role
-                </label>
-                <select
-                  className="form-control"
-                  id="role"
-                  defaultValue=""
-                  style={{ borderRadius: "7px", padding: "5px", width: "100%" }}
-                  required
-                >
-                  <option value="" disabled hidden>
-                    Choose Your role
-                  </option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
-              </div> */}
+            
               <div className="mb-2">
                 <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
                   Full Name

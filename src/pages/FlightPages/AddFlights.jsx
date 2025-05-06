@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Modal, FloatingLabel, Form } from "react-bootstrap";
 import TotalFlight from '../../component/TotalFlight'
 import { addingFlights, getallViewFlights } from "../../../services/allApi";
 import Card from 'react-bootstrap/Card';
 import baseURL from "../../../services/baseURL";
 import FlightEdit from "../FlightEdit";
+import { editFlight } from "../../component/Context/FlightContext";
+
 
 
 
@@ -13,17 +15,21 @@ import FlightEdit from "../FlightEdit";
 
 
 const AddFlights = () => {
+  const{flightUpdate,setFlightUpdate}=useContext(editFlight)
 
    const [show, setShow] = useState(false);
     const [tripType, setTripType] = useState("oneStop");
     
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+      setShow(false);
+      clearContent()
+    }
     const handleShow = () => setShow(true);
     const[preview,setPreview]=useState()
     const[data,setData]=useState([])
 
     const[flightData,setFlightData]=useState({
-      tripType:tripType,
+      tripType:"",
       airlineName:"",
       flightNumber:"",
       departureAirportCode:"",
@@ -44,10 +50,14 @@ const AddFlights = () => {
       avaiableSeat:"",
       stop:""
 
-    })
+    }
+    
+  )
+  console.log(flightData);
+  
     useEffect(()=>{
       allFlightView()
-    },[])
+    },[flightUpdate])
 
     useEffect(()=>{
 
@@ -62,9 +72,12 @@ const AddFlights = () => {
 
     },[flightData.destinationImg])
     console.log(flightData);
+
+   
     
 
-    const saveFlights=async()=>{
+    const saveFlights=async(e)=>{
+      e.preventDefault()
       const token=sessionStorage.getItem("token")
       if(token){
         
@@ -80,12 +93,13 @@ const AddFlights = () => {
             payload.append("timeOfDeparture", flightData.timeOfDeparture);
             payload.append("destinationAirportCode", flightData.destinationAirportCode);
             payload.append("destinationImg", flightData.destinationImg);
+            payload.append("destinationName", flightData.destinationName);
             payload.append("dateOfDestination", flightData.dateOfDestination);
             payload.append("timeOfDestination", flightData.timeOfDestination);
             payload.append("flightDuration", flightData.flightDuration);
-            payload.append("dateOfDestination", flightData.dateOfDestination);
             payload.append("refundable", flightData.refundable);
             payload.append("cabinClass", flightData.cabinClass);
+            payload.append("price", flightData.price);
             payload.append("returnDate", flightData.returnDate);
             payload.append("returnTime", flightData.returnTime);
             payload.append("avaiableSeat", flightData.avaiableSeat);
@@ -99,6 +113,7 @@ const AddFlights = () => {
             if(apiResponse.status==201){
               console.log(apiResponse.data);
               alert("Flight Added Successfully")
+              handleClose()
               
             }else{
               alert("something went wrong")
@@ -140,6 +155,36 @@ const AddFlights = () => {
         
       }
     }
+    const clearContent=()=>{
+      setFlightData(
+        {
+          tripType:"",
+          airlineName:"",
+          flightNumber:"",
+          departureAirportCode:"",
+          departureName:"",
+          dateOfDeparture:"",
+          timeOfDeparture:"",
+          destinationAirportCode:"",
+          destinationImg:"",
+          destinationName:"",
+          dateOfDestination:"",
+          timeOfDestination:"",
+          flightDuration:"",
+          refundable:"",
+          cabinClass:"",
+          price:"",
+          returnDate:"",
+          returnTime:"",
+          avaiableSeat:"",
+          stop:""
+
+        }
+      )
+      setPreview("")
+      
+
+    }
     
  
   return (
@@ -178,7 +223,7 @@ const AddFlights = () => {
           <Modal.Body className="pt-0">
             <div className="row">
               <div className="col-md-6">
-              <div>
+              <div sty>
                 <label>
                 <input type='file' style={{display:"none"}}
                 onChange={((e)=>(setFlightData({...flightData,destinationImg:e.target.files[0]})))} />
@@ -190,9 +235,13 @@ const AddFlights = () => {
                     name="tripType"
                     className="border-2"
                     value={tripType}
-                    onChange={(e) => setTripType(e.target.value)}
+                    onChange={(e) => {
+                      setTripType(e.target.value);
+                      setFlightData({ ...flightData, tripType: e.target.value });
+                    }}
+                    
                   >
-                    <option value="one-way">One Way</option>
+                    <option value="oneWay">One Way</option>
                     <option value="return">Return</option>
                   </Form.Select>
                 </FloatingLabel>
@@ -380,16 +429,11 @@ const AddFlights = () => {
                 </FloatingLabel>
               </div>
               <div className="col-md-3">
-                <FloatingLabel controlId="stop" label="Stop" className="mb-3"
-                 onChange={(e)=>(
-                  setFlightData({...flightData,stop:e.target.value})
-                )}>
-                  <Form.Select name="stop">
-                    <option value="direct">Direct</option>
-                    <option value="oneStop">oneStop</option>
-                   
-                  </Form.Select>
-                </FloatingLabel>
+                <Form.Select name="stop" onChange={(e) => setFlightData({...flightData, stop: e.target.value})}>
+                 <option value="direct">Direct</option>
+                 <option value="oneStop">One Stop</option>
+                 </Form.Select>
+
               </div>
               
               <div className="col-md-3">
@@ -454,11 +498,11 @@ const AddFlights = () => {
         {
           data.map((a,index)=>(
            <div className="">
-             <Card style={{ width: '19rem', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease' }}>
+             <Card  key={index} style={{ width: '19rem', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease' ,height:"500px"}}>
             <Card.Img variant="top" src={`${baseURL}/uploads/${a.destinationImg}`} style={{ height: '180px', objectFit: 'cover' }} />
             <Card.Body style={{ padding: '1.5rem' }}>
               <Card.Title style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.5rem' }}>{a.departureName}</Card.Title>
-              <Card.Text style={{ color: '#6c757d', marginBottom: '1.5rem' }}>{a.destinationName}</Card.Text>
+              <Card.Text style={{ fontSize: '1.3rem', fontWeight: '600', marginBottom: '0.5rem' }}>{a.destinationName}</Card.Text>
               <Card.Text>
                 <div className="row" style={{ marginBottom: '1rem' }}>
                   <div className="col-3">

@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FloatingLabel, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import baseURL from '../../services/baseURL';
 import { updateFlight } from '../../services/allApi';
+import { editFlight } from '../component/Context/FlightContext';
 
 
 const FlightEdit = ({ flights }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const[preview,setPreview]=useState()
-
+  
+  const{flightUpdate,setFlightUpdate}=useContext(editFlight)
+  
   
   const formatDate = (date) => {
     if (!date) return '';
@@ -26,7 +28,7 @@ const FlightEdit = ({ flights }) => {
 
   const [flightData, setFlightData] = useState({
     flightId:flights._id,
-    tripType: flights.tripType ,
+    tripType: flights.tripType|| 'one-way' ,
     airlineName: flights.airlineName ,
     flightNumber: flights.flightNumber ,
     departureAirportCode: flights.departureAirportCode ,
@@ -34,7 +36,7 @@ const FlightEdit = ({ flights }) => {
     dateOfDeparture: formatDate(flights.dateOfDeparture) ,
     timeOfDeparture: flights.timeOfDeparture ,
     destinationAirportCode: flights.destinationAirportCode ,
-    destinationImg: "",
+    destinationImg: flights.destinationImg,
     destinationName: flights.destinationName ,
     dateOfDestination: formatDate(flights.dateOfDestination),
     timeOfDestination: flights.timeOfDestination ,
@@ -47,54 +49,29 @@ const FlightEdit = ({ flights }) => {
     avaiableSeat: flights.avaiableSeat ,
     stop: flights.stop
   });
-useEffect(()=>{
-  if(flightData.destinationImg){
-    setPreview(URL.createObjectURL(flightData.destinationImg))
-  }
-},[flightData.destinationImg])
+  console.log(flights.tripType);
+  
 
  const saveFlights=async(e)=>{
           e.preventDefault(); 
       const token=sessionStorage.getItem("token")
       if(token){
         
-         
-            const payload = new FormData();
-            preview
-            ? payload.append("destinationImg", flightData.destinationImg)
-            : payload.append("destinationImg", flights.destinationImg);
-          
-            payload.append("tripType", flightData.tripType);
-            payload.append("airlineName", flightData.airlineName);
-            payload.append("flightNumber", flightData.flightNumber);
-            payload.append("departureAirportCode", flightData.departureAirportCode);
-            payload.append("departureName", flightData.departureName);
-            payload.append("dateOfDeparture", flightData.dateOfDeparture);
-            payload.append("timeOfDeparture", flightData.timeOfDeparture);
-            payload.append("destinationAirportCode", flightData.destinationAirportCode);
-            payload.append("destinationImg", flightData.destinationImg);
-            payload.append("destinationName", flightData.destinationName);
-            payload.append("timeOfDestination", flightData.timeOfDestination);
-            payload.append("flightDuration", flightData.flightDuration);
-            payload.append("dateOfDestination", flightData.dateOfDestination);
-            payload.append("refundable", flightData.refundable);
-            payload.append("cabinClass", flightData.cabinClass);
-            payload.append("returnDate", flightData.returnDate);
-            payload.append("returnTime", flightData.returnTime);
-            payload.append("avaiableSeat", flightData.avaiableSeat);
-            payload.append("stop", flightData.stop);
+            
             const reqHeaders={
               "authorization":`Bearer ${token}`,
-              "Content-Type":"multipart/form-data"
+            
             }
             try{
-              const apiResponse=await updateFlight(flightData.flightId,payload,reqHeaders)
+              const apiResponse=await updateFlight(flightData.flightId,flightData,reqHeaders)
               console.log(apiResponse.data);
               
               
             if(apiResponse.status==200){
               console.log(apiResponse.data);
+              setFlightUpdate(apiResponse.data)
               alert("Flight  updated Successfully")
+              handleClose()
               
             }else{
               alert("something went wrong")
@@ -159,7 +136,7 @@ useEffect(()=>{
                     onChange={(e) => setFlightData({ ...flightData, destinationImg: e.target.files[0] })}
                   />
                   <img
-                    src={preview?preview:`${baseURL}/uploads/${flights.destinationImg}`}
+                    src={`${baseURL}/uploads/${flights.destinationImg}`}
                     alt="image"
                     className="img-fluid"
                   />

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Badge } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AdminNotification from './AdminNotification';
-import { approvedByAdmin, flightBooked, rejectByAdmin, singleBooking } from '../../services/allApi';
+import { approvedByAdmin, flightBooked, gettotalBooking, gettotalUser, rejectByAdmin, singleBooking } from '../../services/allApi';
 import baseURL from '../../services/baseURL';
+
+
 
 
 
@@ -12,6 +14,8 @@ const FlightBookedByUser = () => {
   const[data,setData]=useState([])
   
   const navigate=useNavigate()
+   const[user,setUser]=useState("")
+   const[booking,setBooking]=useState("")
 
   
  
@@ -19,6 +23,8 @@ const FlightBookedByUser = () => {
 
   useEffect(()=>{
     bookedUser()
+    totalBooking(),
+    totalUser()
   },[])
 
   const bookedUser=async()=>{
@@ -89,6 +95,32 @@ const FlightBookedByUser = () => {
    
 
   }
+   const totalUser=async()=>{
+    
+      try{
+        let apiResponse=await gettotalUser()
+        setUser(apiResponse.data)
+        
+  
+      }catch(err){
+        console.log(err);
+        
+      }
+    }
+      const totalBooking=async()=>{
+    
+        try{
+          let apiResponse=await gettotalBooking()
+          console.log(apiResponse.data,"ok");
+          
+          setBooking(apiResponse.data)
+          
+    
+        }catch(err){
+          console.log(err);
+          
+        }
+      }
   
 
 
@@ -118,15 +150,13 @@ const FlightBookedByUser = () => {
               <div className="d-flex justify-content-between align-items-start">
                 <div>
                   <h6 className="text-uppercase text-white-50 mb-2">Total Users</h6>
-                  <h2 className="mb-0">1,234</h2>
+                  <h2 className="mb-0">{user}</h2>
                 </div>
                 <div className="bg-white bg-opacity-10 p-3 rounded-circle">
                   <i className="fas fa-users fs-4"></i>
                 </div>
               </div>
-              <div className="mt-auto">
-                <small className="text-white-50">+12% from last month</small>
-              </div>
+              
             </Card.Body>
           </Card>
         </div>
@@ -139,15 +169,13 @@ const FlightBookedByUser = () => {
               <div className="d-flex justify-content-between align-items-start">
                 <div>
                   <h6 className="text-uppercase text-white-50 mb-2">Total Bookings</h6>
-                  <h2 className="mb-0">567</h2>
+                  <h2 className="mb-0">{booking}</h2>
                 </div>
                 <div className="bg-white bg-opacity-10 p-3 rounded-circle">
                   <i className="fas fa-plane fs-4"></i>
                 </div>
               </div>
-              <div className="mt-auto">
-                <small className="text-white-50">+8% from last month</small>
-              </div>
+              
             </Card.Body>
           </Card>
         </div>
@@ -178,7 +206,7 @@ const FlightBookedByUser = () => {
                 <td className="p-3">
                   <div className="rounded-circle overflow-hidden" style={{ width: '60px', height: '60px' }}>
                     <img 
-                      src={`${baseURL}/uploads/${a.userId.image}`}
+                    src={a.userId?.image ? `${baseURL}/uploads/${a.userId.image}` : '/default-avatar.png'}
                       alt="Profile" 
                       className="img-fluid"
                       style={{ objectFit: 'cover', width: '100%', height: '100%' }}
@@ -188,8 +216,8 @@ const FlightBookedByUser = () => {
                 <td className="p-3 fw-semibold">{a.userId?.name}</td>
                 <td className="p-3">{a.userId?.email}</td>
                
-                <td className="p-3">{a.userId.address}</td>
-                <td className="p-3">{a.userId.phoneNumber}</td>
+                <td className="p-3">{a.userId?.address}</td>
+                <td className="p-3">{a.userId?.phoneNumber}</td>
                 <td className="p-3">
                   <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
                     <i className="fas fa-check-circle me-1"></i> {a.status}
@@ -231,7 +259,9 @@ const FlightBookedByUser = () => {
 
                     </td>:
                    a.cancellationStatus=="approved"?
-                   <p >Cancellation approved</p>:<p>Cancellation Rejected</p>
+                   <p >Cancellation approved</p>:
+                   a.cancellationStatus=="rejected"? <p>Cancellation Rejected</p>:
+                   <p>Not Requested</p>
                                 }
                 
                 <td className="p-3">
@@ -258,7 +288,7 @@ const FlightBookedByUser = () => {
           </div>
         </Card.Body>
       </Card>
-
+           
     
      
     </div>

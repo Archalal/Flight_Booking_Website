@@ -108,12 +108,6 @@ const TotalDisplay = () => {
                   <i className="fas fa-calendar-check fs-4" style={{ color: '#2980b9' }}></i>
                 </div>
               </div>
-              <div className="mt-auto">
-                <Badge bg="light" text="success" className="px-2 py-1 rounded-pill">
-                  <i className="fas fa-arrow-up me-1"></i> 8%
-                </Badge>
-                <small className="text-muted ms-2">from last month</small>
-              </div>
             </Card.Body>
           </Card>
         </div>
