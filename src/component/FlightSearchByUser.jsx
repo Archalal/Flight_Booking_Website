@@ -13,46 +13,35 @@ const FlightSearchByUser = () => {
   const [tripType, setTripType] = useState("oneWay");
 
   const tripChange = (type) => setTripType(type);
-  
-  console.log(tripType);
-  
 
-  const[toSearch,setToSearch]=useState("")
-  const[fromSearch,setFromSearch]=useState("")
-  const[departureSearch,setDepartureSearch]=useState("")
-  const[returnSearch,setReturnSearch]=useState("")
-  const[cabinSearch,setCabinSearch]=useState("economy")
-  const[passengersSearch,setSearchPassenger]=useState("1")
-  console.log(toSearch,fromSearch,departureSearch,returnSearch,cabinSearch,passengersSearch);
-
+  const [toSearch, setToSearch] = useState("");
+  const [fromSearch, setFromSearch] = useState("");
+  const [departureSearch, setDepartureSearch] = useState("");
+  const [returnSearch, setReturnSearch] = useState("");
+  const [cabinSearch, setCabinSearch] = useState("economy");
+  const [passengersSearch, setSearchPassenger] = useState("1");
 
   const onBtnClick = () => {
-    const token=sessionStorage.getItem("token")
-    if(token){
-      if(toSearch&&fromSearch&&departureSearch&&cabinSearch&&passengersSearch){
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      if (toSearch && fromSearch && departureSearch && cabinSearch && passengersSearch) {
         let query = `?departureName=${fromSearch}&destinationName=${toSearch}&dateOfDeparture=${departureSearch}&cabinClass=${cabinSearch}&avaiableSeat=${passengersSearch}`;
         navigate(`/searchticketbyuser${query}`);
-       if(tripType=="roundTrip"){
-        if (toSearch&&fromSearch&&departureSearch&&returnSearch&&cabinSearch&&passengersSearch) {
-          query += `&returnDate=${returnSearch}`;
-          navigate(`/searchticketbyuser${query}`);
-        }else{
-          alert("fill the return date")
-         }
-       }
-       
-
+        if (tripType == "roundTrip") {
+          if (toSearch && fromSearch && departureSearch && returnSearch && cabinSearch && passengersSearch) {
+            query += `&returnDate=${returnSearch}`;
+            navigate(`/searchticketbyuser${query}`);
+          } else {
+            alert("Please fill the return date");
+          }
+        }
+      } else {
+        alert("Please fill all required fields");
       }
-      else{
-        alert("fill the form")
-      }
-    }else{
-      alert("please login in")
+    } else {
+      alert("Please login first");
     }
-  }
-  
-  
-
+  };
 
   const travelImages = [
     "https://content.r9cdn.net/res/images/horizon/ui/horizontalSearchNavigation/Flights_02_1_5x.png",
@@ -96,50 +85,62 @@ const FlightSearchByUser = () => {
             <div className="form-grid">
               <div className="form-group">
                 <FloatingLabel controlId="floatingFrom" label="From">
-                  <Form.Control type="text" placeholder="City or Airport" 
-                   list="cityOptions"
-                  onChange={((e)=>(setFromSearch(e.target.value)))}/>
+                  <Form.Control 
+                    type="text" 
+                    placeholder="City or Airport" 
+                    list="cityOptions"
+                    onChange={(e) => setFromSearch(e.target.value)}
+                    className="compact-input"
+                  />
                 </FloatingLabel>
                 <datalist id="cityOptions">
-                <option value="Thiruvananthapuram" />
-                <option value="Kochi" />
-                <option value="New Delhi" />
-                <option value="Mumbai" />
-                <option value="Dubai" />
-                <option value="Doha" />
-                <option value="New York" />
-                <option value="Paris" />
-                <option value="London" />
-                <option value="Sydney" />
-                <option value="Toronto" />
-              </datalist>
+                  <option value="Thiruvananthapuram" />
+                  <option value="Kochi" />
+                  <option value="New Delhi" />
+                  <option value="Mumbai" />
+                  <option value="Dubai" />
+                  <option value="Doha" />
+                  <option value="New York" />
+                  <option value="Paris" />
+                  <option value="London" />
+                  <option value="Sydney" />
+                  <option value="Toronto" />
+                </datalist>
               </div>
 
               <div className="form-group">
                 <FloatingLabel controlId="floatingTo" label="To">
-                  <Form.Control type="text" placeholder="City or Airport"
-                  list="cityOption"
-                   onChange={((e)=>(setToSearch(e.target.value)))} />
+                  <Form.Control 
+                    type="text" 
+                    placeholder="City or Airport"
+                    list="cityOption"
+                    onChange={(e) => setToSearch(e.target.value)}
+                    className="compact-input"
+                  />
                 </FloatingLabel>
-                 <datalist id="cityOption">
-                <option value="Thiruvananthapuram" />
-                <option value="Kochi" />
-                <option value="New Delhi" />
-                <option value="Mumbai" />
-                <option value="Dubai" />
-                <option value="Doha" />
-                <option value="New York" />
-                <option value="Paris" />
-                <option value="London" />
-                <option value="Sydney" />
-                <option value="Toronto" />
-              </datalist>
+                <datalist id="cityOption">
+                  <option value="Thiruvananthapuram" />
+                  <option value="Kochi" />
+                  <option value="New Delhi" />
+                  <option value="Mumbai" />
+                  <option value="Dubai" />
+                  <option value="Doha" />
+                  <option value="New York" />
+                  <option value="Paris" />
+                  <option value="London" />
+                  <option value="Sydney" />
+                  <option value="Toronto" />
+                </datalist>
               </div>
 
               <div className="form-group">
                 <FloatingLabel controlId="floatingDepart" label="Departure">
-                  <Form.Control type="date" placeholder="Departure" 
-                   onChange={((e)=>(setDepartureSearch(e.target.value)))}/>
+                  <Form.Control 
+                    type="date" 
+                    placeholder="Departure" 
+                    onChange={(e) => setDepartureSearch(e.target.value)}
+                    className="compact-input"
+                  />
                 </FloatingLabel>
               </div>
 
@@ -149,18 +150,20 @@ const FlightSearchByUser = () => {
                     type="date" 
                     placeholder="Return" 
                     disabled={tripType === 'oneWay'}
-                    onChange={((e)=>(setReturnSearch(e.target.value)))}
+                    onChange={(e) => setReturnSearch(e.target.value)}
+                    className="compact-input"
                   />
                 </FloatingLabel>
               </div>
 
               <div className="form-group">
-                <FloatingLabel controlId="floatingClass" label="Cabin Class"
-                 onChange={((e)=>(setCabinSearch(e.target.value)))}
-                 defaultValue="economy"
-                >
-                  <Form.Select>
-                    <option  value="economy">Economy</option>
+                <FloatingLabel controlId="floatingClass" label="Cabin Class">
+                  <Form.Select
+                    onChange={(e) => setCabinSearch(e.target.value)}
+                    defaultValue="economy"
+                    className="compact-input"
+                  >
+                    <option value="economy">Economy</option>
                     <option value="premium">Premium Economy</option>
                     <option value="business">Business</option>
                   </Form.Select>
@@ -174,8 +177,8 @@ const FlightSearchByUser = () => {
                     placeholder="1" 
                     min="1"
                     defaultValue={1}
-                    
-                    onChange={((e)=>(setSearchPassenger(e.target.value)))}
+                    onChange={(e) => setSearchPassenger(e.target.value)}
+                    className="compact-input"
                   />
                 </FloatingLabel>
               </div>
@@ -184,6 +187,7 @@ const FlightSearchByUser = () => {
             <Button
               onClick={onBtnClick}
               className="search-button"
+              variant="primary"
             >
               <MdFlight className="icon" />
               Search Flights
