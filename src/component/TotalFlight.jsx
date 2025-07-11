@@ -126,44 +126,42 @@ const TotalFlight = () => {
             </h5>
           </div>
           <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
-              <thead style={{ backgroundColor: '#f8f9fa' }}>
-                <tr>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Flight No.</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Departure</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Destination</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Date</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Stop</th>
-                 
-                </tr>
-              </thead>
-            {
-              filteredArray?.map((a,index)=>(
-                <tbody>
-                <tr key={index}>
-                  <td className="p-3 fw-semibold">{a.flightNumber}</td>
-                  <td className="p-3">{a.departureName}</td>
-                  <td className="p-3">{a.destinationName}</td>
-                  
-                  <td className="p-3">{
+            <div className="table-responsive">
+  <table className="table align-middle mb-0" style={{ fontSize: '14px' }}>
+    <thead style={{ backgroundColor: '#f1f5f9' }}>
+      <tr className="text-uppercase text-muted fw-semibold small">
+        <th className="p-3">Flight No.</th>
+        <th className="p-3">Departure</th>
+        <th className="p-3">Destination</th>
+        <th className="p-3">Date</th>
+        <th className="p-3">Stop</th>
+      </tr>
+    </thead>
+    <tbody>
+      {filteredArray?.map((a, index) => (
+        <tr
+          key={index}
+          style={{
+            backgroundColor: index % 2 === 0 ? '#ffffff' : '#f9fafb',
+            transition: 'background 0.2s ease-in-out',
+          }}
+        >
+          <td className="p-3 fw-semibold text-dark">{a.flightNumber}</td>
+          <td className="p-3 text-muted">{a.departureName}</td>
+          <td className="p-3 text-muted">{a.destinationName}</td>
+          <td className="p-3 text-muted">
+            {new Date(a.dateOfDeparture).toLocaleString("en-US", {
+              dateStyle: "medium",
+              timeStyle: "short",
+            })}
+          </td>
+          <td className="p-3 text-muted">{a.stop}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
-                    
-                     new Date(a.dateOfDeparture).toLocaleString("en-US",{
-                        dateStyle:"medium",
-                        timeStyle:"short"
-                      })
-                      
-            }
-                    </td>
-                    <td className="p-3">{a.stop}</td>
-                 
-                
-                </tr>
-               
-              </tbody>
-              ))
-            }
-            </table>
           </div>
         </Card.Body>
       </Card>

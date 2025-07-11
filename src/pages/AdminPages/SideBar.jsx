@@ -19,7 +19,7 @@ const SideBar = () => {
                   backgroundColor: '#ff5a1d',
                   color: 'white',
                   borderRadius: '3px',
-                  fontSize: '0.8rem',
+                  fontSize: '0.5rem',
                   fontWeight: 'bold',
                   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                   cursor: 'pointer',
@@ -35,45 +35,45 @@ const SideBar = () => {
             <ul style={{ listStyle: "none", padding: "0",marginTop:"30px",marginLeft:"1px" }}>
               <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
              
-                <Link  to={'/admin'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+                <Link  to={'/admin'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"14px", letterSpacing: "2px"}}>
                 <i class="fa-solid fa-house"></i><span className='ms-2'>OverView</span>
                 </Link>
               </li>
               <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link to={ "/admin/useradminmanage"} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <Link to={ "/admin/useradminmanage"} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"14px", letterSpacing: "2px"}}>
              <i class="fa-solid fa-user"></i><span className='ms-2'>Users Manage</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0" ,marginTop:"40px"}}>
              
-             <Link  to={'/admin/adminflightmanage'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <Link  to={'/admin/adminflightmanage'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"14px", letterSpacing: "2px"}}>
              <i class="fa-solid fa-plane-departure"></i><span className='ms-2'>Flight details</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link  to={'/admin/bookingflights'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <Link  to={'/admin/bookingflights'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"14px", letterSpacing: "2px"}}>
              <i class="fa-solid fa-cart-shopping"></i> <span className='ms-2'>Booking Flights</span>
              </Link>
            </li>
 
            <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link  to={'/admin/adminstaffadd'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <Link  to={'/admin/adminstaffadd'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"14px", letterSpacing: "2px"}}>
              <i class="fa-solid fa-right-from-bracket"></i> <span className='ms-2'>Staff Add</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0",marginTop:"40px" }}>
              
-             <Link  to={'/admin/revenue'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <Link  to={'/admin/revenue'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"14px", letterSpacing: "2px"}}>
              <i class="fa-solid fa-sack-dollar"></i>  <span className='ms-2'>Revenue Details</span>
              </Link>
            </li>
            <li style={{ margin: "15px 0",marginTop:"40px" }}
            >
              
-             <Link  to={'/'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"17px", letterSpacing: "2px"}}>
+             <Link  to={'/'} style={{ color: "black", textDecoration: "none" ,fontWeight:"bolder",fontSize:"14px", letterSpacing: "2px"}}>
              <i class="fa-solid fa-right-from-bracket"></i> <span className='ms-2'>Logout</span>
              </Link>
            </li>

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Modal, FloatingLabel, Form } from "react-bootstrap";
 import TotalFlight from '../../component/TotalFlight'
-import { addingFlights, getallViewFlights } from "../../../services/allApi";
+import { addingFlights, delFlight, getallViewFlights } from "../../../services/allApi";
 import Card from 'react-bootstrap/Card';
 import baseURL from "../../../services/baseURL";
 import FlightEdit from "../FlightEdit";
-import { editFlight } from "../../component/Context/FlightContext";
+import {  editFlight } from "../../component/Context/FlightContext";
 
 
 
@@ -16,6 +16,7 @@ import { editFlight } from "../../component/Context/FlightContext";
 
 const AddFlights = () => {
   const{flightUpdate,setFlightUpdate}=useContext(editFlight)
+ 
 
    const [show, setShow] = useState(false);
     const [tripType, setTripType] = useState("oneStop");
@@ -114,9 +115,10 @@ const AddFlights = () => {
               console.log(apiResponse.data);
               alert("Flight Added Successfully")
               handleClose()
+              allFlightView()
               
             }else{
-              alert("something went wrong")
+              alert("something went wrong,flight added")
             }
               
 
@@ -182,6 +184,15 @@ const AddFlights = () => {
         }
       )
       setPreview("")
+      
+
+    }
+    const deleteFlight=async(id)=>{
+      console.log(id);
+      const apiREsponse=await delFlight(id)
+      console.log(apiREsponse);
+      allFlightView()
+      
       
 
     }
@@ -548,7 +559,9 @@ const AddFlights = () => {
                 <span style={{ color: '#ff5a1d', fontWeight: 'bolder', fontSize: '1.25rem' }}>{a.price}</span>
                 <FlightEdit flights={a} />
               
-                <button style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '8px', padding: '8px 16px', fontSize: '0.9rem', fontWeight: '500', cursor: 'pointer', transition: 'background-color 0.3s ease' }} ><i className="fa-solid fa-trash"></i></button>
+                <button
+                onClick={()=>deleteFlight(a._id)}
+                 style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '8px', padding: '8px 16px', fontSize: '0.9rem', fontWeight: '500', cursor: 'pointer', transition: 'background-color 0.3s ease' }} ><i className="fa-solid fa-trash"></i></button>
               </div>
             </Card.Body>
           </Card>

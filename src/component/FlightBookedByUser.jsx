@@ -182,112 +182,104 @@ const FlightBookedByUser = () => {
       </div>
 
       {/* Bookings Table */}
-      <Card className="border-0 shadow-sm">
-        <Card.Body className="p-0">
-          <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
-              <thead style={{ backgroundColor: '#f8f9fa' }}>
-                <tr>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Picture</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Name</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">E-Mail</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Address</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Phone</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Status</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Cancellation</th>
-                  <th className="p-3 text-uppercase text-muted fw-semibold small">Actions</th>
-                
-                </tr>
-              </thead>
-           {
-            data?.map((a,index)=>(
-              <tbody key={index}>
-              <tr>
-                <td className="p-3">
-                  <div className="rounded-circle overflow-hidden" style={{ width: '60px', height: '60px' }}>
-                    <img 
-                    src={a.userId?.image ? `${baseURL}/uploads/${a.userId.image}` : '/default-avatar.png'}
-                      alt="Profile" 
-                      className="img-fluid"
-                      style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                    />
-                  </div>
-                </td>
-                <td className="p-3 fw-semibold">{a.userId?.name}</td>
-                <td className="p-3">{a.userId?.email}</td>
-               
-                <td className="p-3">{a.userId?.address}</td>
-                <td className="p-3">{a.userId?.phoneNumber}</td>
-                <td className="p-3">
-                  <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
-                    <i className="fas fa-check-circle me-1"></i> {a.status}
-                  </Badge>
-                </td>
-             {
-              a.cancellationStatus=="requested"
-              ?
-              <td>
-              
-                <button
-                    style={{
-                      border: ' green none ',
-                      backgroundColor: '#e6ffe6',
-                      color: 'green',
-                      padding: '6px 12px',
-                      borderRadius: '4px',
-
-                    }}
-                    onClick={()=>approved(a)}
-                    >
-                    Approve
-                    </button>
-
-                    <button
-                    style={{
-                      border: ' red none',
-                      backgroundColor: '#ffe6e6',
-                      color: 'red',
-                      padding: '6px 12px',
-                      borderRadius: '4px',
-                      marginLeft:"3px",
-                    }}
-                    onClick={()=>rejectCancellation(a)}
-                    >
-                    Reject
-                    </button>
-
-
-                    </td>:
-                   a.cancellationStatus=="approved"?
-                   <p >Cancellation approved</p>:
-                   a.cancellationStatus=="rejected"? <p>Cancellation Rejected</p>:
-                   <p>Not Requested</p>
-                                }
-                
-                <td className="p-3">
-                
-                    <Button 
-                      variant="outline-primary" 
-                      size="sm" 
-                      className="rounded-pill px-3 d-flex align-items-center"
-                      style={{ borderWidth: "1.5px" }}
-                      onClick={()=>{
-                        onUserClick(a._id)
-                      }}
-                    >
-                      <i className="fas fa-eye me-2"></i> View Booking
-                    </Button>
-                
-                </td>
-              </tr>
-            
-            </tbody>
-            ))
-           }
-            </table>
+      <table className="table table-borderless table-hover align-middle mb-0" style={{ fontSize: '14px' }}>
+  <thead className="bg-light text-secondary">
+    <tr className="text-uppercase fw-semibold">
+      <th className="p-3">Picture</th>
+      <th className="p-3">Name</th>
+      <th className="p-3">Email</th>
+      <th className="p-3">Address</th>
+      <th className="p-3">Phone</th>
+      <th className="p-3">Status</th>
+      <th className="p-3">Cancellation</th>
+      <th className="p-3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {data?.map((a, index) => (
+      <tr key={index} style={{ verticalAlign: 'middle', backgroundColor: index % 2 === 0 ? '#f9fafb' : 'white' }}>
+        <td className="p-3">
+          <div
+            className="rounded-circle overflow-hidden border shadow-sm"
+            style={{ width: '50px', height: '50px' }}
+          >
+            <img
+              src={a.userId?.image ? `${baseURL}/uploads/${a.userId.image}` : '/default-avatar.png'}
+              alt="Profile"
+              className="img-fluid"
+              style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+            />
           </div>
-        </Card.Body>
-      </Card>
+        </td>
+        <td className="p-3 fw-semibold text-dark">{a.userId?.name}</td>
+        <td className="p-3 text-muted">{a.userId?.email}</td>
+        <td className="p-3 text-muted">{a.userId?.address}</td>
+        <td className="p-3 text-muted">{a.userId?.phoneNumber}</td>
+        <td className="p-3">
+          <Badge
+            bg="success"
+            className="px-3 py-1 text-white rounded-pill shadow-sm"
+            style={{ fontSize: '0.75rem' }}
+          >
+            <i className="fas fa-check-circle me-1"></i> {a.status}
+          </Badge>
+        </td>
+        <td className="p-3">
+          {a.cancellationStatus === "requested" ? (
+            <div className="d-flex gap-2">
+              <button
+                style={{
+                  border: 'none',
+                  backgroundColor: '#d1fae5',
+                  color: '#065f46',
+                  padding: '5px 10px',
+                  borderRadius: '6px',
+                  fontSize: '0.75rem',
+                  fontWeight: '500',
+                }}
+                onClick={() => approved(a)}
+              >
+                Approve
+              </button>
+              <button
+                style={{
+                  border: 'none',
+                  backgroundColor: '#fee2e2',
+                  color: '#991b1b',
+                  padding: '5px 10px',
+                  borderRadius: '6px',
+                  fontSize: '0.75rem',
+                  fontWeight: '500',
+                }}
+                onClick={() => rejectCancellation(a)}
+              >
+                Reject
+              </button>
+            </div>
+          ) : a.cancellationStatus === "approved" ? (
+            <span className="text-success fw-semibold small">Cancellation Approved</span>
+          ) : a.cancellationStatus === "rejected" ? (
+            <span className="text-danger fw-semibold small">Cancellation Rejected</span>
+          ) : (
+            <span className="text-muted small">Not Requested</span>
+          )}
+        </td>
+        <td className="p-3">
+          <Button
+            variant="outline-primary"
+            size="sm"
+            className="rounded-pill px-3 py-1 d-flex align-items-center"
+            style={{ fontSize: '0.75rem', fontWeight: '500' }}
+            onClick={() => onUserClick(a._id)}
+          >
+            <i className="fas fa-eye me-2"></i> View
+          </Button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
            
     
      

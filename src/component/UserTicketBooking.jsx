@@ -106,7 +106,7 @@ const UserTicketBooking = () => {
                       </Link>
                     </td>
                   </tr>
-                  {/* Additional rows would go here */}
+                 
                 </tbody>
               </table>
             </div>

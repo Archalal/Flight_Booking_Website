@@ -4,7 +4,7 @@ export const LoginContext=createContext()
 
 
 const AuthContext = ({children}) => {
-    const[isLoggined,setIsLoginned]=useState(false)
+    const[isLoggined,setIsLoginned]=useState(true)
 
     useEffect(()=>{
         if(sessionStorage.getItem('token')){

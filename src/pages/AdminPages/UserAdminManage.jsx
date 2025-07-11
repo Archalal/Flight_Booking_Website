@@ -69,61 +69,74 @@ const UserAdminManage = () => {
               </h5>
             </div>
             
-            <div className="table-responsive">
-              <Table hover className="mb-0">
-                <thead style={{ backgroundColor: "#f8f9fa" }}>
-                  <tr>
-                    <th className="text-center p-3">Picture</th>
-                    <th className="p-3">Name</th>
-                    <th className="p-3">Email</th>
-                    <th className="p-3">Phone</th>
-                    <th className="p-3">Status</th>
-                    <th className="text-center p-3">Actions</th>
-                  </tr>
-                </thead>
-               {
-                userData?.map((a,index)=>(
-                  <tbody>
-                  <tr key={index}>
-                    <td className="text-center p-3">
-                      <div className="rounded-circle overflow-hidden mx-auto" style={{ width: "50px", height: "50px" }}>
-                        <img 
-                          src={`${baseURL}/uploads/${a.image}` }
-                          alt="User" 
-                          className="img-fluid"
-                          style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                        />
-                      </div>
-                    </td>
-                    <td className="p-3 fw-semibold">{a.name}</td>
-                    <td className="p-3">{a.email}</td>
-                    <td className="p-3">{a.phoneNumber}</td>
-                    <td className="p-3">
-                      <Badge bg="success" className="bg-opacity-10 text-success px-3 py-2 rounded-pill">
-                        <i className="fas fa-check-circle me-1"></i> Active
-                      </Badge>
-                    </td>
-                    <td className="text-center p-3">
-                      <div className="d-flex justify-content-center">
-                       
-                          <Button 
-                            variant="outline-primary" 
-                            size="sm" 
-                            className="rounded-pill px-3"
-                            onClick={()=>(onSingleUserId(a._id))}
-                          >
-                            <i className="fas fa-eye me-1"></i> View
-                          </Button >
-                      
-                       
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-                ))
-               }
-              </Table>
+           <div className="table-responsive">
+  <Table
+    hover
+    className="align-middle mb-0"
+    style={{ borderCollapse: "separate", borderSpacing: "0 10px" }}
+  >
+    <thead style={{ backgroundColor: "#f1f5f9", boxShadow: "0 2px 6px rgba(0,0,0,0.05)" }}>
+      <tr className="text-uppercase text-secondary small fw-bold">
+        <th className="p-3 text-center">Picture</th>
+        <th className="p-3">Name</th>
+        <th className="p-3">Email</th>
+        <th className="p-3">Phone</th>
+        <th className="p-3">Status</th>
+        <th className="p-3 text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {userData?.map((a, index) => (
+        <tr
+          key={index}
+          style={{
+            backgroundColor: "white",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+            borderRadius: "8px",
+          }}
+        >
+          <td className="text-center p-3">
+            <div
+              className="rounded-circle overflow-hidden mx-auto border"
+              style={{ width: "50px", height: "50px" }}
+            >
+              <img
+                src={`${baseURL}/uploads/${a.image}`}
+                alt="User"
+                className="img-fluid"
+                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              />
             </div>
+          </td>
+          <td className="p-3 fw-semibold text-dark">{a.name}</td>
+          <td className="p-3 text-muted">{a.email}</td>
+          <td className="p-3 text-muted">{a.phoneNumber}</td>
+          <td className="p-3">
+            <Badge
+              bg="success"
+              className="bg-opacity-25 text-success px-3 py-2 rounded-pill"
+              style={{ fontSize: "0.8rem" }}
+            >
+              <i className="fas fa-check-circle me-1"></i> Active
+            </Badge>
+          </td>
+          <td className="text-center p-3">
+            <Button
+              variant="outline-primary"
+              size="sm"
+              className="rounded-pill px-3 py-1"
+              onClick={() => onSingleUserId(a._id)}
+              style={{ fontWeight: "500", fontSize: "0.85rem" }}
+            >
+              <i className="fas fa-eye me-1"></i> View
+            </Button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </Table>
+</div>
+
           </Card.Body>
         </Card>
       </div>

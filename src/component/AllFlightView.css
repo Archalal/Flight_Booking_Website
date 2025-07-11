@@ -1,0 +1,48 @@
+.flight-view-container {
+  background-color: #f8f9fc;
+  min-height: 100vh;
+}
+
+.flight-card {
+  width: 90%;
+  max-width: 960px;
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 28px 30px;
+  border-left: 6px solid transparent;
+  transition: transform 0.3s ease;
+}
+
+.flight-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+.card-return {
+  border-left-color: #007bff;
+}
+
+.card-oneway {
+  border-left-color: #dc3545;
+}
+
+.flight-leg {
+  margin-bottom: 18px;
+}
+
+.flight-logo {
+  width: 45px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.pricing-section {
+  border-left: 1px solid #dee2e6;
+  padding-left: 20px;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 5px 10px;
+  border-radius: 12px;
+}

@@ -121,4 +121,8 @@ export const totalBookedPrice=async()=>{
     return await commonAPi("get","/revenue")
 
 }
-  
+export const delFlight=async(id,)=>{
+    return await commonAPi("delete",`/flight/${id}/delete`,{})
+
+}
+                                        

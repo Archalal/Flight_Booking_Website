@@ -97,15 +97,43 @@ const FlightSearchByUser = () => {
               <div className="form-group">
                 <FloatingLabel controlId="floatingFrom" label="From">
                   <Form.Control type="text" placeholder="City or Airport" 
+                   list="cityOptions"
                   onChange={((e)=>(setFromSearch(e.target.value)))}/>
                 </FloatingLabel>
+                <datalist id="cityOptions">
+                <option value="Thiruvananthapuram" />
+                <option value="Kochi" />
+                <option value="New Delhi" />
+                <option value="Mumbai" />
+                <option value="Dubai" />
+                <option value="Doha" />
+                <option value="New York" />
+                <option value="Paris" />
+                <option value="London" />
+                <option value="Sydney" />
+                <option value="Toronto" />
+              </datalist>
               </div>
 
               <div className="form-group">
                 <FloatingLabel controlId="floatingTo" label="To">
                   <Form.Control type="text" placeholder="City or Airport"
+                  list="cityOption"
                    onChange={((e)=>(setToSearch(e.target.value)))} />
                 </FloatingLabel>
+                 <datalist id="cityOption">
+                <option value="Thiruvananthapuram" />
+                <option value="Kochi" />
+                <option value="New Delhi" />
+                <option value="Mumbai" />
+                <option value="Dubai" />
+                <option value="Doha" />
+                <option value="New York" />
+                <option value="Paris" />
+                <option value="London" />
+                <option value="Sydney" />
+                <option value="Toronto" />
+              </datalist>
               </div>
 
               <div className="form-group">

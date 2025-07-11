@@ -35,8 +35,19 @@ const AdminStaffAdd = () => {
           "authorization":`Bearer ${token}`
         }
         const apiResponse=await adminStaffAdd(staffData,reqHeaders)
+        console.log(apiResponse);
+        
         alert("staff added successfully")
+        seStaffData({
+            name:"",
+    email:"",
+    password:"",
+    role:"staff"
+  
+
+        })
         getUsers()
+        
         
 
       }catch(err){
@@ -128,6 +139,7 @@ const AdminStaffAdd = () => {
             <input
               type="text"
               placeholder="john_doe"
+              value={staffData.name}
               style={{
                 width: '100%',
                 padding: '12px 16px',
@@ -154,6 +166,7 @@ const AdminStaffAdd = () => {
             <input
               type="email"
               placeholder="john@company.com"
+              value={staffData.email}
               style={{
                 width: '100%',
                 padding: '12px 16px',
@@ -179,6 +192,7 @@ const AdminStaffAdd = () => {
             <input
               type="password"
               placeholder="••••••••"
+              value={staffData.password}
               style={{
                 width: '100%',
                 padding: '12px 16px',
@@ -242,7 +256,7 @@ const AdminStaffAdd = () => {
     </div>
 
 
-    <div className="p-4">
+    {/* <div className="p-4">
       <div className="card shadow-sm border-0">
         <div className="card-body p-0">
           <div className="table-responsive">
@@ -282,7 +296,80 @@ const AdminStaffAdd = () => {
           </div>
         </div>
       </div>
+    </div> */}
+
+<div className="p-4">
+  <div className="card shadow-sm" style={{ borderRadius: '10px', border: '1px solid #e5e7eb' }}>
+    <div className="card-body p-0">
+      <Table hover responsive className="mb-0">
+        <thead style={{ backgroundColor: '#f9fafb' }}>
+          <tr>
+            <th style={{ padding: '15px', fontWeight: '600', color: '#4b5563' }}>Name</th>
+            <th style={{ padding: '15px', fontWeight: '600', color: '#4b5563' }}>Email</th>
+            <th style={{ padding: '15px', fontWeight: '600', color: '#4b5563', textAlign: 'center' }}>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userData?.map((a, index) => (
+            <tr key={index} style={{ borderBottom: '1px solid #f3f4f6' }}>
+              <td style={{ padding: '15px', verticalAlign: 'middle' }}>
+                <div className="d-flex align-items-center">
+                  <div style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    backgroundColor: '#7c3aed',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: '10px',
+                    fontWeight: '600'
+                  }}>
+                    {a.name.charAt(0).toUpperCase()}
+                  </div>
+                  {a.name}
+                </div>
+              </td>
+              <td style={{ padding: '15px', verticalAlign: 'middle', color: '#6b7280' }}>
+                {a.email}
+              </td>
+              <td style={{ padding: '15px', textAlign: 'center', verticalAlign: 'middle' }}>
+                <button 
+                  onClick={() => onDeleteStaff(a._id)}
+                 
+                  style={{ 
+                       background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '8px',
+                    borderRadius: '6px',
+                    transition: 'all 0.2s',
+                    color: '#ef4444',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                   }}
+                >
+                  <i className="fas fa-trash-alt me-1"></i>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      {userData?.length === 0 && (
+        <div className="text-center py-5" style={{ backgroundColor: '#f9fafb' }}>
+          <i className="fas fa-users-slash fa-2x mb-3" style={{ color: '#d1d5db' }}></i>
+          <h5 className="mb-1" style={{ color: '#6b7280' }}>No staff members found</h5>
+          <p className="text-muted mb-0">Add new staff members to see them listed here</p>
+        </div>
+      )}
     </div>
+  </div>
+</div>
+
   </div>
     
   );

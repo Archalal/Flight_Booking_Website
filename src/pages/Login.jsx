@@ -5,109 +5,62 @@ import { jwtDecode } from "jwt-decode";
 import { verifyUser } from "../../services/allApi";
 
 const Login = () => {
-  const[userVerify,setUserVerify]=useState({
-    email:"",
-    password:""
-  })
-  // const [error, setError] = useState("");
-  const navigate = useNavigate();
-  
+  const [userVerify, setUserVerify] = useState({
+    email: "",
+    password: ""
+  });
 
-  // Handle successful Google login
+  const navigate = useNavigate();
+
   const handleGoogleSuccess = async (credentialResponse) => {
-    console.log(credentialResponse)
     try {
       const decoded = jwtDecode(credentialResponse.credential);
-      console.log(decoded)
-  
       const userData = {
         email: decoded.email,
         name: decoded.name,
-       
       };
-        if(userData.email){
-          let apiResponse= await verifyUser(userData)
-          console.log(apiResponse.data);
-          
-          if(apiResponse.status==200){
-            sessionStorage.setItem("token",apiResponse.data.token)
-            sessionStorage.setItem("username",apiResponse.data.username)
-            sessionStorage.setItem("role",apiResponse.data.role)
-          
-            if(apiResponse.data.role=="user"){
-              navigate('/userdashboard')
-            }
-            else if(apiResponse.data.role=="staff"){
-              navigate('/Flight')
-            }
-              
-  
 
-          }else{
-            alert("invalid emailId/not registered")
-          }
-          
-        
-          
-          
-          
+      if (userData.email) {
+        let apiResponse = await verifyUser(userData);
+        if (apiResponse.status === 200) {
+          sessionStorage.setItem("token", apiResponse.data.token);
+          sessionStorage.setItem("username", apiResponse.data.username);
+          sessionStorage.setItem("role", apiResponse.data.role);
+
+          if (apiResponse.data.role === "user") navigate('/userdashboard');
+          else if (apiResponse.data.role === "staff") navigate('/Flight');
+          else alert("Invalid user");
+        } else {
+          alert("Invalid emailId / not registered");
         }
-      
-      // console.log("User data:", userData);
-     
-      
+      }
     } catch (error) {
-      console.error("Error processing Google login:", error);
+      console.error("Google login error:", error);
       alert("Failed to process Google login");
     }
   };
 
-  // Handle Google login failure
   const handleGoogleFailure = () => {
     alert("Google login failed. Please try again.");
   };
 
-  // Handle Email/Password Login
   const handleEmailLogin = async (e) => {
     e.preventDefault();
 
-    if(userVerify.email &&userVerify.password  ){
-      let apiResponse= await verifyUser(userVerify)
-      console.log(apiResponse.data);
-      let token=sessionStorage.setItem("token",apiResponse.data.token)
-      let name=sessionStorage.setItem("username",apiResponse.data.username)
-    console.log(name);
-    
-      console.log(token)
-      
-     if(apiResponse.data.role=="admin"){
-    
-      navigate('/admin')
-     }
-     else if(apiResponse.data.role=="user"){
-      navigate('/userdashboard')
+    if (userVerify.email && userVerify.password) {
+      let apiResponse = await verifyUser(userVerify);
+      sessionStorage.setItem("token", apiResponse.data.token);
+      sessionStorage.setItem("username", apiResponse.data.username);
 
-     }
-     else if(apiResponse.data.role=="flight"){
-    
-
-      navigate('/flightdashboard')
-
-     }
-     else{
-      console.log("Not found please registeror invalid username/password");
-      
-     }
-      
-
-    }else{
-      console.log("fill the form");
-      
+      if (apiResponse.data.role === "admin") navigate('/admin');
+      else if (apiResponse.data.role === "user") navigate('/userdashboard');
+      else if (apiResponse.data.role === "staff") navigate('/Flight');
+      else alert("Not found. Please register or check username/password");
+    } else {
+      console.log("Fill the form");
     }
-  }
-   
-    
-   
+  };
+
   return (
     <div
       style={{
@@ -116,9 +69,10 @@ const Login = () => {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#f8f9fa",
+        padding: "20px"
       }}
     >
-      <div className="container">
+      <div className="container" style={{ maxWidth: "850px" }}>
         <div className="row shadow" style={{ borderRadius: "15px", overflow: "hidden" }}>
           <div className="col-md-6 p-0">
             <img
@@ -128,48 +82,40 @@ const Login = () => {
             />
           </div>
 
-          <div className="col-md-6 p-5" style={{ backgroundColor: "white" }}>
+          <div className="col-md-6 p-4" style={{ backgroundColor: "white" }}>
             <h2
-              className="text-center mb-4"
+              className="text-center mb-2"
               style={{
                 color: "#ff5a1d",
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: "600",
+                fontSize: "1.8rem"
               }}
             >
               𝐋𝐨𝐠𝐢𝐧
             </h2>
-            <p className="text-center mb-4" style={{ color: "#6c757d" }}>
+            <p className="text-center mb-4" style={{ color: "#6c757d", fontSize: "0.9rem" }}>
               Welcome back! Login to experience our service.
             </p>
-            
-            
-            
-            <GoogleOAuthProvider 
-        clientId="606492950601-4tmq4mpaetsn7f1eusdg3rfiakmo3id7.apps.googleusercontent.com"
-      >
-        <div className="d-grid mb-4">
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleFailure}
-            useOneTap
-            auto_select
-            width="100%"
-            size="large"
-            text="continue_with"
-            shape="rectangular"
-            theme="outline"
-          />
-        </div>
-      </GoogleOAuthProvider>
+
+            <GoogleOAuthProvider clientId="606492950601-4tmq4mpaetsn7f1eusdg3rfiakmo3id7.apps.googleusercontent.com">
+              <div className="d-grid mb-4">
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleFailure}
+                  useOneTap
+                  auto_select
+                  size="large"
+                  text="continue_with"
+                  shape="rectangular"
+                  theme="outline"
+                />
+              </div>
+            </GoogleOAuthProvider>
+
             <div className="position-relative mb-4">
-              <div 
-                style={{
-                  borderTop: "1px solid #ddd",
-                  position: "relative",
-                }}
-              >
-                <span 
+              <div style={{ borderTop: "1px solid #ddd", position: "relative" }}>
+                <span
                   style={{
                     backgroundColor: "white",
                     position: "absolute",
@@ -178,7 +124,7 @@ const Login = () => {
                     transform: "translateX(-50%)",
                     padding: "0 10px",
                     color: "#6c757d",
-                    fontSize: "14px",
+                    fontSize: "13px",
                   }}
                 >
                   OR
@@ -187,10 +133,8 @@ const Login = () => {
             </div>
 
             <form onSubmit={handleEmailLogin}>
-             
-              
               <div className="mb-3">
-                <label htmlFor="email" className="form-label" style={{ fontWeight: "500" }}>
+                <label htmlFor="email" className="form-label" style={{ fontSize: "0.85rem", fontWeight: "500" }}>
                   Email address
                 </label>
                 <input
@@ -198,14 +142,19 @@ const Login = () => {
                   className="form-control"
                   id="email"
                   value={userVerify.email}
-                  onChange={(e) => setUserVerify({...userVerify,email:e.target.value})}
+                  onChange={(e) => setUserVerify({ ...userVerify, email: e.target.value })}
                   placeholder="Enter your email"
                   required
+                  style={{
+                    fontSize: "0.85rem",
+                    padding: "8px 12px",
+                    borderRadius: "12px"
+                  }}
                 />
               </div>
 
               <div className="mb-3">
-                <label htmlFor="password" className="form-label" style={{ fontWeight: "500" }}>
+                <label htmlFor="password" className="form-label" style={{ fontSize: "0.85rem", fontWeight: "500" }}>
                   Password
                 </label>
                 <input
@@ -213,9 +162,14 @@ const Login = () => {
                   className="form-control"
                   id="password"
                   value={userVerify.password}
-                  onChange={(e) => setUserVerify({...userVerify,password:e.target.value})}
+                  onChange={(e) => setUserVerify({ ...userVerify, password: e.target.value })}
                   placeholder="Enter your password"
                   required
+                  style={{
+                    fontSize: "0.85rem",
+                    padding: "8px 12px",
+                    borderRadius: "12px"
+                  }}
                 />
               </div>
 
@@ -226,10 +180,10 @@ const Login = () => {
                   style={{
                     backgroundColor: "#ff5a1d",
                     border: "none",
-                    padding: "7px",
+                    padding: "10px",
                     fontSize: "0.9rem",
-                    width: "200px",
-                    margin: "0 auto"
+                    width: "100%",
+                    borderRadius: "25px"
                   }}
                 >
                   Sign In
@@ -237,12 +191,14 @@ const Login = () => {
               </div>
 
               <div className="text-center mt-3">
-                <Link to={'/forgetpassword'} style={{ color: "#ff5a1d" }}>Forget password?</Link>
+                <Link to="/forgetpassword" style={{ color: "#ff5a1d", fontSize: "13px" }}>
+                  Forgot password?
+                </Link>
               </div>
 
-              <div className="text-center mt-3">
+              <div className="text-center mt-3" style={{ fontSize: "13px" }}>
                 <span>Don't have an account? </span>
-                <Link to={'/signup'} style={{ color: "#ff5a1d" }}>Register here</Link>
+                <Link to="/signup" style={{ color: "#ff5a1d" }}>Register here</Link>
               </div>
             </form>
           </div>
