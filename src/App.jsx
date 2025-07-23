@@ -32,6 +32,7 @@ import UserHistory from './pages/UserHistory'
 import NotificationFlight from './pages/FlightPages/NotificationFlight'
 import { useContext } from 'react'
 import { LoginContext } from './component/Context/AuthContext'
+import UserProfile from './pages/UserProfile'
 
 
 function App() {
@@ -97,6 +98,7 @@ theme="light"
       <Route element={<ForgetPassword />} path='/forgetpassword'></Route>
       <Route element={<UserHistory />} path='/userhistory'></Route>
       <Route element={<AboutUs />} path='/aboutus'></Route>
+      <Route element={<UserProfile />} path='/userprofile'></Route>
      
    
    

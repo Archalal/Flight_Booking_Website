@@ -11,7 +11,7 @@ const AdminNotification = () => {
             color: '#2d3748',
             fontSize: '1.75rem'
           }}>
-            <i className="fas fa-tachometer-alt me-2" style={{ color: '#4e73df' }}></i> 
+            <i className="" style={{ color: '#4e73df' }}></i> 
             Dashboard Overview
           </h2>
           <p className="text-muted m-0 mt-1" style={{ fontSize: '0.9rem' }}>

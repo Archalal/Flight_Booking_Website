@@ -64,7 +64,7 @@ const TotalDisplay = () => {
             <Card.Body className="d-flex flex-column">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-muted mb-2">Total Users</h6>
+                  <h6 className="text-uppercase text-black mb-2">Total Users</h6>
                   <h2 className="mb-0">{user}</h2>
                 </div>
                 <div className="bg-white bg-opacity-30 p-3 rounded-circle">
@@ -83,7 +83,7 @@ const TotalDisplay = () => {
             <Card.Body className="d-flex flex-column">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-muted mb-2">Total Bookings</h6>
+                  <h6 className="text-uppercase text-black  mb-2">Total Bookings</h6>
                   <h2 className="mb-0">{booking}</h2>
                 </div>
                 <div className="bg-white bg-opacity-30 p-3 rounded-circle">
@@ -101,7 +101,7 @@ const TotalDisplay = () => {
             <Card.Body className="d-flex flex-column">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-muted mb-2">Total flight</h6>
+                  <h6 className="text-uppercase text-black  mb-2">Total flight</h6>
                   <h2 className="mb-0">{flight}</h2>
                 </div>
                 <div className="bg-white bg-opacity-30 p-3 rounded-circle">

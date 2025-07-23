@@ -44,7 +44,7 @@ const UserAdminManage = () => {
     <div className="admin-dashboard" style={{ backgroundColor: "#f8f9fa" }}>
      
    
-      <div >
+      <div className="m-3" >
        
       <Link to={'/admin/notification'} style={{textDecoration:"none"}}>
     <AdminNotification />

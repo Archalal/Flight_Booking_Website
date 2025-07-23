@@ -133,8 +133,8 @@ const OverView = () => {
             <Card.Body className="d-flex flex-column text-white">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-white-50 mb-2">Total Users</h6>
-                  <h2 className="mb-0">{user}</h2>
+                  <h6 className="text-uppercase text-black mb-2">Total Users</h6>
+                  <h2 className="mb-0 text-black">{user}</h2>
                 </div>
                 <div className="bg-white bg-opacity-20 p-3 rounded-circle">
                   <i style={{color:'blue'}} className="fas fa-users fs-4"></i>
@@ -152,8 +152,8 @@ const OverView = () => {
             <Card.Body className="d-flex flex-column text-white">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-white-50 mb-2">Total Bookings</h6>
-                  <h2 className="mb-0">{booking}</h2>
+                  <h6 className="text-uppercase text-black mb-2">Total Bookings</h6>
+                  <h2 className="mb-0 text-black">{booking}</h2>
                 </div>
                 <div className="bg-white bg-opacity-20 p-3 rounded-circle">
                   <i style={{color:'green'}}  className="fas fa-cart-shopping fs-4"></i>
@@ -171,8 +171,8 @@ const OverView = () => {
             <Card.Body className="d-flex flex-column text-white">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-white-50 mb-2">Total Revenue</h6>
-                  <h2 className="mb-0">{revenue}</h2>
+                  <h6 className="text-uppercase text-black mb-2">Total Revenue</h6>
+                  <h2 className="mb-0 text-black">{revenue}</h2>
                 </div>
                 <div className="bg-white bg-opacity-20 p-3 rounded-circle">
                   <i style={{color:'purple'}} className="fas fa-dollar-sign fs-4"></i>
@@ -190,8 +190,8 @@ const OverView = () => {
             <Card.Body className="d-flex flex-column text-white">
               <div className="d-flex justify-content-between align-items-start">
                 <div>
-                  <h6 className="text-uppercase text-white-50 mb-2">Active Flights</h6>
-                  <h2 className="mb-0">{flight}</h2>
+                  <h6 className="text-uppercase text-black mb-2">Active Flights</h6>
+                  <h2 className="mb-0 text-black">{flight}</h2>
                 </div>
                 <div className="bg-white bg-opacity-20 p-3 rounded-circle">
                   <i style={{color:'pink'}} className="fas fa-plane fs-4"></i>

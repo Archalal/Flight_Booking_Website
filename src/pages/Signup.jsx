@@ -4,7 +4,6 @@ import { registerUser } from "../../services/allApi";
 
 const Signup = () => {
   const navigate = useNavigate();
-
   const [userData, setUserData] = useState({
     role: "user",
     name: "",
@@ -16,45 +15,67 @@ const Signup = () => {
     password: ""
   });
 
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [validEmail, setValidEmail] = useState(false);
   const [validNumber, setValidNumber] = useState(false);
 
   useEffect(() => {
     if (userData.email) {
-      setValidEmail(userData.email.endsWith("@gmail.com"));
+      if (userData.email.endsWith("@gmail.com")) {
+        setValidEmail(true);
+      } else {
+        setValidEmail(false);
+        console.log("not a valid email id");
+      }
     }
   }, [userData.email]);
 
   useEffect(() => {
     if (userData.phoneNumber) {
-      setValidNumber(/^\d{10}$/.test(userData.phoneNumber));
+      if (/^\d{10}$/.test(userData.phoneNumber)) {
+        setValidNumber(true);
+      } else {
+        setValidNumber(false);
+      }
     }
   }, [userData.phoneNumber]);
 
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const onRegisterSubmit = async (e) => {
     e.preventDefault();
-
     if (
-      userData.name && userData.image && userData.email && userData.dob &&
-      userData.phoneNumber && userData.address && userData.password && confirmPassword
+      userData.name &&
+      userData.image &&
+      userData.email &&
+      userData.dob &&
+      userData.phoneNumber &&
+      userData.address &&
+      userData.password &&
+      confirmPassword
     ) {
       try {
         if (userData.password === confirmPassword) {
           const payload = new FormData();
-          for (const key in userData) {
-            payload.append(key, userData[key]);
-          }
+          payload.append("role", userData.role);
+          payload.append("name", userData.name);
+          payload.append("image", userData.image);
+          payload.append("email", userData.email);
+          payload.append("dob", userData.dob);
+          payload.append("phoneNumber", userData.phoneNumber);
+          payload.append("address", userData.address);
+          payload.append("password", userData.password);
 
-          const reqHeaders = { "Content-Type": "multipart/form-data" };
+          const reqHeaders = {
+            "Content-Type": "multipart/form-data"
+          };
+
           const apiResponse = await registerUser(payload, reqHeaders);
-
           if (apiResponse.status === 201) {
             alert("Registered successfully");
-            navigate('/login');
+            navigate("/login");
           } else {
-            alert("Already registered. Please login.");
-            navigate('/login');
+            alert("Already registered, please login");
+            navigate("/login");
           }
         } else {
           alert("Passwords do not match");
@@ -63,7 +84,7 @@ const Signup = () => {
         console.log(err);
       }
     } else {
-      alert("Please fill the entire form");
+      alert("Please fill the form");
     }
   };
 
@@ -74,12 +95,14 @@ const Signup = () => {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#f8f9fa",
-        padding: "28px 0",
-        minHeight: "100vh"
+        padding: "28px 0"
       }}
     >
-      <div className="container" style={{ maxWidth: "850px" }}>
-        <div className="row shadow-lg" style={{ borderRadius: "20px", overflow: "hidden" }}>
+      <div className="container">
+        <div
+          className="row shadow-lg"
+          style={{ borderRadius: "20px", overflow: "hidden" }}
+        >
           <div
             className="col-md-7 p-3"
             style={{
@@ -87,60 +110,144 @@ const Signup = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
-            <h2 className="text-center mb-1" style={{ color: "#ff5a1d", fontWeight: "700", fontSize: "1.6rem" }}>
+            <h2
+              className="text-center mb-1"
+              style={{
+                color: "#ff5a1d",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: "700",
+                fontSize: "2rem"
+              }}
+            >
               𝐂𝐫𝐞𝐚𝐭𝐞 𝐀𝐧 𝐀𝐜𝐜𝐨𝐮𝐧𝐭
             </h2>
-            <p className="text-center mb-3" style={{ color: "#6c757d", fontSize: "0.75rem" }}>
+            <p
+              className="text-center mb-4"
+              style={{ color: "#6c757d", fontSize: "0.80rem" }}
+            >
               Welcome! Sign up to experience our service.
             </p>
-            <form style={{ width: "100%", maxWidth: "400px" }}>
-              {[
-                { id: "name", label: "Full Name", type: "text", value: userData.name },
-                { id: "email", label: "Email address", type: "text", value: userData.email },
-                { id: "dob", label: "Date of Birth", type: "date", value: userData.dob },
-                { id: "number", label: "Phone Number", type: "tel", value: userData.phoneNumber },
-                { id: "address", label: "Address", type: "text", value: userData.address },
-                { id: "password", label: "Password", type: "password", value: userData.password },
-                { id: "confirmPassword", label: "Confirm Password", type: "password", value: confirmPassword }
-              ].map(({ id, label, type, value }) => (
-                <div key={id} className="mb-2">
-                  <label htmlFor={id} className="form-label" style={{ fontSize: "0.75rem", fontWeight: "500" }}>
-                    {label}
-                  </label>
-                  <input
-                    type={type}
-                    className="form-control"
-                    id={id}
-                    value={id === "confirmPassword" ? confirmPassword : value}
-                    onChange={(e) => {
-                      if (id === "confirmPassword") setConfirmPassword(e.target.value);
-                      else setUserData({ ...userData, [id === "number" ? "phoneNumber" : id]: e.target.value });
-                    }}
-                    placeholder={`Enter your ${label.toLowerCase()}`}
-                    style={{ fontSize: "0.7rem", padding: "3px 7px", borderRadius: "8px" }}
-                  />
-                  {id === "email" && !validEmail && userData.email && (
-                    <span style={{ color: "blue", fontSize: "11px" }}>Enter a valid email (e.g., elena@gmail.com)</span>
-                  )}
-                  {id === "number" && !validNumber && userData.phoneNumber && (
-                    <span style={{ color: "blue", fontSize: "11px" }}>Enter a valid 10-digit number</span>
-                  )}
-                </div>
-              ))}
+            <form style={{ width: "70%", maxWidth: "400px" }}>
+              <div className="mb-2">
+                <label htmlFor="name" className="form-label" style={{ fontWeight: "500" }}>
+                  Full Name
+                </label>
+                <input
+                  onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  placeholder="Enter your full name"
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
+                />
+              </div>
 
               <div className="mb-2">
-                <label htmlFor="picture" className="form-label" style={{ fontSize: "0.75rem", fontWeight: "500" }}>
+                <label htmlFor="picture" className="form-label" style={{ fontWeight: "500" }}>
                   Picture
                 </label>
                 <input
+                  onChange={(e) => setUserData({ ...userData, image: e.target.files[0] })}
                   type="file"
                   className="form-control"
                   id="picture"
-                  onChange={(e) => setUserData({ ...userData, image: e.target.files[0] })}
-                  style={{ fontSize: "0.7rem", padding: "3px", borderRadius: "8px" }}
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
+                />
+              </div>
+
+              <div className="mb-2">
+                <label className="form-label" style={{ fontWeight: "500" }}>
+                  Email address
+                </label>
+                <input
+                  onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                  type="text"
+                  className="form-control"
+                  id="email"
+                  placeholder="Enter your email"
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
+                />
+                {!validEmail && (
+                  <span style={{ color: "blue", fontSize: "12px" }}>
+                    Enter valid EmailId ex: elena@gmail.com
+                  </span>
+                )}
+              </div>
+
+              <div className="mb-2">
+                <label htmlFor="dob" className="form-label" style={{ fontWeight: "500" }}>
+                  Date of Birth
+                </label>
+                <input
+                  onChange={(e) => setUserData({ ...userData, dob: e.target.value })}
+                  type="date"
+                  className="form-control"
+                  id="dob"
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
+                />
+              </div>
+
+              <div className="mb-2">
+                <label htmlFor="number" className="form-label" style={{ fontWeight: "500" }}>
+                  Phone Number
+                </label>
+                <input
+                  onChange={(e) => setUserData({ ...userData, phoneNumber: e.target.value })}
+                  type="tel"
+                  className="form-control"
+                  id="number"
+                  placeholder="Enter your Phone Number"
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
+                />
+                {!validNumber && (
+                  <span style={{ color: "blue", fontSize: "12px" }}>
+                    Enter valid Number
+                  </span>
+                )}
+              </div>
+
+              <div className="mb-2">
+                <label htmlFor="address" className="form-label" style={{ fontWeight: "500" }}>
+                  Address
+                </label>
+                <input
+                  onChange={(e) => setUserData({ ...userData, address: e.target.value })}
+                  type="text"
+                  className="form-control"
+                  id="address"
+                  placeholder="Enter your Address"
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
+                />
+              </div>
+
+              <div className="mb-2">
+                <label htmlFor="password" className="form-label" style={{ fontWeight: "500" }}>
+                  Password
+                </label>
+                <input
+                  onChange={(e) => setUserData({ ...userData, password: e.target.value })}
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Enter your password"
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
+                />
+              </div>
+
+              <div className="mb-2">
+                <label htmlFor="confirmPassword" className="form-label" style={{ fontWeight: "500" }}>
+                  Confirm Password
+                </label>
+                <input
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  type="password"
+                  className="form-control"
+                  id="confirmPassword"
+                  placeholder="Confirm your password"
+                  style={{ borderRadius: "20px", padding: "10px", width: "100%" }}
                 />
               </div>
 
@@ -153,10 +260,11 @@ const Signup = () => {
                     backgroundColor: "#ff5a1d",
                     color: "white",
                     border: "none",
-                    borderRadius: "20px",
+                    borderRadius: "10px",
                     padding: "6px",
-                    fontSize: "0.9rem",
+                    fontSize: "1rem",
                     fontWeight: "600",
+                    transition: "background-color 0.3s ease",
                     width: "50%",
                     margin: "0 auto"
                   }}
@@ -165,9 +273,9 @@ const Signup = () => {
                 </button>
               </div>
 
-              <div className="text-center mt-3" style={{ fontSize: "0.75rem" }}>
-                Already have an account?{" "}
-                <Link to="/login" style={{ color: "#ff5a1d", fontWeight: "500" }}>
+              <div className="text-center mt-4">
+                <span style={{ color: "#6c757d" }}>Already have an account? </span>
+                <Link to={"/login"} style={{ color: "#ff5a1d" }}>
                   Login
                 </Link>
               </div>

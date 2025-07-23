@@ -72,7 +72,7 @@ const Login = () => {
         padding: "20px"
       }}
     >
-      <div className="container" style={{ maxWidth: "850px" }}>
+      <div className="container" style={{ maxWidth: "900px" }}>
         <div className="row shadow" style={{ borderRadius: "15px", overflow: "hidden" }}>
           <div className="col-md-6 p-0">
             <img
@@ -134,7 +134,7 @@ const Login = () => {
 
             <form onSubmit={handleEmailLogin}>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label" style={{ fontSize: "0.85rem", fontWeight: "500" }}>
+                <label htmlFor="email" className="form-label" style={{ fontSize: "0.90rem", fontWeight: "600" }}>
                   Email address
                 </label>
                 <input
@@ -154,7 +154,7 @@ const Login = () => {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="password" className="form-label" style={{ fontSize: "0.85rem", fontWeight: "500" }}>
+                <label htmlFor="password" className="form-label" style={{ fontSize: "0.90rem", fontWeight: "600" }}>
                   Password
                 </label>
                 <input

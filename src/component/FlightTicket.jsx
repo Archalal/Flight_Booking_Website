@@ -58,8 +58,8 @@ const FlightTicket = ({flights}) => {
         flights.map((a)=>(
          a.tripType=="return"?
          <div className='bg-white rounded-3 shadow p-4 mb-4' style={{ 
-          width: '90%',
-          maxWidth: '900px',
+          width: '100%',
+          maxWidth: '100%',
           background: "linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%)", 
           border: "1px solid #e0e0e0",
           borderLeft: "5px solid #090979",
@@ -126,8 +126,8 @@ const FlightTicket = ({flights}) => {
                   :
 
                   <div className='bg-white rounded-3 shadow p-4' style={{ 
-                    width: '90%',
-                    maxWidth: '900px',
+                    width: '100%',
+                    maxWidth: '100%',
                     background: "linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%)", 
                     border: "1px solid #e0e0e0",
                     borderLeft: "5px solid #dc3545",

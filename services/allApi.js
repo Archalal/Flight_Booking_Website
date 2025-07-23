@@ -125,4 +125,8 @@ export const delFlight=async(id,)=>{
     return await commonAPi("delete",`/flight/${id}/delete`,{})
 
 }
+export const findByUser=async(reqheaders)=>{
+    return await commonAPi("get","/findbyuser","",reqheaders)
+
+}
                                         
